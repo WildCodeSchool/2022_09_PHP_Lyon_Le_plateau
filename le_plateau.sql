@@ -3,11 +3,11 @@ CREATE DATABASE le_plateau;
 USE le_plateau;
 
 CREATE TABLE user (
-id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+id INT PRIMARY KEY AUTO_INCREMENT,
 firstname VARCHAR(100) NOT NULL,
 lastname VARCHAR (100) NOT NULL,
 email VARCHAR(100) NOT NULL,
-password VARCHAR (100) NOT NULL,
+password VARCHAR (100) NOT NULL
 );
 
 CREATE TABLE game (
@@ -34,5 +34,3 @@ VALUES
 ('Monopoly', 'plateau', 8, 10, 1,'https://img.freepik.com/photos-gratuite/beaucoup-maisons-jouets_144627-1474.jpg?size=626&ext=jpg&ga=GA1.2.839792511.1665667296&semt=sph'),
 ('Uno', 'cartes', 6, 6, 3, 'https://img.freepik.com/photos-gratuite/homme-jouant-aux-cartes-autres-personnes-tenant-jeu_1268-17890.jpg?size=626&ext=jpg&ga=GA1.2.839792511.1665667296&semt=sph'),
 ('Belotte', 'cartes', 4, 15, 5, 'https://img.freepik.com/vecteurs-libre/quatre-as-carte-poker-illustration_1017-3850.jpg?size=338&ext=jpg&ga=GA1.2.839792511.1665667296&semt=sph');
-
-
