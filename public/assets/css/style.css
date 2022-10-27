@@ -6,8 +6,29 @@ body {
 }
 
 .backgroundtop {
-    background-image: url('https://cdn.pixabay.com/photo/2018/01/04/19/57/competition-3061509_1280.jpg');
+    background-image: url('../images/bg-game2.jpg');
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    height: 60vh;
+    height: 20vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.ring {
+    flex-grow: 2;
+    display: inline-flex;
+    justify-content: flex-end;
+    align-items: center;
+
+}
+
+.navbar-expand-lg .navbar-collapse {
+    flex-grow: 0;
+
+}
+
+#ring-img {
+    margin-right: 10px;
 }

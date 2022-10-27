@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="icon" href="/assets/images/favicon.png">
+		<link rel="icon" href="assets/images/logo.png">
 
 		<title>
 			{% block title %}{% endblock %}
@@ -18,16 +18,18 @@
 		<nav class="navbar navbar-expand-lg" style="background-color: #8CBDB9;">
 			<div class="container-fluid">
 				<a class="navbar-brand" href="#">
-					<img src="assets/images/logo.png" class="img-fluid" alt="Le plateau" width="100" height="100">
+					<img src="assets/images/logo.png" class="img-fluid" alt="Le plateau" width="140" height="140">
 				</a>
 			</a>
-			<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-bell-fill" viewbox="0 0 16 16">
-				<path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
-			</svg>
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+			<div class="ring">
+				<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-bell-fill" id="ring-img" viewbox="0 0 16 16">
+					<path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
+				</svg>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+			</div>
+			<div class="collapse navbar-collapse justify-content-end text-center" id="navbarNav">
 				<ul class="navbar-nav">
 					<li class="mb-1">
 						<a class="nav-link text-black active" aria-current="page" href="#">Accueil</a>
@@ -51,12 +53,12 @@
 		<div>
 			<footer class="d-flex flex-wrap justify-content-between align-items-center my-0 bottom mw-100" style="background-color: #8CBDB9">
 				<p class="col-md-4 position-relative">
-					<img src="assets/images/logo.png" class="img-fluid" width="100" height="100" alt="logo site">
+					<img src="assets/images/logo.png" class="img-fluid" width="140" height="140" alt="logo site">
 				</p>
 
 				<div class="col-lg-3 col-md-6 mb-4">
 					<ul class="list-unstyled mb-0 text-center">
-						<li class="mb-1">
+						<li class="mb-1 m-4">
 							<a href="#" class="nav-link px-2 link-dark">Accueil</a>
 						</li>
 						<li class="mb-1">
