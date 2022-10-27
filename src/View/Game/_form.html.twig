@@ -1,7 +1,7 @@
 <form class="form" method="post">
 	<div class="mb-3">
-		<label for="idGame" class="form-label">Id du propriétaire du jeu</label>
-		<input type="number" value="{{ game.id_owner }}" name="idGame" maxlenght="100" class="form-control" required>
+		<label for="idGameOwner" class="form-label">Id du propriétaire du jeu</label>
+		<input type="number" value="{{ game.id_owner }}" name="idGameOwner" maxlenght="100" class="form-control" required>
 	</div>
 
 	<div class="mb-3">
@@ -12,7 +12,7 @@
 	<div class="mb-3">
 		<label for="gameGenre" class="form-label">Genre</label>
 		<select name="gameGenre" id="gameGenre" value="{{ game.type }}" class="form-control" required>
-			<option value="">--Choisis un genre--</option>
+			<option disabled value="">--Choisis un genre--</option>
 			<option value="strategy">Stratégie</option>
 			<option value="ambiance">Jeu d'ambiance</option>
 			<option value="cooperative">Coopératif</option>
@@ -23,12 +23,17 @@
 	</div>
 
 	<div class="mb-3">
-		<label for="gameNumberPlayers" class="form-label">Nombre de joueurs</label>
+		<label for="gameMinimumNumberPlayers" class="form-label" minlength="1" maxlength="99">Nombre de joueurs</label>
 		<input type="number" value="{{ game.number_players }}" name="gameNumberPlayers" id="gameNumberPlayers" maxlenght="100" class="form-control" required>
 	</div>
 
 	<div class="mb-3">
-		<label for="gameAgeMinimumPlayers" class="form-label">A partir de</label>
+		<label for="gameMaximumNumberPlayers" class="form-label" minlength="1" maxlength="99">Nombre de joueurs</label>
+		<input type="number" value="{{ game.number_players }}" name="gameNumberPlayers" id="gameNumberPlayers" maxlenght="100" class="form-control" required>
+	</div>
+
+	<div class="mb-3">
+		<label for="gameAgeMinimumPlayers" class="form-label" minlength="1" maxlength="99">A partir de</label>
 		<input type="number" value="{{ game.age_minimum_players }}" name="gameAgeMinimumPlayers" id="gameAgeMinimumPlayers" maxlenght="100" class="form-control" required>
 	</div>
 
