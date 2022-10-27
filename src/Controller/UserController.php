@@ -73,4 +73,12 @@ class UserController extends AbstractController
             return $this->errors;
         }
     }
+
+    public function index(): string
+    {
+        $userManager = new UserManager();
+        $users = $userManager->selectAll('id');
+
+        return $this->twig->render('User/index.html.twig', ['users' => $users]);
+    }
 }
