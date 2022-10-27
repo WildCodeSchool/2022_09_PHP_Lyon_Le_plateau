@@ -10,4 +10,4 @@ define('DB_NAME', getenv('DB_NAME') ? getenv('DB_NAME') : APP_DB_NAME);
 define('APP_VIEW_PATH', __DIR__ . '/../src/View/');
 
 // database dump file path for automatic import
-define('DB_DUMP_PATH', __DIR__ . '/../database.sql');
+define('DB_DUMP_PATH', __DIR__ . '/../le_plateau.sql');
