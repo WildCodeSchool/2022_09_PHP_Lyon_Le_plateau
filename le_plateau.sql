@@ -17,7 +17,9 @@ type VARCHAR(100) NOT NULL,
 number_players INT NOT NULL,
 minimum_players_age INT NOT NULL,
 image VARCHAR(255),
-id_owner INT NOT NULL
+id_owner INT NOT NULL,
+min_number_players INT NOT NULL,
+max_number_players INT NOT NULL
 );
 
 
@@ -26,11 +28,11 @@ VALUES
 ('Jerome', 'Danfald', 'j.danfald@gmail.com', 'jeje'),
 ('Charlene', 'DaRugna', 'c.darugna@gmail.com', "chacha"),
 ('Kevin', 'Albespy', 'k.albespy@gmail.com', "keke"),
-('Ibrahim', 'Mohammed', 'i.mohammed@gmail.com', "ibrabra"),
+('Ibrahim', 'Mohamed', 'i.mohammed@gmail.com', "ibrabra"),
 ('Matthieu', 'Dufloux', 'm.dufloux@gmail.com', "matmat");
 
-INSERT INTO game (name, type, number_players, minimum_players_age, id_owner, image)
+INSERT INTO game (name, type, number_players, minimum_players_age, id_owner, image, min_number_players, max_number_players)
 VALUES
-('Monopoly', 'plateau', 8, 10, 1,'https://img.freepik.com/photos-gratuite/beaucoup-maisons-jouets_144627-1474.jpg?size=626&ext=jpg&ga=GA1.2.839792511.1665667296&semt=sph'),
-('Uno', 'cartes', 6, 6, 3, 'https://img.freepik.com/photos-gratuite/homme-jouant-aux-cartes-autres-personnes-tenant-jeu_1268-17890.jpg?size=626&ext=jpg&ga=GA1.2.839792511.1665667296&semt=sph'),
-('Belotte', 'cartes', 4, 15, 5, 'https://img.freepik.com/vecteurs-libre/quatre-as-carte-poker-illustration_1017-3850.jpg?size=338&ext=jpg&ga=GA1.2.839792511.1665667296&semt=sph');
+('Monopoly', 'plateau', 8, 10, 1,'https://img.freepik.com/photos-gratuite/beaucoup-maisons-jouets_144627-1474.jpg?size=626&ext=jpg&ga=GA1.2.839792511.1665667296&semt=sph', 2, 6),
+('Uno', 'cartes', 6, 6, 3, 'https://img.freepik.com/photos-gratuite/homme-jouant-aux-cartes-autres-personnes-tenant-jeu_1268-17890.jpg?size=626&ext=jpg&ga=GA1.2.839792511.1665667296&semt=sph', 2, 8),
+('Belotte', 'cartes', 4, 15, 5, 'https://img.freepik.com/vecteurs-libre/quatre-as-carte-poker-illustration_1017-3850.jpg?size=338&ext=jpg&ga=GA1.2.839792511.1665667296&semt=sph', 4, 4);
