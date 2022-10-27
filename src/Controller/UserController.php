@@ -8,6 +8,18 @@ class UserController extends AbstractController
 {
     protected array $errors = [];
 
+    public function userFormVerification()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $userData = array_map('trim', $_POST);
+
+            $this->userNameVerification($userData);
+            $this->userEmailVerification($userData);
+            $this->userPasswordVerification($userData);
+            return $this->errors;
+        }
+    }
+
     public function userNameVerification(array $userData): void
     {
         if (!isset($userData['userFirstname']) || empty($userData['userFirstname'])) {
@@ -59,18 +71,6 @@ class UserController extends AbstractController
         }
         if ($userData['userPasswordConfirmation'] !== $userData['userPassword']) {
             $this->errors[] = "Les mots de passe doivent être identiques";
-        }
-    }
-
-    public function userFormVerification()
-    {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $userData = array_map('trim', $_POST);
-
-            $this->userNameVerification($userData);
-            $this->userEmailVerification($userData);
-            $this->userPasswordVerification($userData);
-            return $this->errors;
         }
     }
 

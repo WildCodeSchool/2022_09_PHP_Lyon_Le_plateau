@@ -8,6 +8,21 @@ class GameController extends AbstractController
 {
     protected array $errors = [];
 
+    public function gameFormVerification()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $gameData = array_map('trim', $_POST);
+
+            $this->gameIdOwnerVerification($gameData);
+            $this->gameDescriptionVerification($gameData);
+            $this->gameNumberPlayersVerification($gameData);
+            $this->gameAgePlayersVerification($gameData);
+            $this->gameImageVerification();
+
+            return $this->errors;
+        }
+    }
+
     public function gameIdOwnerVerification(array $gameData): void
     {
         if (!isset($gameData['idGameOwner']) || empty($gameData['idGameOwner'])) {
@@ -94,21 +109,6 @@ class GameController extends AbstractController
             if (substr($_FILES['gameImage']['type'], 0) !== "image/") {
                 $this->errors[] = "Le fichier téléchargé n'est pas une image";
             }
-        }
-    }
-
-    public function gameFormVerification()
-    {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $gameData = array_map('trim', $_POST);
-
-            $this->gameIdOwnerVerification($gameData);
-            $this->gameDescriptionVerification($gameData);
-            $this->gameNumberPlayersVerification($gameData);
-            $this->gameAgePlayersVerification($gameData);
-            $this->gameImageVerification();
-
-            return $this->errors;
         }
     }
 
