@@ -81,4 +81,27 @@ class UserController extends AbstractController
 
         return $this->twig->render('User/index.html.twig', ['users' => $users]);
     }
+
+    public function add(): ?string
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // clean $_POST data
+            $user = array_map('trim', $_POST);
+
+            // TODO validations (length, format...)
+            $this->userFormVerification();
+
+            // Display error (to be modified for image case)
+            if (!empty($this->errors)) {
+                return $this->twig->render('User/add.html.twig', ['errors' => $this->errors, 'user' => $user]);
+            } else {
+                $userManager = new UserManager();
+                $userManager->insert($user);
+                header('Location: /users/show');
+                return null;
+            }
+        }
+
+        return $this->twig->render('User/add.html.twig');
+    }
 }
