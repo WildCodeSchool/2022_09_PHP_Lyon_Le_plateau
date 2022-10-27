@@ -127,11 +127,20 @@ class GameController extends AbstractController
             $game = array_map('trim', $_POST);
 
             // TODO validations (length, format...)
-            // function verification to add //
+            $this->gameFormVerification();
 
             // if validation is ok, insert and redirection
             $gameManager = new GameManager();
             $id = $gameManager->insert($game);
+
+ // Display error (to be modified for image case)
+            if(!empty($errors)) {
+                return $this->twig->render('Game/add.html.twig', ['errors' => $errors, 'game' => $game]);
+            } else{
+                $gameManager->insert($game);
+                header('Location: /games/show');
+                return null;
+            }
 
             header('Location:/games/show?id=' . $id);
             return null;
