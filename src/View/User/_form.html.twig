@@ -1,4 +1,7 @@
 <form class="form" method="post">
+
+	<input type="hidden" value="{{ user.id }}" name="id">
+
 	<div class="mb-3">
 		<label for="userFirstname" class="form-label">Prénom</label>
 		<input type="text" value="{{ user.firstname }}" name="userFirstname" id="firstname" maxlenght="100" class="form-control" required>
