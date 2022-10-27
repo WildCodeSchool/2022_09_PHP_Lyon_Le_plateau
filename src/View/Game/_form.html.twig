@@ -1,4 +1,7 @@
-<form class="form" method="post">
+<form class="form" method="post">*
+
+	<input type="hidden" value="{{ game.id }}" name="id">
+
 	<div class="mb-3">
 		<label for="idGameOwner" class="form-label">Id du propriétaire du jeu</label>
 		<input type="number" value="{{ game.id_owner }}" name="idGameOwner" class="form-control" min="0" required>
