@@ -5,8 +5,10 @@
 	{% include 'Game/_form.html.twig' %}
 	{% if errors is defined %}
 		<p class="text-danger">Il y a des erreurs dans le formulaire :
-			{% for error in errors %}
-				<li>{{error}}</li>
-			{% endfor %}
+			<ul>
+				{% for error in errors %}
+					<li>{{error}}</li>
+				{% endfor %}
+			</ul>
 		{% endif %}
 	{% endblock %}
