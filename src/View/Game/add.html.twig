@@ -3,4 +3,10 @@
 {% block content %}
 	<h1>Ajoute un jeu</h1>
 	{% include 'Game/_form.html.twig' %}
-{% endblock %}
+	{% if errors is defined %}
+		<p class="text-danger">Il y a des erreurs dans le formulaire :
+			{% for error in errors %}
+				<li>{{error}}</li>
+			{% endfor %}
+		{% endif %}
+	{% endblock %}

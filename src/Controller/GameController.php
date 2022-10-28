@@ -129,14 +129,11 @@ class GameController extends AbstractController
             // TODO validations (length, format...)
             $this->gameFormVerification();
 
-            // if validation is ok, insert and redirection
-            $gameManager = new GameManager();
-            $gameManager->insert($game);
-
             // Display error (to be modified for image case)
             if (!empty($this->errors)) {
                 return $this->twig->render('Game/add.html.twig', ['errors' => $this->errors, 'game' => $game]);
             } else {
+                $gameManager = new GameManager();
                 $gameManager->insert($game);
                 header('Location: /games/show');
                 return null;
