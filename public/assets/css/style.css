@@ -29,6 +29,22 @@ body {
 
 }
 
+.navbar{
+    background-color: #8CBDB9;
+}
+
 #ring-img {
     margin-right: 10px;
+    width: 25px;
+    height: 25px;
+}
+
+.images {
+    width: 100px;
+    height: 100px;
+}
+
+.logo {
+    width: 140px;
+    height : 140px;
 }
