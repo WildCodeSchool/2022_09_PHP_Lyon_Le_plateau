@@ -1,3 +1,50 @@
 body {
-    color: #f76c6c;
+    margin: 0;
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+
+.backgroundtop {
+    background-image: url('../images/bg-game2.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    height: 20vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.ring {
+    flex-grow: 2;
+    display: inline-flex;
+    justify-content: flex-end;
+    align-items: center;
+
+}
+
+.navbar-expand-lg .navbar-collapse {
+    flex-grow: 0;
+
+}
+
+.navbar{
+    background-color: #8CBDB9;
+}
+
+#ring-img {
+    margin-right: 10px;
+    width: 25px;
+    height: 25px;
+}
+
+.images {
+    width: 100px;
+    height: 100px;
+}
+
+.logo {
+    width: 140px;
+    height : 140px;
 }
