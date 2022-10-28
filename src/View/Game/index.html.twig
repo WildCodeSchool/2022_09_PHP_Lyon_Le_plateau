@@ -1,0 +1,23 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+	<a href="/games/add">Ajouter</a>
+	<h1>Les jeux</h1>
+	<ul>
+		{% for game in games %}
+			<li>{{ game.id }}.
+				{{ game.name }}
+				/ type :
+				{{ game.type }}
+				/ Age mini :{{ game.minimum_players_age}}
+				/ Nbre joueurs min :
+				{{ game.min_number_players }}
+				/ Nbre joueurs max :
+				{{ game.max_number_players }}
+				/ Id proprio :
+				{{ game.id_owner }}</li>
+
+			<a href="/games/edit?id={{ game.id }}">Modifier</a>
+		{% endfor %}
+	</ul>
+{% endblock %}
