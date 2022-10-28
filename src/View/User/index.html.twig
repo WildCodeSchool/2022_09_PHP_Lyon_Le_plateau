@@ -11,12 +11,7 @@
 				/ mail :
 				{{ user.email }}
 			</li>
-
-			<a href="/users/edit">Modifier</a>
-
-		{% else %}
-			<li>Nothing to display</li>
+			<a href="/users/edit?id={{ user.id }}">Modifier</a>
 		{% endfor %}
 	</ul>
 {% endblock %}
-

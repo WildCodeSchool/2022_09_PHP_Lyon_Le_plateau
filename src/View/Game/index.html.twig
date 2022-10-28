@@ -9,16 +9,15 @@
 				{{ game.name }}
 				/ type :
 				{{ game.type }}
-				/ Nbre de joueurs :
-				{{ game.number_players }}
 				/ Age mini :{{ game.minimum_players_age}}
+				/ Nbre joueurs min :
+				{{ game.min_number_players }}
+				/ Nbre joueurs max :
+				{{ game.max_number_players }}
 				/ Id proprio :
 				{{ game.id_owner }}</li>
 
-			<a href="/games/edit">Modifier</a>
-
-		{% else %}
-			<li>Nothing to display</li>
+			<a href="/games/edit?id={{ game.id }}">Modifier</a>
 		{% endfor %}
 	</ul>
 {% endblock %}

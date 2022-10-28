@@ -1,4 +1,7 @@
 <form class="form" method="post">
+
+	<input type="hidden" value="{{ user.id }}" name="id">
+
 	<div class="mb-3">
 		<label for="userFirstname" class="form-label">Prénom</label>
 		<input type="text" value="{{ user.firstname }}" name="userFirstname" id="firstname" maxlenght="100" class="form-control" required>
@@ -16,16 +19,16 @@
 
 	<div class="mb-3">
 		<label for="userPassword" class="form-label">Mot de passe</label>
-		<input type="text" name="userPassword" id="password" maxlenght="100" class="form-control" required>
+		<input type="password" value="{{user.password}}" name="userPassword" id="password" maxlenght="100" class="form-control" required>
 	</div>
 
 	<div class="mb-3">
 		<label for="userPasswordConfirmation" class="form-label">Confirme le mot de passe</label>
-		<input type="text" name="userPasswordConfirmation" id="passwordConfirmation" maxlenght="100" class="form-control" required>
+		<input type="password" value="{{user.password}}" name="userPasswordConfirmation" id="passwordConfirmation" maxlenght="100" class="form-control" required>
 	</div>
 
 	<div class="mb-3">
-		<button class="btn btn-primary">Créer</button>
+		<button class="btn btn-primary">Envoyer</button>
 	</div>
 
 </form>
