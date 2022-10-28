@@ -1,0 +1,13 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <h1>Modifie l'utilisateur {{ user.id }}</h1>
+    {% include 'User/_form.html.twig' %}
+    {% if errors is defined %}
+        <p class = "text-danger">Il y a des erreurs dans le formulaire :
+        {% for error in errors %}
+            <li>{{error}}</li>
+        {% endfor %}
+    {% endif %}
+    <a href="/users/show">Retour</a>
+{% endblock %}

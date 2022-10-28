@@ -8,16 +8,12 @@ class UserController extends AbstractController
 {
     protected array $errors = [];
 
-    public function userFormVerification()
+    public function userFormVerification(array $userData)
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $userData = array_map('trim', $_POST);
-
             $this->userNameVerification($userData);
             $this->userEmailVerification($userData);
             $this->userPasswordVerification($userData);
             return $this->errors;
-        }
     }
 
     public function userNameVerification(array $userData): void
@@ -80,5 +76,25 @@ class UserController extends AbstractController
         $users = $userManager->selectAll('id');
 
         return $this->twig->render('User/index.html.twig', ['users' => $users]);
+    }
+
+    public function edit(int $id): ?string
+    {
+        $userManager = new UserManager();
+        $user = $userManager->selectOneById($id);
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $userData = array_map('trim', $_POST);
+            $this->userFormVerification($userData);
+
+            if (!empty($this->errors)) {
+                return $this->twig->render('User/edit.html.twig', ['errors' => $this->errors, 'user' => $user]);
+            } else {
+                $userManager->update($userData, $id);
+                header('Location: /users/show');
+                return null;
+            }
+        }
+        return $this->twig->render('User/edit.html.twig', ['user' => $user]);
     }
 }
