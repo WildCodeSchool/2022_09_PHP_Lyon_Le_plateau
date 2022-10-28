@@ -16,6 +16,5 @@ return [
     'games/show' => ['GameController', 'index',],
     'games/add' => ['GameController', 'add',],
     'users/show' => ['UserController', 'index',],
-
-
+    'users/add' => ['UserController', 'add',],
 ];
