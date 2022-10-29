@@ -8,11 +8,8 @@ class GameController extends AbstractController
 {
     protected array $errors = [];
 
-    public function gameFormVerification()
+    public function gameFormVerification(array $gameData)
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $gameData = array_map('trim', $_POST);
-
             $this->gameIdOwnerVerification($gameData);
             $this->gameDescriptionVerification($gameData);
             $this->gameNumberPlayersVerification($gameData);
@@ -20,8 +17,8 @@ class GameController extends AbstractController
             $this->gameImageVerification();
 
             return $this->errors;
-        }
     }
+
 
     public function gameIdOwnerVerification(array $gameData): void
     {
@@ -106,7 +103,7 @@ class GameController extends AbstractController
             if ($_FILES['gameImage']['size'] > 2097152) {
                 $this->errors[] = "L'image du jeu est trop volumineuse";
             }
-            if (substr($_FILES['gameImage']['type'], 0) !== "image/") {
+            if (strpos($_FILES['gameImage']['type'], "image/") !== 0) {
                 $this->errors[] = "Le fichier téléchargé n'est pas une image";
             }
         }
@@ -127,7 +124,7 @@ class GameController extends AbstractController
             $game = array_map('trim', $_POST);
 
             // TODO validations (length, format...)
-            $this->gameFormVerification();
+            $this->gameFormVerification($game);
 
             // Display error (to be modified for image case)
             if (!empty($this->errors)) {
@@ -141,5 +138,33 @@ class GameController extends AbstractController
         }
 
         return $this->twig->render('Game/add.html.twig');
+    }
+
+    public function edit(int $id): ?string
+    {
+        $gameManager = new GameManager();
+        $game = $gameManager->selectOneById($id);
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $gameData = array_map('trim', $_POST);
+            $this->gameFormVerification($gameData);
+
+            if (!empty($this->errors)) {
+                return $this->twig->render('Game/edit.html.twig', ['errors' => $this->errors, 'game' => $gameData]);
+            } else {
+                move_uploaded_file(
+                    $_FILES['gameImage']['tmp_name'],
+                    '../public/uploads/' . $id . "-" . basename($_FILES['gameImage']['name'])
+                );
+                $gameData['gameImage'] = $id . "-" . basename($_FILES['gameImage']['name']);
+                $gameManager->update($gameData, $id);
+                header('Location: /games/show');
+                return null;
+            }
+        }
+
+        return $this->twig->render('Game/edit.html.twig', [
+            'game' => $game,
+        ]);
     }
 }
