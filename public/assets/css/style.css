@@ -13,7 +13,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    
+
 }
 
 .ring {
@@ -29,7 +29,7 @@ body {
 
 }
 
-.navbar{
+.navbar {
     background-color: #8CBDB9;
 }
 
@@ -46,5 +46,10 @@ body {
 
 .logo {
     width: 140px;
-    height : 140px;
+    height: 140px;
+}
+
+/* _navAdmin.html.twig */
+#nav-admin {
+    width: 40vh;
 }
