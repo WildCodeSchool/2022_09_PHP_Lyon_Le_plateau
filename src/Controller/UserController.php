@@ -40,12 +40,6 @@ class UserController extends AbstractController
         if (strlen($userData['userEmail']) > 100) {
             $this->errors[] = 'L\'email doit être inférieur à 100 caractères';
         }
-        if (!isset($userData['userPassword']) || empty($userData['userPassword'])) {
-            $this->errors[] = "Le mot de passe est obligatoire";
-        }
-        if (strlen($userData['userPassword']) < 8) {
-            $this->errors[] = 'Le mot de passe doit être supérieur à 8 caractères';
-        }
     }
 
     public function userPasswordVerification(array $userData): void
