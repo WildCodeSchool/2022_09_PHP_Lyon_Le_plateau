@@ -19,7 +19,7 @@ image VARCHAR(255) default 'default.jpg',
 id_owner INT NOT NULL,
 min_number_players INT NOT NULL,
 max_number_players INT NOT NULL,
-availablity bool not null default true
+availability bool NOT NULL default true
 );
 
 
