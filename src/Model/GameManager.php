@@ -17,12 +17,12 @@ class GameManager extends AbstractManager
         " (id_owner, name, type, minimum_players_age, min_number_players, max_number_players) 
         VALUES (:id_owner, :name, :type, :minimum_players_age, :min_number_players, :max_number_players)";
         $statement = $this->pdo->prepare($query);
-        $statement->bindValue(':id_owner', $game['idGameOwner'], PDO::PARAM_STR);
+        $statement->bindValue(':id_owner', $game['idGameOwner'], PDO::PARAM_INT);
         $statement->bindValue(':name', $game['gameName'], PDO::PARAM_STR);
         $statement->bindValue(':type', $game['gameGenre'], PDO::PARAM_STR);
-        $statement->bindValue(':minimum_players_age', $game['gameAgeMinimumPlayers'], PDO::PARAM_STR);
-        $statement->bindValue(':min_number_players', $game['gameMinimumNumberPlayers'], PDO::PARAM_STR);
-        $statement->bindValue(':max_number_players', $game['gameMaximumNumberPlayers'], PDO::PARAM_STR);
+        $statement->bindValue(':minimum_players_age', $game['gameAgeMinimumPlayers'], PDO::PARAM_INT);
+        $statement->bindValue(':min_number_players', $game['gameMinimumNumberPlayers'], PDO::PARAM_INT);
+        $statement->bindValue(':max_number_players', $game['gameMaximumNumberPlayers'], PDO::PARAM_INT);
 
         $statement->execute();
         return (int)$this->pdo->lastInsertId();
