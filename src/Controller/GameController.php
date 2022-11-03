@@ -175,7 +175,8 @@ class GameController extends AbstractController
     {
         $gameManager = new GameManager();
         $games = $gameManager->selectAll('name');
-        $selectedGames = $gameManager->select12Games('name');
+        $page = ($_GET['page'] - 1) * 12;
+        $selectedGames = $gameManager->select12Games($page, 'name');
 
         return $this->twig->render('Game/games.html.twig', ['games' => $games, 'selectedGames' => $selectedGames]);
     }

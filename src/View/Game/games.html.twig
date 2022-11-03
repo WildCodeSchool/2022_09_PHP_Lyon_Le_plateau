@@ -3,20 +3,20 @@
 {% block pageTitle %}Les jeux{% endblock %}
 
 {% block content %}
-    <div class="container d-flex w-100 pb-4 justify-content-center">
+    <div class="container d-flex w-100  justify-content-center">
         <div class="row justify-content-start w-100">
 			{% for game in selectedGames %}
 				{% include 'Game/_gamecard.html.twig' %}
 			{% endfor %}	
 		</div>
 	</div>
-	<div class = "pages text-center">
+	<div class = "pages text-center mb-3 mt-2">
 		<ul class="nav justify-content-center">
 			{% set count = (games|length) %}
 			{% set page = (count/12)|round(0, 'ceil')-1 %}
 			{% for i in range (0, page) %}
 				<li class="nav-item">
-					<a class="nav-link" aria-current="page" href="/../../games?page={{i+1}}">{{i+1}}</a>
+					<a class="nav-link pageNumber rounded m-2" aria-current="page" href="/../../games?page={{i+1}}">{{i+1}}</a>
 				</li>
 			{% endfor %}
 		</ul>

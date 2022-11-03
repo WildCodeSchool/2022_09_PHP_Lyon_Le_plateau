@@ -49,9 +49,8 @@ class GameManager extends AbstractManager
         return $statement->execute();
     }
 
-    public function select12Games(string $orderBy = 'name', string $direction = 'ASC'): array
+    public function select12Games(int $page, string $orderBy = 'name', string $direction = 'ASC'): array
     {
-        $page = ($_GET['page'] - 1) * 12;
         $query = 'SELECT * FROM game INNER JOIN user ON user.id = game.id_owner ORDER BY '
         . $orderBy . " " . $direction . ' LIMIT 12 OFFSET ' . $page;
         return $this->pdo->query($query)->fetchAll();

@@ -93,11 +93,16 @@ body {
     color: var(--background-color)
 }
 
-.nav-link{
-    color: var(--secondary-color)
+.pageNumber {
+    background-color: var(--secondary-color);
+    color: var(--background-color);
 }
 
-.nav-link:hover{
-    color: var(--secondary-color)
+.pageNumber:hover{
+    color: black;
+}
+
+.pageNumber:active{
+    color: black;
 }
 
