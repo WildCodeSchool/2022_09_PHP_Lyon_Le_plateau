@@ -15,23 +15,26 @@ id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
 name VARCHAR(100) NOT NULL,
 type VARCHAR(100) NOT NULL,
 minimum_players_age INT NOT NULL,
-image VARCHAR(255),
+image VARCHAR(255) default 'default.jpg',
 id_owner INT NOT NULL,
 min_number_players INT NOT NULL,
-max_number_players INT NOT NULL
+max_number_players INT NOT NULL,
+availability bool NOT NULL default true
 );
 
 
 INSERT INTO user (firstname, lastname, email, password)
 VALUES 
-('Jerome', 'Danfald', 'j.danfald@gmail.com', 'jeje'),
-('Charlene', 'DaRugna', 'c.darugna@gmail.com', "chacha"),
-('Kevin', 'Albespy', 'k.albespy@gmail.com', "keke"),
-('Ibrahim', 'Mohamed', 'i.mohammed@gmail.com', "ibrabra"),
-('Matthieu', 'Dufloux', 'm.dufloux@gmail.com', "matmat");
+('Jerome', 'Dannfald', 'j.dannfald@gmail.com', 'jeje+1234'),
+('Charlene', 'DaRugna', 'c.darugna@gmail.com', "chacha+1234"),
+('Kevin', 'Albespy', 'k.albespy@gmail.com', "keke+1234"),
+('Ibrahim', 'Mohamed', 'i.mohammed@gmail.com', "ibrabra+1234"),
+('Matthieu', 'Dufloux', 'm.dufloux@gmail.com', "matmat+1234");
 
 INSERT INTO game (name, type, minimum_players_age, id_owner, image, min_number_players, max_number_players)
 VALUES
-('Monopoly', 'plateau', 10, 1,'https://img.freepik.com/photos-gratuite/beaucoup-maisons-jouets_144627-1474.jpg?size=626&ext=jpg&ga=GA1.2.839792511.1665667296&semt=sph', 2, 6),
-('Uno', 'cartes', 6, 3, 'https://img.freepik.com/photos-gratuite/homme-jouant-aux-cartes-autres-personnes-tenant-jeu_1268-17890.jpg?size=626&ext=jpg&ga=GA1.2.839792511.1665667296&semt=sph', 2, 8),
-('Belotte', 'cartes', 15, 5, 'https://img.freepik.com/vecteurs-libre/quatre-as-carte-poker-illustration_1017-3850.jpg?size=338&ext=jpg&ga=GA1.2.839792511.1665667296&semt=sph', 4, 4);
+('Monopoly', 'Stratégie', 10, 1,'monopoly.jpg', 2, 6),
+('Uno', 'Jeu d\'ambiance', 6, 3, 'uno.png', 2, 8),
+('Cluedo', 'Stratégie', 9, 5, 'cluedo.jpg', 2, 6),
+('CodeNames', 'Jeu d\'ambiance', 12, 4, 'codenames.jpg', 2, 8);
+
