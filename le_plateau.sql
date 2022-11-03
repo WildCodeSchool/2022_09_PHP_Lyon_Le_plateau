@@ -33,6 +33,8 @@ VALUES
 
 INSERT INTO game (name, type, minimum_players_age, id_owner, image, min_number_players, max_number_players)
 VALUES
-('Monopoly', 'plateau', 10, 1,'monopoly.jpg', 2, 6),
-('Uno', 'cartes', 6, 3, 'uno.png', 2, 8),
-('Belotte', 'cartes', 15, 5, 'belote.jpg', 4, 4);
+('Monopoly', 'Stratégie', 10, 1,'monopoly.jpg', 2, 6),
+('Uno', 'Jeu d\'ambiance', 6, 3, 'uno.png', 2, 8),
+('Cluedo', 'Stratégie', 9, 5, 'cluedo.jpg', 2, 6),
+('CodeNames', 'Jeu d\'ambiance', 12, 4, 'codenames.jpg', 2, 8);
+
