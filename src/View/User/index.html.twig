@@ -9,17 +9,32 @@
 		<section class="m-auto">
 			<a href="/users/add">Ajouter</a>
 			<h1 class="text-center">Les utilisateurs</h1>
-			<ul>
-				{% for user in users %}
-					<li>{{ user.id }}.
-						{{ user.firstname }}
-						{{ user.lastname }}
-						/ mail :
-						{{ user.email }}
-					</li>
-					<a href="/users/edit?id={{ user.id }}">Modifier</a>
-				{% endfor %}
-			</ul>
+
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Firstname</th>
+						<th>Lastname</th>
+						<th class="text-center">Mail</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for user in users %}
+						<tr>
+
+							<td>{{ user.id}}</td>
+							<td>{{ user.firstname }}</td>
+							<td>{{ user.lastname}}</td>
+							<td>{{ user.email}}</td>
+							<td>
+								<a href="/users/edit?id={{ user.id }}">Modifier</a>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
 		</section>
 
 	</div>
