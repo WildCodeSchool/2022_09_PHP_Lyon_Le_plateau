@@ -49,7 +49,6 @@ body {
     height: 140px;
 }
 
-/* _navAdmin.html.twig */
 #nav-admin {
-    width: 40vh;
+    min-width: 230px;
 }
