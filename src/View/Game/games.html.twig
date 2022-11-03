@@ -11,9 +11,7 @@
 		</div>
 	</div>
 	<div class = "pages text-center">
-	Pages
 		<ul class="nav justify-content-center">
-
 			{% set count = (games|length) %}
 			{% set page = (count/12)|round(0, 'ceil')-1 %}
 			{% for i in range (0, page) %}

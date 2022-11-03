@@ -130,8 +130,8 @@ class GameController extends AbstractController
             if (!empty($this->errors)) {
                 return $this->twig->render('Game/add.html.twig', ['errors' => $this->errors, 'game' => $game]);
             } else {
-                $gameImage = uniqid() . "-" . basename($_FILES['gameImage']['name']);
-                move_uploaded_file($_FILES['gameImage']['tmp_name'], '../public/uploads/' . $gameImage);
+                $gameImage = '../public/uploads/' . $game['idGameOwner'] . "_" . $game['gameName'] . "_" . uniqid();
+                move_uploaded_file($_FILES['gameImage']['tmp_name'], $gameImage);
                 $game['gameImage'] = $gameImage;
 
                 $gameManager = new GameManager();
@@ -156,7 +156,8 @@ class GameController extends AbstractController
             if (!empty($this->errors)) {
                 return $this->twig->render('Game/edit.html.twig', ['errors' => $this->errors, 'game' => $gameData]);
             } else {
-                $gameImage = '../public/uploads/' . uniqid() . "-" . basename($_FILES['gameImage']['name']);
+                $gameImage = '../public/uploads/' . $gameData['idGameOwner']
+                . "_" . $gameData['gameName'] . "_" . uniqid();
                 move_uploaded_file($_FILES['gameImage']['tmp_name'], $gameImage);
                 $gameData['gameImage'] = $gameImage;
                 $gameManager->update($gameData, $id);

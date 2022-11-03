@@ -53,7 +53,7 @@ class GameManager extends AbstractManager
     {
         $page = ($_GET['page'] - 1) * 12;
         $query = 'SELECT * FROM game INNER JOIN user ON user.id = game.id_owner ORDER BY '
-        . $orderBy . $direction . ' LIMIT 12 OFFSET ' . $page;
+        . $orderBy . " " . $direction . ' LIMIT 12 OFFSET ' . $page;
         return $this->pdo->query($query)->fetchAll();
     }
 }
