@@ -130,6 +130,10 @@ class GameController extends AbstractController
             if (!empty($this->errors)) {
                 return $this->twig->render('Game/add.html.twig', ['errors' => $this->errors, 'game' => $game]);
             } else {
+                $gameImage = uniqid() . "-" . basename($_FILES['gameImage']['name']);
+                move_uploaded_file($_FILES['gameImage']['tmp_name'], '../public/uploads/' . $gameImage);
+                $game['gameImage'] = $gameImage;
+
                 $gameManager = new GameManager();
                 $gameManager->insert($game);
                 header('Location: /games/show');
@@ -152,11 +156,9 @@ class GameController extends AbstractController
             if (!empty($this->errors)) {
                 return $this->twig->render('Game/edit.html.twig', ['errors' => $this->errors, 'game' => $gameData]);
             } else {
-                move_uploaded_file(
-                    $_FILES['gameImage']['tmp_name'],
-                    '../public/uploads/' . $id . "-" . basename($_FILES['gameImage']['name'])
-                );
-                $gameData['gameImage'] = $id . "-" . basename($_FILES['gameImage']['name']);
+                $gameImage = '../public/uploads/' . uniqid() . "-" . basename($_FILES['gameImage']['name']);
+                move_uploaded_file($_FILES['gameImage']['tmp_name'], $gameImage);
+                $gameData['gameImage'] = $gameImage;
                 $gameManager->update($gameData, $id);
                 header('Location: /games/show');
                 return null;
@@ -166,5 +168,14 @@ class GameController extends AbstractController
         return $this->twig->render('Game/edit.html.twig', [
             'game' => $game,
         ]);
+    }
+
+    public function gamesPages(): string
+    {
+        $gameManager = new GameManager();
+        $games = $gameManager->selectAll('name');
+        $selectedGames = $gameManager->select12Games('name');
+
+        return $this->twig->render('Game/games.html.twig', ['games' => $games, 'selectedGames' => $selectedGames]);
     }
 }
