@@ -10,13 +10,15 @@ class GameController extends AbstractController
 
     public function gameFormVerification(array $gameData)
     {
-            $this->gameIdOwnerVerification($gameData);
-            $this->gameDescriptionVerification($gameData);
-            $this->gameNumberPlayersVerification($gameData);
-            $this->gameAgePlayersVerification($gameData);
-            $this->gameImageVerification();
+        $this->gameIdOwnerVerification($gameData);
+        $this->gameDescriptionVerification($gameData);
+        $this->gameNumberPlayersVerification($gameData);
+        $this->gameNumberPlayersMinMaxVerification($gameData);
+        $this->gameAgePlayersVerification($gameData);
+        $this->gameImageVerification();
 
-            return $this->errors;
+
+        return $this->errors;
     }
 
 
@@ -73,6 +75,13 @@ class GameController extends AbstractController
             )
         ) {
             $this->errors[] = "Le nombre maximum de joueurs n'a pas le bon format";
+        }
+    }
+
+    public function gameNumberPlayersMinMaxVerification(array $gameData)
+    {
+        if (($gameData['gameMinimumNumberPlayers']) > ($gameData['gameMaximumNumberPlayers'])) {
+            $this->errors[] = 'Le nombre de joueurs maximum est inférieur au nombre de joueurs minimum';
         }
     }
 

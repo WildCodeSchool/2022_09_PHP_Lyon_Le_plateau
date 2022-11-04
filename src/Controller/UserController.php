@@ -10,10 +10,10 @@ class UserController extends AbstractController
 
     public function userFormVerification(array $userData)
     {
-            $this->userNameVerification($userData);
-            $this->userEmailVerification($userData);
-            $this->userPasswordVerification($userData);
-            return $this->errors;
+        $this->userNameVerification($userData);
+        $this->userEmailVerification($userData);
+        $this->userPasswordVerification($userData);
+        return $this->errors;
     }
 
     public function userNameVerification(array $userData): void
@@ -40,6 +40,11 @@ class UserController extends AbstractController
         if (strlen($userData['userEmail']) > 100) {
             $this->errors[] = 'L\'email doit être inférieur à 100 caractères';
         }
+        $userManager = new UserManager();
+        $user = $userManager->uniqueEmail($userData['userEmail']);
+        if ($user == true) {
+            $this->errors[] = 'L\'email existe déja';
+        };
     }
 
     public function userPasswordVerification(array $userData): void
