@@ -62,6 +62,9 @@ body {
 
 .logo {
     width: 200px;
+
+#nav-admin {
+    min-width: 230px;
 }
 
 /* PAGE LES JEUX */

@@ -10,10 +10,10 @@ class UserController extends AbstractController
 
     public function userFormVerification(array $userData)
     {
-            $this->userNameVerification($userData);
-            $this->userEmailVerification($userData);
-            $this->userPasswordVerification($userData);
-            return $this->errors;
+        $this->userNameVerification($userData);
+        $this->userEmailVerification($userData);
+        $this->userPasswordVerification($userData);
+        return $this->errors;
     }
 
     public function userNameVerification(array $userData): void
