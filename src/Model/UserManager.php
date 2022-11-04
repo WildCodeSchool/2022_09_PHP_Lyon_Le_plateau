@@ -14,7 +14,7 @@ class UserManager extends AbstractManager
             . " SET `firstname` = :firstname, `lastname` = :lastname, `email` = :email,
         `password` = :password WHERE id=:id;";
         $statement = $this->pdo->prepare($query);
-        $statement->bindValue(':id_user', $id, PDO::PARAM_INT);
+        $statement->bindValue(':id', $id, PDO::PARAM_INT);
         $statement->bindValue(':firstname', $userData['userFirstname'], PDO::PARAM_STR);
         $statement->bindValue(':lastname', $userData['userLastname'], PDO::PARAM_STR);
         $statement->bindValue(':email', $userData['userEmail'], PDO::PARAM_STR);

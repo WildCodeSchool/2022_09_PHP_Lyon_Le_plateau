@@ -16,34 +16,35 @@
 		<label for="gameGenre" class="form-label">Genre</label>
 		<select name="gameGenre" id="gameGenre" value="{{ game.type }}" class="form-control" required>
 			<option disabled value="">--Choisis un genre--</option>
-			<option value="strategy">Stratégie</option>
-			<option value="ambiance">Jeu d'ambiance</option>
-			<option value="cooperative">Coopératif</option>
-			<option value="puzzle_game">Réflexion</option>
-			<option value="general_culture">Culture Générale</option>
-			<option value="escape_game">Escape Game</option>
+			<option value="Stratégie">Stratégie</option>
+			<option value="Jeu d'ambiance">Jeu d'ambiance</option>
+			<option value="Coopératif">Coopératif</option>
+			<option value="Réflexion">Réflexion</option>
+			<option value="Culture Générale">Culture Générale</option>
+			<option value="Escape Game">Escape Game</option>
+			<option value="Autres">Autres</option>
 		</select>
 	</div>
 
 	<div class="mb-3">
 		<label for="gameMinimumNumberPlayers" class="form-label">Nombre de joueurs minimum</label>
-		<input type="number" value="{{ game.number_players }}" name="gameMinimumNumberPlayers" id="gameMinimumNumberPlayers" min="1" max="99" class="form-control" required>
+		<input type="number" value="{{ game.min_number_players }}" name="gameMinimumNumberPlayers" id="gameMinimumNumberPlayers" min="1" max="99" class="form-control" required>
 	</div>
 
 	<div class="mb-3">
 		<label for="gameMaximumNumberPlayers" class="form-label">Nombre de joueurs maximum</label>
-		<input type="number" value="{{ game.number_players }}" name="gameMaximumNumberPlayers" id="gameNugameMaximumNumberPlayersmberPlayers" min="1" max="99" class="form-control" required>
+		<input type="number" value="{{ game.max_number_players }}" name="gameMaximumNumberPlayers" id="gameNugameMaximumNumberPlayersmberPlayers" min="1" max="99" class="form-control" required>
 	</div>
 
 	<div class="mb-3">
 		<label for="gameAgeMinimumPlayers" class="form-label">A partir de</label>
-		<input type="number" value="{{ game.age_minimum_players }}" name="gameAgeMinimumPlayers" id="gameAgeMinimumPlayers" min="1" max="99" class="form-control" required>
+		<input type="number" value="{{ game.minimum_players_age }}" name="gameAgeMinimumPlayers" id="gameAgeMinimumPlayers" min="1" max="99" class="form-control" required>
 	</div>
 
 	<div class="mb-3">
 		<label for="gameImage" class="form-label">Image du jeu</label>
 		<input type="hidden" name="MAX_FILE_SIZE" value="2097152" class="form-control">
-		<input type="file" value="{{ game.image }}" accept="image/*" name="gameImage" id="image" class="form-control" maxlength="255" required>
+		<input type="file" value="{{ game.image }}" accept="image/*" name="gameImage" id="image" class="form-control" maxlength="255">
 	</div>
 
 	<div class="mb-3">

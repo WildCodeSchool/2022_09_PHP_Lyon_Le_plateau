@@ -27,7 +27,6 @@ class GameController extends AbstractController
             $gameVerification = new GameVerification();
             $errors = $gameVerification->gameFormVerification($game);
 
-
             // Display error (to be modified for image case)
             if (!empty($errors)) {
                 return $this->twig->render('Game/add.html.twig', ['errors' => $errors, 'game' => $game]);
