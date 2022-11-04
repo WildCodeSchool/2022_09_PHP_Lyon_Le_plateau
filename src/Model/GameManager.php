@@ -15,7 +15,7 @@ class GameManager extends AbstractManager
     public function insert(array $game): int
     {
         $query = "INSERT INTO " . self::TABLE .
-        " (id_owner, name, type, minimum_players_age, min_number_players, max_number_players, image) 
+            " (id_owner, name, type, minimum_players_age, min_number_players, max_number_players, image) 
         VALUES (:id_owner, :name, :type, :minimum_players_age, :min_number_players, :max_number_players, :image)";
         $statement = $this->pdo->prepare($query);
         $statement->bindValue(':id_owner', $game['idGameOwner'], PDO::PARAM_INT);
@@ -34,7 +34,7 @@ class GameManager extends AbstractManager
     public function update(array $gameData, int $id): bool
     {
         $query = "UPDATE " . self::TABLE
-        . " SET `name` = :name, `type` = :type, `min_number_players` = :minNumberPlayers,
+            . " SET `name` = :name, `type` = :type, `min_number_players` = :minNumberPlayers,
         `max_number_players` = :maxNumberPlayers, `minimum_players_age` = :minimumPlayersAge,
         `image` = :image WHERE id=:id;";
         $statement = $this->pdo->prepare($query);
@@ -52,7 +52,7 @@ class GameManager extends AbstractManager
     public function select12Games(int $page, string $orderBy = 'name', string $direction = 'ASC'): array
     {
         $query = 'SELECT * FROM game INNER JOIN user ON user.id = game.id_owner ORDER BY '
-        . $orderBy . " " . $direction . ' LIMIT 12 OFFSET ' . $page;
+            . $orderBy . " " . $direction . ' LIMIT 12 OFFSET ' . $page;
         return $this->pdo->query($query)->fetchAll();
     }
 }

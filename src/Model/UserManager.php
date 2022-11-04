@@ -11,7 +11,7 @@ class UserManager extends AbstractManager
     public function update(array $userData, int $id): bool
     {
         $query = "UPDATE " . self::TABLE
-        . " SET `firstname` = :firstname, `lastname` = :lastname, `email` = :email,
+            . " SET `firstname` = :firstname, `lastname` = :lastname, `email` = :email,
         `password` = :password WHERE id_user=:id;";
         $statement = $this->pdo->prepare($query);
         $statement->bindValue(':id_user', $id, PDO::PARAM_INT);
@@ -25,7 +25,7 @@ class UserManager extends AbstractManager
     public function insert(array $user): int
     {
         $query = "INSERT INTO " . self::TABLE .
-        " (firstname, lastname, email, password) 
+            " (firstname, lastname, email, password) 
         VALUES (:firstname, :lastname, :email, :password)";
         $statement = $this->pdo->prepare($query);
         $statement->bindValue(':firstname', $user['userFirstname'], PDO::PARAM_STR);
