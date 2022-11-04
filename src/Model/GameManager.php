@@ -55,4 +55,16 @@ class GameManager extends AbstractManager
             . $orderBy . " " . $direction . ' LIMIT 12 OFFSET ' . $page;
         return $this->pdo->query($query)->fetchAll();
     }
+
+    public function selectAll(string $orderBy = '', string $direction = 'ASC'): array
+    {
+        $query = 'SELECT g.id as game_id, g.name, g.type, g.minimum_players_age, g.image, g.id_owner, 
+        g.min_number_players, g.max_number_players, g.availability, u.id as user_id, u.firstname, 
+        u.lastname, u.email, u.password FROM ' . static::TABLE . ' as g inner join user as u on u.id = g.id_owner';
+        if ($orderBy) {
+            $query .= ' ORDER BY ' . $orderBy . ' ' . $direction;
+        }
+
+        return $this->pdo->query($query)->fetchAll();
+    }
 }

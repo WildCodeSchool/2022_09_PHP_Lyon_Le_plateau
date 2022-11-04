@@ -19,7 +19,8 @@
 						<th>Age mini</th>
 						<th>Nbre joueurs min</th>
 						<th>Nbre joueurs max</th>
-						<th>ID propriétaire</th>
+						<th>Prénom</th>
+						<th>Nom</th>
 						<th>Action</th>
 					</tr>
 				</thead>
@@ -27,13 +28,14 @@
 					{% for game in games %}
 						<tr>
 
-							<td>{{ game.id }}</td>
+							<td>{{ game.game_id }}</td>
 							<td>{{ game.name }}</td>
 							<td>{{ game.type }}</td>
 							<td class="text-center">{{ game.minimum_players_age}}</td>
 							<td class="text-center">{{ game.min_number_players }}</td>
 							<td class="text-center">{{ game.max_number_players }}</td>
-							<td class="text-center">{{ game.id_owner }}</td>
+							<td class="text-center">{{ game.firstname }}</td>
+							<td class="text-center">{{ game.lastname }}</td>
 							<td>
 								<a href="/games/edit?id={{ game.id }}">Modifier</a>
 							</td>
