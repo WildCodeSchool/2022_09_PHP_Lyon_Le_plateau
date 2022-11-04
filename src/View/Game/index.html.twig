@@ -1,23 +1,48 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-	<a href="/games/add">Ajouter</a>
-	<h1>Les jeux</h1>
-	<ul>
-		{% for game in games %}
-			<li>{{ game.id }}.
-				{{ game.name }}
-				/ type :
-				{{ game.type }}
-				/ Age mini :{{ game.minimum_players_age}}
-				/ Nbre joueurs min :
-				{{ game.min_number_players }}
-				/ Nbre joueurs max :
-				{{ game.max_number_players }}
-				/ Id proprio :
-				{{ game.id_owner }}</li>
 
-			<a href="/games/edit?id={{ game.id }}">Modifier</a>
-		{% endfor %}
-	</ul>
+	<div class="container-fluid d-md-flex p-0">
+
+		{% include 'components/_navAdmin.html.twig' %}
+
+		<section class="m-auto">
+			<a href="/games/add">Ajouter</a>
+			<h1 class="text-center">Les jeux</h1>
+
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Nom</th>
+						<th>Type</th>
+						<th>Age mini</th>
+						<th>Nbre joueurs min</th>
+						<th>Nbre joueurs max</th>
+						<th>ID propriétaire</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for game in games %}
+						<tr>
+
+							<td>{{ game.id }}</td>
+							<td>{{ game.name }}</td>
+							<td>{{ game.type }}</td>
+							<td class="text-center">{{ game.minimum_players_age}}</td>
+							<td class="text-center">{{ game.min_number_players }}</td>
+							<td class="text-center">{{ game.max_number_players }}</td>
+							<td class="text-center">{{ game.id_owner }}</td>
+							<td>
+								<a href="/games/edit?id={{ game.id }}">Modifier</a>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</section>
+
+	</div>
+
 {% endblock %}

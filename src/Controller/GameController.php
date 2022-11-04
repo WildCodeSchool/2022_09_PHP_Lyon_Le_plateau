@@ -10,13 +10,13 @@ class GameController extends AbstractController
 
     public function gameFormVerification(array $gameData)
     {
-            $this->gameIdOwnerVerification($gameData);
-            $this->gameDescriptionVerification($gameData);
-            $this->gameNumberPlayersVerification($gameData);
-            $this->gameAgePlayersVerification($gameData);
-            $this->gameImageVerification();
+        $this->gameIdOwnerVerification($gameData);
+        $this->gameDescriptionVerification($gameData);
+        $this->gameNumberPlayersVerification($gameData);
+        $this->gameAgePlayersVerification($gameData);
+        $this->gameImageVerification();
 
-            return $this->errors;
+        return $this->errors;
     }
 
 
@@ -157,7 +157,7 @@ class GameController extends AbstractController
                 return $this->twig->render('Game/edit.html.twig', ['errors' => $this->errors, 'game' => $gameData]);
             } else {
                 $gameImage = '../public/uploads/' . $gameData['idGameOwner']
-                . "_" . $gameData['gameName'] . "_" . uniqid();
+                    . "_" . $gameData['gameName'] . "_" . uniqid();
                 move_uploaded_file($_FILES['gameImage']['tmp_name'], $gameImage);
                 $gameData['gameImage'] = $gameImage;
                 $gameManager->update($gameData, $id);
