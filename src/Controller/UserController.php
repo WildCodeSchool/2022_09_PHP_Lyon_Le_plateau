@@ -10,10 +10,10 @@ class UserController extends AbstractController
 
     public function userFormVerification(array $userData)
     {
-            $this->userNameVerification($userData);
-            $this->userEmailVerification($userData);
-            $this->userPasswordVerification($userData);
-            return $this->errors;
+        $this->userNameVerification($userData);
+        $this->userEmailVerification($userData);
+        $this->userPasswordVerification($userData);
+        return $this->errors;
     }
 
     public function userNameVerification(array $userData): void
@@ -39,12 +39,6 @@ class UserController extends AbstractController
         }
         if (strlen($userData['userEmail']) > 100) {
             $this->errors[] = 'L\'email doit être inférieur à 100 caractères';
-        }
-        if (!isset($userData['userPassword']) || empty($userData['userPassword'])) {
-            $this->errors[] = "Le mot de passe est obligatoire";
-        }
-        if (strlen($userData['userPassword']) < 8) {
-            $this->errors[] = 'Le mot de passe doit être supérieur à 8 caractères';
         }
     }
 
