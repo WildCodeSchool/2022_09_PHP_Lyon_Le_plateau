@@ -53,10 +53,10 @@ class GameController extends AbstractController
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $gameData = array_map('trim', $_POST);
             $gameVerification = new GameVerification();
-            $gameData = $gameVerification->gameFormVerification($gameData);
+            $errors = $gameVerification->gameFormVerification($gameData);
 
-            if (!empty($this->errors)) {
-                return $this->twig->render('Game/edit.html.twig', ['errors' => $this->errors, 'game' => $gameData]);
+            if (!empty($errors)) {
+                return $this->twig->render('Game/edit.html.twig', ['errors' => $errors, 'game' => $gameData]);
             } else {
                 $gameImage = $gameData['idGameOwner'] . "_" . $gameData['gameName'] . "_" . uniqid();
                 move_uploaded_file($_FILES['gameImage']['tmp_name'], '../public/uploads/' . $gameImage);
