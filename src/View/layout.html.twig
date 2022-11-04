@@ -47,37 +47,40 @@
 					</ul>
 				</div>
 			</nav>
-			<h2 class="text-center my-4"> {% block pageTitle %}{% endblock %}
-				</h2>
-				{% block content %}{% endblock %}
-				{% block javascript %}{% endblock %}
 
-				<div>
-					<footer class="footer d-flex flex-wrap justify-content-between align-items-center my-0 bottom mw-100" style="background-color: #8CBDB9">
-						<p class="col-md-4 position-relative">
-							<img src="/assets/images/logo.png" class="img-fluid logo" alt="logo site">
-						</p>
+			{% block pageTitle %}{% endblock %}
+			{% block content %}{% endblock %}
+			{% block javascript %}{% endblock %}
 
-						<div class="col-lg-3 col-md-6 mb-4">
-							<ul class="list-unstyled mb-0 text-center">
-								<li class="mb-1 m-4">
-									<a href="#" class="nav-link px-2 link-dark">Accueil</a>
-								</li>
-								<li class="mb-1">
-									<a href="#" class="nav-link px-2 link-dark">Les jeux</a>
-								</li>
-								<li class="mb-1">
-									<a href="#" class="nav-link px-2 link-dark">Mon compte</a>
-								</li>
-								<li class="mb-1">
-									<a href="#" class="nav-link px-2 link-dark">A propos</a>
-								</li>
-							</ul>
-						</div>
-						<div href="/" class="col-md-4 d-flex justify-content-center link-dark text-decoration-none">
-							Copyright© 2022
-						</div>
-					</footer>
-				</div>
-			</body>
-		</html>
+			<div class="container-fluid text-center">
+				<footer class="row d-flex align-items-center" style="background-color: #8CBDB9">
+
+					<p class="col-md-4 mt-4 mb-2">
+						<img src="/assets/images/logo.png" class="img-fluid logo" alt="logo site">
+					</p>
+
+					<div class="col-md-4 mt-4 mb-2">
+						<ul class="list-unstyled mb-0 text-center">
+							<li class="mb-1">
+								<a href="#" class="nav-link px-2 link-dark">Accueil</a>
+							</li>
+							<li class="mb-1">
+								<a href="#" class="nav-link px-2 link-dark">Les jeux</a>
+							</li>
+							<li class="mb-1">
+								<a href="#" class="nav-link px-2 link-dark">Mon compte</a>
+							</li>
+							<li class="mb-1">
+								<a href="#" class="nav-link px-2 link-dark">A propos</a>
+							</li>
+						</ul>
+					</div>
+
+					<div href="/" class="col-md-4 mt-4 mb-4">
+						Copyright© 2022
+					</div>
+
+				</footer>
+			</div>
+		</body>
+	</html>

@@ -1,16 +1,20 @@
 {% extends 'layout.html.twig' %}
 
-{% block pageTitle %}Les jeux{% endblock %}
+{% block pageTitle %}
+	<h2 class="text-center my-4">
+		Les jeux
+	</h2>
+{% endblock %}
 
 {% block content %}
-    <div class="container d-flex w-100  justify-content-center">
-        <div class="row justify-content-start w-100">
+	<div class="container d-flex w-100  justify-content-center">
+		<div class="row justify-content-start w-100">
 			{% for game in selectedGames %}
 				{% include 'Game/_gamecard.html.twig' %}
-			{% endfor %}	
+			{% endfor %}
 		</div>
 	</div>
-	<div class = "pages text-center mb-3 mt-2">
+	<div class="pages text-center mb-3 mt-2">
 		<ul class="nav justify-content-center">
 			{% set count = (games|length) %}
 			{% set page = (count/12)|round(0, 'ceil')-1 %}
