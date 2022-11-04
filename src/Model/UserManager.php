@@ -40,7 +40,7 @@ class UserManager extends AbstractManager
     public function uniqueEmail(string $email)
     {
         $email = $_POST['userEmail'];
-        $statement = $this->pdo->prepare("SELECT * FROM User WHERE email=?");
+        $statement = $this->pdo->prepare("SELECT * FROM user WHERE email=?");
         $statement->execute([$email]);
         $user = $statement->fetch();
         if ($user) {
