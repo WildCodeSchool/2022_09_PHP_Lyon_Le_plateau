@@ -20,66 +20,67 @@
 				<div class="container-fluid">
 					<a class="navbar-brand" href="#">
 						<img src="/assets/images/logo.png" class="img-fluid logo" alt="Le plateau">
-				    </a>
-				<div class="ring">
-					<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-bell-fill" id="ring-img" viewbox="0 0 16 16">
-						<path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
-					</svg>
-					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-						<span class="navbar-toggler-icon"></span>
-					</button>
-				</div>
-				<div class="collapse navbar-collapse justify-content-end text-center" id="navbarNav">
-					<ul class="navbar-nav">
-						<li class="mb-1">
-							<a class="nav-link text-black active" aria-current="page" href="/../home">Accueil</a>
-						</li>
-						<li class="mb-1">
-							<a class="nav-link text-black active" aria-current="page" href="/../games?page=1">Les jeux</a>
-						</li>
-						<li class="mb-1">
-							<a class="nav-link text-black active" aria-current="page" href="#">Mon compte</a>
-						</li>
-						<li class="mb-1">
-							<a class="nav-link text-black active" aria-current="page" href="#">A propos</a>
-						</li>
-					</ul>
-				</div>
-			</nav>
-
-			{% block pageTitle %}{% endblock %}
-			{% block content %}{% endblock %}
-			{% block javascript %}{% endblock %}
-
-			<div class="container-fluid text-center">
-				<footer class="row d-flex align-items-center" style="background-color: #8CBDB9">
-
-					<p class="col-md-4 mt-4 mb-2">
-						<img src="/assets/images/logo.png" class="img-fluid logo" alt="logo site">
-					</p>
-
-					<div class="col-md-4 mt-4 mb-2">
-						<ul class="list-unstyled mb-0 text-center">
+					</a>
+					<div class="ring">
+						<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-bell-fill" id="ring-img" viewbox="0 0 16 16">
+							<path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
+						</svg>
+						<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+							<span class="navbar-toggler-icon"></span>
+						</button>
+					</div>
+					<div class="collapse navbar-collapse justify-content-end text-center" id="navbarNav">
+						<ul class="navbar-nav">
 							<li class="mb-1">
-								<a href="#" class="nav-link px-2 link-dark">Accueil</a>
+								<a class="nav-link link-dark active" aria-current="page" href="/../home">Accueil</a>
 							</li>
 							<li class="mb-1">
-								<a href="#" class="nav-link px-2 link-dark">Les jeux</a>
+								<a class="nav-link link-dark active" aria-current="page" href="/../games?page=1">Les jeux</a>
 							</li>
 							<li class="mb-1">
-								<a href="#" class="nav-link px-2 link-dark">Mon compte</a>
+								<a class="nav-link link-dark active" aria-current="page" href="#">Mon compte</a>
 							</li>
 							<li class="mb-1">
-								<a href="#" class="nav-link px-2 link-dark">A propos</a>
+								<a class="nav-link link-dark active" aria-current="page" href="#">A propos</a>
 							</li>
 						</ul>
 					</div>
+				</nav>
 
-					<div href="/" class="col-md-4 mt-4 mb-4">
-						Copyright© 2022
-					</div>
+				{% block pageTitle %}{% endblock %}
+				{% block content %}{% endblock %}
+				{% block javascript %}{% endblock %}
 
-				</footer>
-			</div>
+				<div class="container-fluid text-center">
+					<footer class="footer row d-flex align-items-center" style="background-color: #8CBDB9">
+
+						<p class="col-md-4 mt-4 mb-2">
+							<img src="/assets/images/logo.png" class="img-fluid logo" alt="logo site">
+						</p>
+
+						<div class="col-md-4 mt-4 mb-2">
+							<ul class="list-unstyled mb-0 text-center">
+								<li class="mb-1">
+									<a href="#" class="nav-link px-2 link-dark">Accueil</a>
+								</li>
+								<li class="mb-1">
+									<a href="#" class="nav-link px-2 link-dark">Les jeux</a>
+								</li>
+								<li class="mb-1">
+									<a href="#" class="nav-link px-2 link-dark">Mon compte</a>
+								</li>
+								<li class="mb-1">
+									<a href="#" class="nav-link px-2 link-dark">A propos</a>
+								</li>
+							</ul>
+						</div>
+
+						<div href="/" class="col-md-4 mt-4 mb-4">
+							Copyright© 2022
+						</div>
+
+					</footer>
+				</div>
+			</body>
 		</body>
 	</html>
