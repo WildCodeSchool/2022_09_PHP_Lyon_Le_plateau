@@ -5,7 +5,6 @@
     --font-family: 'Roboto', sans-serif;
 }
 
-
 body {
     background-color: var(--background-color);
     font-family: var(--font-family);
@@ -13,7 +12,8 @@ body {
     min-height: 100vh;
     display: grid;
     grid-template-rows: auto 1fr auto;
-
+    background-color: var(--background-color);
+    font-family: var(--font-family);
 }
 
 .backgroundtop {
@@ -63,4 +63,50 @@ body {
 
 .logo {
     width: 200px;
+}
+
+/* PAGE LES JEUX */
+.card {
+    width: 85%;
+    max-width: 20rem;
+}
+
+.card-subtitle {
+    font-size: 10px;
+    width: 85%;
+}
+
+.card-title {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.card-text {
+    font-size: 14px;
+}
+
+.card-image-top {
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 12rem;
+    width: 85%
+}
+
+.btn {
+    background-color: var(--secondary-color);
+    color: var(--background-color)
+}
+
+.pageNumber {
+    background-color: var(--secondary-color);
+    color: var(--background-color);
+}
+
+.pageNumber:hover {
+    color: black;
+}
+
+.pageNumber:active {
+    color: black;
 }
