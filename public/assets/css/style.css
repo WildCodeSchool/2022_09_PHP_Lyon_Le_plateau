@@ -1,17 +1,17 @@
-
 :root {
-    --background-color : #FBFBFB;
+    --background-color: #FBFBFB;
     --primary-color: #8CBDB9;
     --secondary-color: #F87666;
     --font-family: 'Roboto', sans-serif;
 }
 
 body {
+    background-color: var(--background-color);
+    font-family: var(--font-family);
     margin: 0;
     min-height: 100vh;
     display: grid;
     grid-template-rows: auto 1fr auto;
-    background-color: var(--background-color);
     font-family: var(--font-family);
 }
 
@@ -39,8 +39,14 @@ body {
 
 }
 
-.navbar{
+.navbar {
     background-color: var(--primary-color);
+    font-size: 24px;
+}
+
+.footer {
+    background-color: var(--primary-color);
+    font-size: 20px;
 }
 
 #ring-img {
@@ -55,14 +61,11 @@ body {
 }
 
 .logo {
-    width: 140px;
-    height: 140px;
-}
+    width: 200px;
 
 #nav-admin {
     min-width: 230px;
 }
-
 
 /* PAGE LES JEUX */
 .card {
@@ -89,7 +92,7 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     height: 12rem;
-    width : 85%
+    width: 85%
 }
 
 .btn {
@@ -102,11 +105,10 @@ body {
     color: var(--background-color);
 }
 
-.pageNumber:hover{
+.pageNumber:hover {
     color: black;
 }
 
-.pageNumber:active{
+.pageNumber:active {
     color: black;
 }
-
