@@ -33,6 +33,7 @@ class GameController extends AbstractController
             } else {
                 $ext = "." . pathinfo($_FILES['gameImage']['name'], PATHINFO_EXTENSION);
                 $gameImage = $game['idGameOwner'] . "_" . $game['gameName'] . "_" . uniqid() . $ext;
+                move_uploaded_file($_FILES['gameImage']['tmp_name'], '../public/uploads/' . $gameImage);
                 $game['gameImage'] = $gameImage;
 
                 $gameManager = new GameManager();
