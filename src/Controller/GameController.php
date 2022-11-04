@@ -31,8 +31,8 @@ class GameController extends AbstractController
             if (!empty($errors)) {
                 return $this->twig->render('Game/add.html.twig', ['errors' => $errors, 'game' => $game]);
             } else {
-                $gameImage = $game['idGameOwner'] . "_" . $game['gameName'] . "_" . uniqid();
-                move_uploaded_file($_FILES['gameImage']['tmp_name'], '../public/uploads/' . $gameImage);
+                $ext = "." . pathinfo($_FILES['gameImage']['name'], PATHINFO_EXTENSION);
+                $gameImage = $game['idGameOwner'] . "_" . $game['gameName'] . "_" . uniqid() . $ext;
                 $game['gameImage'] = $gameImage;
 
                 $gameManager = new GameManager();
@@ -58,7 +58,8 @@ class GameController extends AbstractController
             if (!empty($errors)) {
                 return $this->twig->render('Game/edit.html.twig', ['errors' => $errors, 'game' => $gameData]);
             } else {
-                $gameImage = $gameData['idGameOwner'] . "_" . $gameData['gameName'] . "_" . uniqid();
+                $ext = "." . pathinfo($_FILES['gameImage']['name'], PATHINFO_EXTENSION);
+                $gameImage = $gameData['idGameOwner'] . "_" . $gameData['gameName'] . "_" . uniqid() . $ext;
                 move_uploaded_file($_FILES['gameImage']['tmp_name'], '../public/uploads/' . $gameImage);
                 $gameData['gameImage'] = $gameImage;
                 $gameManager->update($gameData, $id);
