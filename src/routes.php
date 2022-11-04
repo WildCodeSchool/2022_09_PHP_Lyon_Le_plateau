@@ -9,6 +9,7 @@
 return [
     '' => ['HomeController', 'index',],
     'home' => ['HomeController', 'index',],
+    'games' => ['GameController', 'gamesPages',],
     'games/add' => ['GameController', 'add',],
     'users/add' => ['UserController', 'add',],
     'games/show' => ['GameController', 'index',],

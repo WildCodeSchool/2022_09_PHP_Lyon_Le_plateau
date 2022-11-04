@@ -12,9 +12,9 @@ class UserManager extends AbstractManager
     {
         $query = "UPDATE " . self::TABLE
         . " SET `firstname` = :firstname, `lastname` = :lastname, `email` = :email,
-        `password` = :password WHERE id=:id;";
+        `password` = :password WHERE id_user=:id;";
         $statement = $this->pdo->prepare($query);
-        $statement->bindValue(':id', $id, PDO::PARAM_INT);
+        $statement->bindValue(':id_user', $id, PDO::PARAM_INT);
         $statement->bindValue(':firstname', $userData['userFirstname'], PDO::PARAM_STR);
         $statement->bindValue(':lastname', $userData['userLastname'], PDO::PARAM_STR);
         $statement->bindValue(':email', $userData['userEmail'], PDO::PARAM_STR);
