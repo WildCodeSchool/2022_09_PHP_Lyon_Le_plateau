@@ -12,7 +12,7 @@ class GameController extends AbstractController
     public function index(): string
     {
         $gameManager = new GameManager();
-        $games = $gameManager->selectAll('id');
+        $games = $gameManager->selectAll('game_id');
 
         return $this->twig->render('Game/index.html.twig', ['games' => $games]);
     }
