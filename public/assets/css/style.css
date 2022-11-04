@@ -12,7 +12,6 @@ body {
     min-height: 100vh;
     display: grid;
     grid-template-rows: auto 1fr auto;
-    background-color: var(--background-color);
     font-family: var(--font-family);
 }
 
