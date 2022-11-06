@@ -119,4 +119,22 @@ class UserController extends AbstractController
 
         return $this->twig->render('User/add.html.twig');
     }
+
+    public function login(): string
+    {
+        $error = null;
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $dataConnexion = array_map('trim', $_POST);
+            $userManager = new UserManager();
+            $user = $userManager->selectOneByEmail($dataConnexion['userEmail']);
+            if ($user && password_verify($dataConnexion['userPassword'], $user['password'])) {
+                $_SESSION['user_id'] = $user['id'];
+                header('Location: /');
+            }
+            $error = 'Erreur d\'identifiant ou mot de passe';
+        }
+
+        return $this->twig->render('User/login.html.twig', ['error' => $error]);
+    }
 }

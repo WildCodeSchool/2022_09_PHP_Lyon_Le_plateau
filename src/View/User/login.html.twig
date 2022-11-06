@@ -1,0 +1,25 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+	<div class="row">
+		<div class="col-md-6 offset-md-3">
+			{% if error is not null %}
+				<p class="alert alert-danger mt-2 text-center h-1 p-2">{{error}}</p>
+			{% endif %}
+			<h1>Log in</h1>
+			<p>Entrer vos identifiants avant de vous connecter</p>
+			<form method="post">
+				<div class="mb-3">
+					<label for="userEmail" class="form-label">Email</label>
+					<input type="text" name="userEmail" id="email" maxlenght="100" class="form-control" required>
+				</div>
+
+				<div class="mb-3">
+					<label for="userPassword" class="form-label">Mot de passe</label>
+					<input type="password" name="userPassword" id="password" maxlenght="100" class="form-control" required>
+				</div>
+				<button type="submit" class="btn btn-success">Connexion</button>
+			</form>
+		</div>
+	</div>
+{%  endblock %}
