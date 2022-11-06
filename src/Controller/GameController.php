@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Model\GameManager;
+use App\Model\UserManager;
 use App\Service\GameVerification;
 
 class GameController extends AbstractController
@@ -19,6 +20,9 @@ class GameController extends AbstractController
 
     public function add(): ?string
     {
+        $userManager = new UserManager();
+        $users = $userManager->selectAll('firstname');
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // clean $_POST data
             $game = array_map('trim', $_POST);
@@ -46,13 +50,15 @@ class GameController extends AbstractController
             }
         }
 
-        return $this->twig->render('Game/add.html.twig');
+        return $this->twig->render('Game/add.html.twig', ['users' => $users]);
     }
 
     public function edit(int $id): ?string
     {
         $gameManager = new GameManager();
-        $game = $gameManager->selectOneById($id);
+        $game = $gameManager->selectOneGameById($id);
+        $userManager = new UserManager();
+        $users = $userManager->selectAll('firstname');
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $gameData = array_map('trim', $_POST);
@@ -77,6 +83,7 @@ class GameController extends AbstractController
 
         return $this->twig->render('Game/edit.html.twig', [
             'game' => $game,
+            'users' => $users
         ]);
     }
 
