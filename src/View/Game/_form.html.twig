@@ -3,11 +3,11 @@
 	<input type="hidden" value="{{ game.id }}" name="id">
 
 	<div class="mb-3">
-		<label for="gameOwner" class="form-label">Propriétaire du jeu *</label>
-		<select name="gameOwner" id="gameOwner" class="form-control" required>
+		<label for="idGameOwner" class="form-label">Propriétaire du jeu *</label>
+		<select name="idGameOwner" id="idGameOwner" class="form-control" required>
 			<option disabled selected value="">--Choisis le propriétaire du jeu--</option>
 			{% for user in users %}
-				<option {% if game.firstname == user.firstname and game.lastname == user.lastname %} selected {% endif %}>{{ user.firstname }} {{ user.lastname }}</option>
+				<option value ="{{user.id}}" {% if game.firstname == user.firstname and game.lastname == user.lastname %} selected {% endif %}>{{ user.firstname }} {{ user.lastname }}</option>
 			{% endfor %}
 		</select>
 	</div>

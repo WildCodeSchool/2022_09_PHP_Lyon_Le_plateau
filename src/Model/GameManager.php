@@ -34,11 +34,12 @@ class GameManager extends AbstractManager
     public function update(array $gameData, int $id): bool
     {
         $query = "UPDATE " . self::TABLE
-            . " SET `name` = :name, `type` = :type, `min_number_players` = :minNumberPlayers,
+            . " SET `id_owner` = :id_owner, `name` = :name, `type` = :type, `min_number_players` = :minNumberPlayers,
         `max_number_players` = :maxNumberPlayers, `minimum_players_age` = :minimumPlayersAge,
         `image` = :image WHERE id=:id;";
         $statement = $this->pdo->prepare($query);
         $statement->bindValue(':id', $id, PDO::PARAM_INT);
+        $statement->bindValue(':id_owner', $gameData['idGameOwner'], PDO::PARAM_INT);
         $statement->bindValue(':name', $gameData['gameName'], PDO::PARAM_STR);
         $statement->bindValue(':type', $gameData['gameGenre'], PDO::PARAM_STR);
         $statement->bindValue(':minNumberPlayers', $gameData['gameMinimumNumberPlayers'], PDO::PARAM_INT);
