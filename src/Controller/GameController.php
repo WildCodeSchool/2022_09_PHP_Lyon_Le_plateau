@@ -21,7 +21,7 @@ class GameController extends AbstractController
     public function add(): ?string
     {
         $userManager = new UserManager();
-        $users = $userManager->selectAllUser('firstname');
+        $users = $userManager->selectAll('firstname');
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // clean $_POST data
@@ -58,7 +58,7 @@ class GameController extends AbstractController
         $gameManager = new GameManager();
         $game = $gameManager->selectOneGameById($id);
         $userManager = new UserManager();
-        $users = $userManager->selectAllUser('firstname');
+        $users = $userManager->selectAll('firstname');
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $gameData = array_map('trim', $_POST);

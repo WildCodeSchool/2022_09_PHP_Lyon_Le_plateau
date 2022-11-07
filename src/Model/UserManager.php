@@ -49,14 +49,4 @@ class UserManager extends AbstractManager
             return false;
         }
     }
-
-    public function selectAllUser(string $orderBy = '', string $direction = 'ASC'): array
-    {
-        $query = 'SELECT * FROM ' . static::TABLE . " WHERE admin=false";
-        if ($orderBy) {
-            $query .= ' ORDER BY ' . $orderBy . ' ' . $direction;
-        }
-
-        return $this->pdo->query($query)->fetchAll();
-    }
 }
