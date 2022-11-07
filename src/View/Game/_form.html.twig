@@ -1,54 +1,67 @@
-<form class="form" method="post" enctype="multipart/form-data">
+{% block content %}
 
-	<input type="hidden" value="{{ game.id }}" name="id">
 
-	<div class="mb-3">
-		<label for="idGameOwner" class="form-label">Id du propriétaire du jeu</label>
-		<input type="number" value="{{ game.id_owner }}" name="idGameOwner" class="form-control" min="0" required>
+	<div class="container texte-center">
+		<div class="row">
+			<div class="col-sm-10 col-md-8 col-lg-6 mb-5 mx-auto d-table">
+				<div class="d-table-cell align-middle">
+					<form class="form m-3 bg-lightgrey p-3 shadow" method="post" enctype="multipart/form-data">
+
+						<input type="hidden" value="{{ game.id }}" name="id">
+						<div class="mb-3">
+							<label for="idGameOwner" class="form-label d-flex justify-content-center">Propriétaire du jeu</label>
+							<input type="number" value="{{ game.id_owner }}" name="idGameOwner" class="form-control border border-dark" min="0" required>
+						</div>
+
+						<div class="mb-3">
+							<label for="gameName" class="form-label d-flex justify-content-center">Nom du jeu</label>
+							<input type="text" value="{{ game.name }}" name="gameName" id="gameName" maxlength="100" class="form-control border border-dark" required>
+						</div>
+
+						<div class="mb-3">
+							<label for="gameGenre" class="form-label d-flex justify-content-center">Genre</label>
+							<select name="gameGenre" id="gameGenre" value="{{ game.type }}" class="form-control border border-dark" required>
+								<option disabled value="">--Choisis un genre--</option>
+								<option value="Stratégie">Stratégie</option>
+								<option value="Jeu d'ambiance">Jeu d'ambiance</option>
+								<option value="Coopératif">Coopératif</option>
+								<option value="Réflexion">Réflexion</option>
+								<option value="Culture Générale">Culture Générale</option>
+								<option value="Escape Game">Escape Game</option>
+								<option value="Autres">Autres</option>
+							</select>
+						</div>
+
+						<div class="mb-3">
+							<label for="gameMinimumNumberPlayers" class="form-label d-flex justify-content-center">Nombre de joueurs minimum</label>
+							<input type="number" value="{{ game.min_number_players }}" name="gameMinimumNumberPlayers" id="gameMinimumNumberPlayers" min="1" max="99" class="form-control border border-dark" required>
+						</div>
+
+						<div class="mb-3">
+							<label for="gameMaximumNumberPlayers" class="form-label d-flex justify-content-center">Nombre de joueurs maximum</label>
+							<input type="number" value="{{ game.max_number_players }}" name="gameMaximumNumberPlayers" id="gameNugameMaximumNumberPlayersmberPlayers" min="1" max="99" class="form-control border border-dark" required>
+						</div>
+
+						<div class="mb-3">
+							<label for="gameAgeMinimumPlayers" class="form-label d-flex justify-content-center">A partir de</label>
+							<input type="number" value="{{ game.minimum_players_age }}" name="gameAgeMinimumPlayers" id="gameAgeMinimumPlayers" min="1" max="99" class="form-control border border-dark" required>
+						</div>
+
+						<div class="mb-3">
+							<label for="gameImage" class="form-label d-flex justify-content-center">Image du jeu</label>
+							<input type="hidden" name="MAX_FILE_SIZE" value="2097152" class="form-control">
+							<input type="file" value="{{ game.image }}" accept="image/*" name="gameImage" id="image" class="form-control border border-dark" maxlength="255">
+						</div>
+
+						<div class="mb-3 d-flex justify-content-center">
+							<button class="btn btn-primary">Ajouter</button>
+						</div>
+
+					</form>
+				</div>
+			</div>
+		</div>
 	</div>
 
-	<div class="mb-3">
-		<label for="gameName" class="form-label">Nom du jeu</label>
-		<input type="text" value="{{ game.name }}" name="gameName" id="gameName" maxlength="100" class="form-control" required>
-	</div>
 
-	<div class="mb-3">
-		<label for="gameGenre" class="form-label">Genre</label>
-		<select name="gameGenre" id="gameGenre" value="{{ game.type }}" class="form-control" required>
-			<option disabled value="">--Choisis un genre--</option>
-			<option value="Stratégie">Stratégie</option>
-			<option value="Jeu d'ambiance">Jeu d'ambiance</option>
-			<option value="Coopératif">Coopératif</option>
-			<option value="Réflexion">Réflexion</option>
-			<option value="Culture Générale">Culture Générale</option>
-			<option value="Escape Game">Escape Game</option>
-			<option value="Autres">Autres</option>
-		</select>
-	</div>
-
-	<div class="mb-3">
-		<label for="gameMinimumNumberPlayers" class="form-label">Nombre de joueurs minimum</label>
-		<input type="number" value="{{ game.min_number_players }}" name="gameMinimumNumberPlayers" id="gameMinimumNumberPlayers" min="1" max="99" class="form-control" required>
-	</div>
-
-	<div class="mb-3">
-		<label for="gameMaximumNumberPlayers" class="form-label">Nombre de joueurs maximum</label>
-		<input type="number" value="{{ game.max_number_players }}" name="gameMaximumNumberPlayers" id="gameNugameMaximumNumberPlayersmberPlayers" min="1" max="99" class="form-control" required>
-	</div>
-
-	<div class="mb-3">
-		<label for="gameAgeMinimumPlayers" class="form-label">A partir de</label>
-		<input type="number" value="{{ game.minimum_players_age }}" name="gameAgeMinimumPlayers" id="gameAgeMinimumPlayers" min="1" max="99" class="form-control" required>
-	</div>
-
-	<div class="mb-3">
-		<label for="gameImage" class="form-label">Image du jeu</label>
-		<input type="hidden" name="MAX_FILE_SIZE" value="2097152" class="form-control">
-		<input type="file" value="{{ game.image }}" accept="image/*" name="gameImage" id="image" class="form-control" maxlength="255">
-	</div>
-
-	<div class="mb-3">
-		<button class="btn btn-primary">Ajouter</button>
-	</div>
-
-</form>
+{% endblock %}
