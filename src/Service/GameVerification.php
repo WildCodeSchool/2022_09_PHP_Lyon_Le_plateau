@@ -102,7 +102,7 @@ class GameVerification
     public function gameImageVerification(): void
     {
 
-        if (isset($_FILES['gameImage']) || !empty($_FILES['gameImage'])) {
+        if (!empty($_FILES['gameImage']['tmp_name'])) {
             if ($_FILES['gameImage']['error'] !== 0) {
                 $this->errors[] = "Erreur de téléchargement de l'image du jeu";
             }
