@@ -34,11 +34,12 @@ class GameManager extends AbstractManager
     public function update(array $gameData, int $id): bool
     {
         $query = "UPDATE " . self::TABLE
-            . " SET `name` = :name, `type` = :type, `min_number_players` = :minNumberPlayers,
+            . " SET `id_owner` = :id_owner, `name` = :name, `type` = :type, `min_number_players` = :minNumberPlayers,
         `max_number_players` = :maxNumberPlayers, `minimum_players_age` = :minimumPlayersAge,
         `image` = :image WHERE id=:id;";
         $statement = $this->pdo->prepare($query);
         $statement->bindValue(':id', $id, PDO::PARAM_INT);
+        $statement->bindValue(':id_owner', $gameData['idGameOwner'], PDO::PARAM_INT);
         $statement->bindValue(':name', $gameData['gameName'], PDO::PARAM_STR);
         $statement->bindValue(':type', $gameData['gameGenre'], PDO::PARAM_STR);
         $statement->bindValue(':minNumberPlayers', $gameData['gameMinimumNumberPlayers'], PDO::PARAM_INT);
@@ -66,5 +67,17 @@ class GameManager extends AbstractManager
         }
 
         return $this->pdo->query($query)->fetchAll();
+    }
+
+    public function selectOneGameById(int $id): array
+    {
+        $query = 'SELECT g.id AS game_id, g.name, g.type, g.minimum_players_age, g.image, g.id_owner, 
+        g.min_number_players, g.max_number_players, g.availability, u.id AS user_id, u.firstname, 
+        u.lastname, u.email, u.password FROM game AS g INNER JOIN user AS u ON u.id = g.id_owner WHERE g.id=:id;';
+        $statement = $this->pdo->prepare($query);
+        $statement->bindValue(':id', $id, \PDO::PARAM_INT);
+        $statement->execute();
+
+        return $statement->fetch();
     }
 }

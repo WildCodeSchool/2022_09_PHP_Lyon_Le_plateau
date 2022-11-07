@@ -3,41 +3,46 @@
 	<input type="hidden" value="{{ game.id }}" name="id">
 
 	<div class="mb-3">
-		<label for="idGameOwner" class="form-label">Id du propriétaire du jeu</label>
-		<input type="number" value="{{ game.id_owner }}" name="idGameOwner" class="form-control" min="0" required>
-	</div>
-
-	<div class="mb-3">
-		<label for="gameName" class="form-label">Nom du jeu</label>
-		<input type="text" value="{{ game.name }}" name="gameName" id="gameName" maxlength="100" class="form-control" required>
-	</div>
-
-	<div class="mb-3">
-		<label for="gameGenre" class="form-label">Genre</label>
-		<select name="gameGenre" id="gameGenre" value="{{ game.type }}" class="form-control" required>
-			<option disabled value="">--Choisis un genre--</option>
-			<option value="Stratégie">Stratégie</option>
-			<option value="Jeu d'ambiance">Jeu d'ambiance</option>
-			<option value="Coopératif">Coopératif</option>
-			<option value="Réflexion">Réflexion</option>
-			<option value="Culture Générale">Culture Générale</option>
-			<option value="Escape Game">Escape Game</option>
-			<option value="Autres">Autres</option>
+		<label for="idGameOwner" class="form-label">Propriétaire du jeu *</label>
+		<select name="idGameOwner" id="idGameOwner" class="form-control" required>
+			<option disabled selected value="">--Choisis le propriétaire du jeu--</option>
+			{% for user in users %}
+				<option value ="{{user.id}}" {% if game.firstname == user.firstname and game.lastname == user.lastname %} selected {% endif %}>{{ user.firstname }} {{ user.lastname }}</option>
+			{% endfor %}
 		</select>
 	</div>
 
 	<div class="mb-3">
-		<label for="gameMinimumNumberPlayers" class="form-label">Nombre de joueurs minimum</label>
+		<label for="gameName" class="form-label">Nom du jeu *</label>
+		<input type="text" value="{{ game.name }}" name="gameName" id="gameName" maxlength="100" class="form-control" required>
+	</div>
+
+	<div class="mb-3">
+		<label for="gameGenre" class="form-label">Genre *</label>
+		<select name="gameGenre" id="gameGenre" value="{{ game.type }}" class="form-control" required>
+			<option disabled selected value="">--Choisis un genre--</option>
+			<option value="Stratégie" {% if game.type == 'Stratégie' %} selected {% endif %}>Stratégie</option>
+			<option value="Ambiance" {% if game.type == 'Ambiance' %} selected {% endif %}>Ambiance</option>
+			<option value="Coopératif" {% if game.type == 'Coopératif' %} selected {% endif %}>Coopératif</option>
+			<option value="Réflexion"{% if game.type == 'Réflexion' %} selected {% endif %}>Réflexion</option>
+			<option value="Culture Générale" {% if game.type == 'Culture Générale' %} selected {% endif %}>Culture Générale</option>
+			<option value="Escape Game" {% if game.type == 'Escape Game' %} selected {% endif %}>Escape Game</option>
+			<option value="Autre" {% if game.type == 'Autre' %} selected {% endif %}>Autre</option>
+		</select>
+	</div>
+
+	<div class="mb-3">
+		<label for="gameMinimumNumberPlayers" class="form-label">Nombre de joueurs minimum *</label>
 		<input type="number" value="{{ game.min_number_players }}" name="gameMinimumNumberPlayers" id="gameMinimumNumberPlayers" min="1" max="99" class="form-control" required>
 	</div>
 
 	<div class="mb-3">
-		<label for="gameMaximumNumberPlayers" class="form-label">Nombre de joueurs maximum</label>
+		<label for="gameMaximumNumberPlayers" class="form-label">Nombre de joueurs maximum *</label>
 		<input type="number" value="{{ game.max_number_players }}" name="gameMaximumNumberPlayers" id="gameNugameMaximumNumberPlayersmberPlayers" min="1" max="99" class="form-control" required>
 	</div>
 
 	<div class="mb-3">
-		<label for="gameAgeMinimumPlayers" class="form-label">A partir de</label>
+		<label for="gameAgeMinimumPlayers" class="form-label">A partir de *</label>
 		<input type="number" value="{{ game.minimum_players_age }}" name="gameAgeMinimumPlayers" id="gameAgeMinimumPlayers" min="1" max="99" class="form-control" required>
 	</div>
 
@@ -48,7 +53,7 @@
 	</div>
 
 	<div class="mb-3">
-		<button class="btn btn-primary">Ajouter</button>
+		<button class="btn btn-primary">Envoyer</button>
 	</div>
 
 </form>
