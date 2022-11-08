@@ -75,6 +75,7 @@ class GameController extends AbstractController
                     move_uploaded_file($_FILES['gameImage']['tmp_name'], '../public/uploads/' . $gameImage);
                     $gameData['gameImage'] = $gameImage;
                 }
+
                 $gameManager->update($gameData, $id);
                 header('Location: /games/show');
                 return null;

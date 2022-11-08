@@ -11,7 +11,15 @@ class UserController extends AbstractController
     public function userFormVerification(array $userData)
     {
         $this->userNameVerification($userData);
-        $this->userEmailVerification($userData);
+        if (!empty($userData['id'])) {
+            $userManager = new UserManager();
+            $user = $userManager->selectOneById($userData['id']);
+            if ($userData['userEmail'] !== ($user['email'])) {
+                $this->userEmailVerification($userData);
+            }
+        } else {
+            $this->userEmailVerification($userData);
+        }
         $this->userPasswordVerification($userData);
         return $this->errors;
     }
