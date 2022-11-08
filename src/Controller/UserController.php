@@ -137,4 +137,10 @@ class UserController extends AbstractController
 
         return $this->twig->render('User/login.html.twig', ['error' => $error]);
     }
+
+    public function logout()
+    {
+        session_unset();
+        header('Location: /');
+    }
 }

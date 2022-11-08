@@ -43,6 +43,12 @@
 							<li class="mb-1">
 								<a class="nav-link link-dark active" aria-current="page" href="#">A propos</a>
 							</li>
+							<li class="mb-1">
+								<a class="nav-link link-dark active" aria-current="page" href={% if user_session %} "/../users/logout" {% else %} "/../users/login" {% endif %} ">
+									<img id="ring-img" src="{% if user_session %}/assets/images/logout.png {% else %}/assets/images/login.png {% endif %}">
+								</a>
+
+							</li>
 						</ul>
 					</div>
 				</nav>
@@ -81,5 +87,6 @@
 
 					</footer>
 				</div>
+			</body>
 		</body>
 	</html>
