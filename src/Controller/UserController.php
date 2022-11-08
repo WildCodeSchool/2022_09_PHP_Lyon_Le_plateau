@@ -11,7 +11,15 @@ class UserController extends AbstractController
     public function userFormVerification(array $userData)
     {
         $this->userNameVerification($userData);
-        $this->userEmailVerification($userData);
+        if (!empty($userData['id'])) {
+            $userManager = new UserManager();
+            $user = $userManager->selectOneById($userData['id']);
+            if ($userData['userEmail'] !== ($user['email'])) {
+                $this->userEmailVerification($userData);
+            }
+        } else {
+            $this->userEmailVerification($userData);
+        }
         $this->userPasswordVerification($userData);
         return $this->errors;
     }
@@ -41,11 +49,12 @@ class UserController extends AbstractController
             $this->errors[] = 'L\'email doit être inférieur à 100 caractères';
         }
         $userManager = new UserManager();
-        $user = $userManager->uniqueEmail($userData['userEmail']);
-        if ($user == true) {
+        $uniqueEmail = $userManager->uniqueEmail($userData['userEmail']);
+        if ($uniqueEmail == true) {
             $this->errors[] = 'L\'email existe déja';
-        };
+        }
     }
+
 
     public function userPasswordVerification(array $userData): void
     {
@@ -101,17 +110,17 @@ class UserController extends AbstractController
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // clean $_POST data
-            $user = array_map('trim', $_POST);
+            $userData = array_map('trim', $_POST);
 
             // TODO validations (length, format...)
-            $this->userFormVerification($user);
+            $this->userFormVerification($userData);
 
             // Display error (to be modified for image case)
             if (!empty($this->errors)) {
-                return $this->twig->render('User/add.html.twig', ['errors' => $this->errors, 'user' => $user]);
+                return $this->twig->render('User/add.html.twig', ['errors' => $this->errors, 'user' => $userData]);
             } else {
                 $userManager = new UserManager();
-                $userManager->insert($user);
+                $userManager->insert($userData);
                 header('Location: /users/show');
                 return null;
             }
