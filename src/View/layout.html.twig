@@ -21,10 +21,13 @@
 					<a class="navbar-brand" href="#">
 						<img src="/assets/images/logo.png" class="img-fluid logo" alt="Le plateau">
 					</a>
-					<div class="ring">
-						<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-bell-fill" id="ring-img" viewbox="0 0 16 16">
-							<path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
-						</svg>
+					<div class="icons">
+						<a class="nav-link link-dark active" aria-current="page" href="/../home">
+							<img id="icons-nav" src="/assets/images/ring.png">
+						</a>
+						<a class="nav-link link-dark active" aria-current="page" href={% if user_session %} "/../users/logout" {% else %} "/../users/login" {% endif %}>
+							<img id="icons-nav" src="{% if user_session %}/assets/images/logout.png {% else %}/assets/images/login.png {% endif %}">
+						</a>
 						<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 							<span class="navbar-toggler-icon"></span>
 						</button>
@@ -43,12 +46,7 @@
 							<li class="mb-1">
 								<a class="nav-link link-dark active" aria-current="page" href="#">A propos</a>
 							</li>
-							<li class="mb-1">
-								<a class="nav-link link-dark active" aria-current="page" href={% if user_session %} "/../users/logout" {% else %} "/../users/login" {% endif %} ">
-									<img id="ring-img" src="{% if user_session %}/assets/images/logout.png {% else %}/assets/images/login.png {% endif %}">
-								</a>
-
-							</li>
+							<li class="mb-1"></li>
 						</ul>
 					</div>
 				</nav>

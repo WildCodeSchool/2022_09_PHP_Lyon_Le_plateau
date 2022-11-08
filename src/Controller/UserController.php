@@ -130,7 +130,7 @@ class UserController extends AbstractController
             $user = $userManager->selectOneByEmail($dataConnexion['userEmail']);
             if ($user && password_verify($dataConnexion['userPassword'], $user['password'])) {
                 $_SESSION['user_id'] = $user['id'];
-                header('Location: /');
+                header('Location: /myaccount');
             }
             $error = 'Erreur d\'identifiant ou mot de passe';
         }
