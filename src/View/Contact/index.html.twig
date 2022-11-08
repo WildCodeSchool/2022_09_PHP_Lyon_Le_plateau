@@ -1,0 +1,38 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+
+	<div class="container-fluid d-md-flex p-0">
+
+		{% include 'components/_navAdmin.html.twig' %}
+
+		<section class="m-auto">
+			<h1 class="text-center">Messages utilisateurs</h1>
+
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Prénom</th>
+						<th>Nom</th>
+						<th>Email</th>
+						<th>Message</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for contact in contacts %}
+						<tr>
+							<td>{{ contact.id }}</td>
+							<td>{{ contact.firstname}}</td>
+							<td>{{ contact.lastname }}</td>
+							<td>{{ contact.email }}</td>
+							<td>{{ contact.message }}</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</section>
+
+	</div>
+
+{% endblock %}

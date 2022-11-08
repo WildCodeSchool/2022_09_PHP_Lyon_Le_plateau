@@ -16,5 +16,7 @@ return [
     'users/show' => ['UserController', 'index',],
     'games/edit' => ['GameController', 'edit', ['id']],
     'users/edit' => ['UserController', 'edit', ['id']],
-    'contact' => ['ContactController', 'contact',],
+    'contact' => ['ContactController', 'add',],
+    'contact/show' => ['ContactController', 'index',],
+
 ];

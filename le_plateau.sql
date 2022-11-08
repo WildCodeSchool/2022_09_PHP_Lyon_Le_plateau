@@ -23,6 +23,13 @@ id_owner INT NOT NULL,
 availability BOOL NOT NULL DEFAULT true
 );
 
+CREATE TABLE contact (
+id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+firstname VARCHAR(100) NOT NULL,
+lastname VARCHAR (100) NOT NULL,
+email VARCHAR(100) NOT NULL,
+message VARCHAR(255) NOT NULL
+);
 
 INSERT INTO user (firstname, lastname, email, password, admin)
 VALUES 
@@ -67,3 +74,10 @@ VALUES
 ('Scrabble', 'Réfléxion', 2, 4, 7, 'scrabble.jpg', 4, 1),
 ('Trivial pursuit', 'Culture Générale', 2, 6, 16, 'trivialpursuit.jpg', 4, 1);
 
+INSERT INTO contact (firstname, lastname, email, message)
+VALUES
+('Pascaline', 'Lacharité', 'p.lacharité@aol.com', 'J\'adore votre site, du design aux fonctionnnalités, tout est parfait, merci le plateau'),
+('Seymour', 'Lanteigne', 's.Lanteigne@libertysurf.fr', 'Bonjour l\'équipe du plateau, je trouve votre site très professionnel et j\'aimerais vous recruter immédiatement. Salaire attractif et ticket resto. Recontactez moi au plus vite!'),
+('Sophie', 'Plaisance', 's.plaisance@yahoo.com', 'Personnellement, je préfère les jeux vidéo !'),
+('Inco', 'gnito', 'i.gnito@hotmail.com', 'Bonjour, je suis un prince Nigérian et j\'ai besoin de votre aide. Je vous propose de me verser 2.000 € en mandat cash afin de me pertmettre de récupèrer ma fortune. Je vous les rendrais au centuple!'),
+('Nord', 'VPN', 'nvpn@outlook.fr', 'Vous connaissez Nord VPN ? Pour seulement 3€ par mois les 3 premiers mois, NordVPN vous permttra de naviguer sur le web de manière sécurisé et invisible. N\'attendez plus et essayez NordVPN dès maintenant ;\)');
