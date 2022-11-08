@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Model\GameManager;
+use App\Model\UserManager;
 use App\Service\GameVerification;
 
 class GameController extends AbstractController
@@ -19,6 +20,9 @@ class GameController extends AbstractController
 
     public function add(): ?string
     {
+        $userManager = new UserManager();
+        $users = $userManager->selectAll('firstname');
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // clean $_POST data
             $game = array_map('trim', $_POST);
@@ -31,10 +35,13 @@ class GameController extends AbstractController
             if (!empty($errors)) {
                 return $this->twig->render('Game/add.html.twig', ['errors' => $errors, 'game' => $game]);
             } else {
-                $ext = "." . pathinfo($_FILES['gameImage']['name'], PATHINFO_EXTENSION);
-                $gameImage = $game['idGameOwner'] . "_" . $game['gameName'] . "_" . uniqid() . $ext;
-                move_uploaded_file($_FILES['gameImage']['tmp_name'], '../public/uploads/' . $gameImage);
-                $game['gameImage'] = $gameImage;
+                $game['gameImage'] = 'default.jpg';
+                if (!empty($_FILES['gameImage']['tmp_name'])) {
+                    $ext = "." . pathinfo($_FILES['gameImage']['name'], PATHINFO_EXTENSION);
+                    $gameImage = $game['idGameOwner'] . "_" . $game['gameName'] . "_" . uniqid() . $ext;
+                    move_uploaded_file($_FILES['gameImage']['tmp_name'], '../public/uploads/' . $gameImage);
+                    $game['gameImage'] = $gameImage;
+                }
 
                 $gameManager = new GameManager();
                 $gameManager->insert($game);
@@ -43,13 +50,15 @@ class GameController extends AbstractController
             }
         }
 
-        return $this->twig->render('Game/add.html.twig');
+        return $this->twig->render('Game/add.html.twig', ['users' => $users]);
     }
 
     public function edit(int $id): ?string
     {
         $gameManager = new GameManager();
-        $game = $gameManager->selectOneById($id);
+        $game = $gameManager->selectOneGameById($id);
+        $userManager = new UserManager();
+        $users = $userManager->selectAll('firstname');
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $gameData = array_map('trim', $_POST);
@@ -59,10 +68,13 @@ class GameController extends AbstractController
             if (!empty($errors)) {
                 return $this->twig->render('Game/edit.html.twig', ['errors' => $errors, 'game' => $gameData]);
             } else {
-                $ext = "." . pathinfo($_FILES['gameImage']['name'], PATHINFO_EXTENSION);
-                $gameImage = $gameData['idGameOwner'] . "_" . $gameData['gameName'] . "_" . uniqid() . $ext;
-                move_uploaded_file($_FILES['gameImage']['tmp_name'], '../public/uploads/' . $gameImage);
-                $gameData['gameImage'] = $gameImage;
+                $gameData['gameImage'] = $game['image'];
+                if (!empty($_FILES['gameImage']['tmp_name'])) {
+                    $ext = "." . pathinfo($_FILES['gameImage']['name'], PATHINFO_EXTENSION);
+                    $gameImage = $gameData['idGameOwner'] . "_" . $gameData['gameName'] . "_" . uniqid() . $ext;
+                    move_uploaded_file($_FILES['gameImage']['tmp_name'], '../public/uploads/' . $gameImage);
+                    $gameData['gameImage'] = $gameImage;
+                }
                 $gameManager->update($gameData, $id);
                 header('Location: /games/show');
                 return null;
@@ -71,6 +83,7 @@ class GameController extends AbstractController
 
         return $this->twig->render('Game/edit.html.twig', [
             'game' => $game,
+            'users' => $users
         ]);
     }
 

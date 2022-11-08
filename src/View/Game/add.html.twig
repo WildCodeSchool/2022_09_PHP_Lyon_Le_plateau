@@ -1,14 +1,16 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-	<h1 class="text-uppercase text-center m-5 mb-4">Ajoute un jeu</h1>
+	<h1 class="text-center m-5 mb-4">Ajouter un jeu</h1>
+	<h2 class="text-center">Renseigner les informations de ton jeu</h2>
 	{% include 'Game/_form.html.twig' %}
 	{% if errors is defined %}
-		<p class="text-danger">Il y a des erreurs dans le formulaire :
+		<div class="text-danger">Il y a des erreurs dans le formulaire :
 			<ul>
 				{% for error in errors %}
 					<li>{{error}}</li>
 				{% endfor %}
 			</ul>
+		</div>
 		{% endif %}
 {% endblock %}
