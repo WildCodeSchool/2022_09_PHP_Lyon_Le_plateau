@@ -64,8 +64,8 @@ class ContactController extends AbstractController
             if (!empty($this->errors)) {
                 return $this->twig->render('Contact/contact.html.twig', ['errors' => $this->errors]);
             } else {
-                $ContactManager = new ContactManager();
-                $ContactManager->insert($userMessage);
+                $contactManager = new ContactManager();
+                $contactManager->insert($userMessage);
                 $thanksNote = "Merci pour votre message !";
                 return $this->twig->render('Contact/contact.html.twig', ['thanks' => $thanksNote]);
             }
