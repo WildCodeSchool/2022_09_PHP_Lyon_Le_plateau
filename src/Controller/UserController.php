@@ -49,12 +49,11 @@ class UserController extends AbstractController
             $this->errors[] = 'L\'email doit être inférieur à 100 caractères';
         }
         $userManager = new UserManager();
-        $uniqueEmail = $userManager->uniqueEmail($userData['userEmail']);
-        if ($uniqueEmail == true) {
+        $user = $userManager->uniqueEmail($userData['userEmail']);
+        if ($user == true) {
             $this->errors[] = 'L\'email existe déja';
-        }
+        };
     }
-
 
     public function userPasswordVerification(array $userData): void
     {
@@ -110,17 +109,17 @@ class UserController extends AbstractController
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // clean $_POST data
-            $userData = array_map('trim', $_POST);
+            $user = array_map('trim', $_POST);
 
             // TODO validations (length, format...)
-            $this->userFormVerification($userData);
+            $this->userFormVerification($user);
 
             // Display error (to be modified for image case)
             if (!empty($this->errors)) {
-                return $this->twig->render('User/add.html.twig', ['errors' => $this->errors, 'user' => $userData]);
+                return $this->twig->render('User/add.html.twig', ['errors' => $this->errors, 'user' => $user]);
             } else {
                 $userManager = new UserManager();
-                $userManager->insert($userData);
+                $userManager->insert($user);
                 header('Location: /users/show');
                 return null;
             }
