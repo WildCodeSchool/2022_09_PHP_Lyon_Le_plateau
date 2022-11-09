@@ -7,7 +7,7 @@
 		{% include 'components/_navAdmin.html.twig' %}
 
 		<section class="m-auto">
-			<a href="/games/add?view=1">Ajouter</a>
+			<a href="/games/addAdmin">Ajouter</a>
 			<h1 class="text-center">Les jeux</h1>
 
 			<table class="table table-striped">
@@ -37,7 +37,7 @@
 							<td class="text-center">{{ game.firstname }}</td>
 							<td class="text-center">{{ game.lastname }}</td>
 							<td>
-								<a href="/games/edit?id={{ game.game_id }}&view=1">Modifier</a>
+								<a href="/games/edit?id={{ game.game_id }}">Modifier</a>
 							</td>
 						</tr>
 					{% endfor %}

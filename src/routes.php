@@ -10,13 +10,13 @@ return [
     '' => ['HomeController', 'index'],
     'home' => ['HomeController', 'index'],
     'games' => ['GameController', 'gamesPages'],
-    'games/add' => ['GameController', 'add', ['view']],
-    'users/add' => ['UserController', 'add'],
+    'games/add' => ['GameController', 'addAdmin'],
+    'users/add' => ['UserController', 'addAdmin'],
     'games/show' => ['GameController', 'index'],
     'users/show' => ['UserController', 'index'],
-    'games/edit' => ['GameController', 'edit', ['id', 'view']],
-    'users/edit' => ['UserController', 'edit', ['id']],
+    'games/edit' => ['GameController', 'editAdmin', ['id']],
+    'users/edit' => ['UserController', 'editAdmin', ['id']],
     'users/login' => ['UserController', 'login'],
     'users/logout' => ['UserController', 'logout'],
-    'myaccount' => ['GameController', 'add', ['view']],
+    'myaccount' => ['GameController', 'addPublic']
 ];
