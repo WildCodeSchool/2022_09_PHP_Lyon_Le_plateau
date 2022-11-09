@@ -15,26 +15,31 @@
 				<div class='container'>
 					<div class="row">
 						<div class="mb-3 mr-3 col-sm-6">
-							<label for="userFirstname" class="form-label mb-0 d-flex justify-content-center">Prénom</label>
-							<input type="text" value="{{ user.firstname }}" name="userFirstname" id="userFirstname" maxlenght="100" class="form-control">
+							<label for="userFirstname" class="form-label mb-0 d-flex justify-content-center">Prénom *</label>
+							<input type="text" value="{{ user.firstname }}" name="userFirstname" id="userFirstname" maxlength="100" class="form-control" required>
 						</div>
 
 						<div class="mb-3 col-sm-6">
-							<label for="userLastname" class="form-label mb-0 d-flex justify-content-center">Nom</label>
-							<input type="text" value="{{ user.lastname }}" name="userLastname" id="userLastname" maxlenght="100" class="form-control">
+							<label for="userLastname" class="form-label mb-0 d-flex justify-content-center">Nom *</label>
+							<input type="text" value="{{ user.lastname }}" name="userLastname" id="userLastname" maxlength="100" class="form-control" required>
 						</div>
 					</div>
 
 
 					<div class="mb-3">
-						<label for="userEmail" class="form-label mb-0 d-flex justify-content-center">Email</label>
-						<input type="text" value="{{ user.email }}" name="userEmail" id="userEmail" maxlenght="100" class="form-control">
+						<label for="userEmail" class="form-label mb-0 d-flex justify-content-center">Email *</label>
+						<input type="text" value="{{ user.email }}" name="userEmail" id="userEmail" maxlength="100" class="form-control" required>
 					</div>
 
 					<div class="mb-3">
-						<label for="userMessage" class="form-label mb-0 d-flex justify-content-center">Message</label>
-						<textarea class="form-control" name="userMessage" id="userMessage" rows="3"></textarea>
+						<label for="userMessage" class="form-label mb-0 d-flex justify-content-center">Message *</label>
+						<textarea class="form-control" name="userMessage" id="userMessage" rows="3" maxlength="255" required></textarea>
 					</div>
+
+
+					<p class="form-text">
+						* Champs obligatoires
+					</p>
 
 					{% if errors is defined %}
 						<ul class="errors text-danger">
@@ -45,12 +50,12 @@
 					{% endif %}
 
 					<span class="d-flex justify-content-center">
-						<button class="btn">Envoyer</button>
+						<button class="btn tomatoButton">Envoyer</button>
 					</span>
 				</div>
 			</form>
 			{% if thanks is defined %}
-				<p class="text-success text-center">
+				<p class="alert alert-success p-2 col-sm-10 col-md-8 col-lg-6 mx-auto text-center">
 					{{ thanks }}
 				</p>
 			{% endif %}
@@ -67,15 +72,15 @@
 			<h2 class="text-center">L'équipe du Plateau</h1>
 			<div class="mt-3 container ">
 				<div class="d-flex justify-content-center flex-wrap col-sm-10 col-md-8 col-lg-5 mx-auto">
-					<a href="" class="" target="_blank">
+					<a href="https://www.linkedin.com/in/charlenedr/" class="" target="_blank">
 						<img class="teamPicture shadow m-2" src="assets/images/grumphp.webp" alt="Photo de l'équipe du plateau"></a>
-					<a href="" class="" target="_blank">
+					<a href="https://www.linkedin.com/in/ibrahim-mohamed-26b0b0253/" class="" target="_blank">
 						<img class="teamPicture shadow m-2" src="assets/images/grumphp.webp" alt="Photo de l'équipe du plateau"></a>
-					<a href="" class="" target="_blank">
+					<a href="https://www.linkedin.com/in/j%C3%A9r%C3%B4me-dannfald/" class="" target="_blank">
 						<img class="teamPicture shadow m-2" src="assets/images/grumphp.webp" alt="Photo de l'équipe du plateau"></a>
-					<a href="" class="" target="_blank">
+					<a href="https://www.linkedin.com/in/matthieu-dufloux-036a498a/" class="" target="_blank">
 						<img class="teamPicture shadow m-2" src="assets/images/grumphp.webp" alt="Photo de l'équipe du plateau"></a>
-					<a href="" class="" target="_blank">
+					<a href="https://www.linkedin.com/in/kevin-albespy/" class="" target="_blank">
 						<img class="teamPicture shadow m-2" src="assets/images/grumphp.webp" alt="Photo de l'équipe du plateau"></a>
 				</div>
 			</div>

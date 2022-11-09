@@ -76,8 +76,8 @@ VALUES
 
 INSERT INTO contact (firstname, lastname, email, message)
 VALUES
-('Pascaline', 'Lacharité', 'p.lacharité@aol.com', 'J\'adore votre site, du design aux fonctionnnalités, tout est parfait, merci le plateau'),
+('Pascaline', 'Lacharité', 'p.lacharité@aol.com', 'J\'adore votre site, du design aux fonctionnalités, tout est parfait, merci le plateau !'),
 ('Seymour', 'Lanteigne', 's.Lanteigne@libertysurf.fr', 'Bonjour l\'équipe du plateau, je trouve votre site très professionnel et j\'aimerais vous recruter immédiatement. Salaire attractif et ticket resto. Recontactez moi au plus vite!'),
 ('Sophie', 'Plaisance', 's.plaisance@yahoo.com', 'Personnellement, je préfère les jeux vidéo !'),
-('Inco', 'gnito', 'i.gnito@hotmail.com', 'Bonjour, je suis un prince Nigérian et j\'ai besoin de votre aide. Je vous propose de me verser 2.000 € en mandat cash afin de me pertmettre de récupèrer ma fortune. Je vous les rendrais au centuple!'),
-('Nord', 'VPN', 'nvpn@outlook.fr', 'Vous connaissez Nord VPN ? Pour seulement 3€ par mois les 3 premiers mois, NordVPN vous permttra de naviguer sur le web de manière sécurisé et invisible. N\'attendez plus et essayez NordVPN dès maintenant ;\)');
+('Inco', 'gnito', 'i.gnito@hotmail.com', 'Bonjour, je suis un prince Nigérian et j\'ai besoin de votre aide. Je vous propose de me verser 2.000 € en mandat cash afin de me permettre de récupérer ma fortune. Je vous les rendrais au centuple!'),
+('Nord', 'VPN', 'nvpn@outlook.fr', 'Vous connaissez Nord VPN ? Pour seulement 3€ par mois les 3 premiers mois, NordVPN vous permettra de naviguer sur le web de manière sécurisé et invisible. N\'attendez plus et essayez NordVPN dès maintenant ;\)');
