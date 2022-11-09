@@ -85,7 +85,7 @@ class GameVerification
     public function gameAgePlayersVerification(array $gameData): void
     {
         if (!isset($gameData['gameAgeMinimumPlayers']) || empty($gameData['gameAgeMinimumPlayers'])) {
-            $this->errors[][] = "L'age minimum des joueurs est obligatoire";
+            $this->errors[] = "L'age minimum des joueurs est obligatoire";
         }
         if (
             !isset($gameData['gameAgeMinimumPlayers'])
@@ -95,23 +95,21 @@ class GameVerification
                 array("options" => array("min_range" => 1, "max_range" => 99))
             )
         ) {
-            $this->errors[][] = "L'age minimum des joueurs n'a pas le bon format";
+            $this->errors[] = "L'age minimum des joueurs n'a pas le bon format";
         }
     }
 
     public function gameImageVerification(): void
     {
-
         if (!empty($_FILES['gameImage']['tmp_name'])) {
             if ($_FILES['gameImage']['error'] !== 0) {
                 $this->errors[] = "Erreur de téléchargement de l'image du jeu";
             }
-            if ($_FILES['gameImage']['size'] > 2097152) {
-                $this->errors[] = "L'image du jeu est trop volumineuse";
-            }
             if (strpos($_FILES['gameImage']['type'], "image/") !== 0) {
                 $this->errors[] = "Le fichier téléchargé n'est pas une image";
             }
+        } else {
+            $this->errors[] = "L'image du jeu doit avoir une taille inférieure à 2Mo";
         }
     }
 }
