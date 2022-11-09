@@ -20,7 +20,7 @@
 			{% set page = (count/12)|round(0, 'ceil')-1 %}
 			{% for i in range (0, page) %}
 				<li class="nav-item">
-					<a class="nav-link pageNumber rounded m-2" aria-current="page" href="/../../games?page={{i+1}}">{{i+1}}</a>
+					<a class="nav-link tomatoButton rounded m-2" aria-current="page" href="/../../games?page={{i+1}}">{{i+1}}</a>
 				</li>
 			{% endfor %}
 		</ul>

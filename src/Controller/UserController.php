@@ -11,7 +11,15 @@ class UserController extends AbstractController
     public function userFormVerification(array $userData)
     {
         $this->userNameVerification($userData);
-        $this->userEmailVerification($userData);
+        if (!empty($userData['id'])) {
+            $userManager = new UserManager();
+            $user = $userManager->selectOneById($userData['id']);
+            if ($userData['userEmail'] !== ($user['email'])) {
+                $this->userEmailVerification($userData);
+            }
+        } else {
+            $this->userEmailVerification($userData);
+        }
         $this->userPasswordVerification($userData);
         return $this->errors;
     }
@@ -118,5 +126,29 @@ class UserController extends AbstractController
         }
 
         return $this->twig->render('User/add.html.twig');
+    }
+
+    public function login(): string
+    {
+        $error = null;
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $dataConnexion = array_map('trim', $_POST);
+            $userManager = new UserManager();
+            $user = $userManager->selectOneByEmail($dataConnexion['userEmail']);
+            if ($user && password_verify($dataConnexion['userPassword'], $user['password'])) {
+                $_SESSION['user_id'] = $user['id'];
+                header('Location: /myaccount');
+            }
+            $error = 'Erreur d\'identifiant ou mot de passe';
+        }
+
+        return $this->twig->render('User/login.html.twig', ['error' => $error]);
+    }
+
+    public function logout()
+    {
+        session_unset();
+        header('Location: /');
     }
 }
