@@ -3,10 +3,10 @@
 {% block content %}
 	<h1 class="text-center m-5 mb-4">Ajouter un jeu</h1>
 	<h2 class="text-center">Renseigner les informations du jeu</h2>
-	{% if view == 19A93 %}
+	{% if view == 1 %}
 		{% include 'Game/_formAdmin.html.twig' %}
 	{% else %}
-		{% include 'Game/_formUser.html.twig' %}
+		{% include 'Game/_formPublic.html.twig' %}
 	{% endif %}
 	
 

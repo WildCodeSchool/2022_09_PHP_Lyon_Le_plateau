@@ -18,5 +18,5 @@ return [
     'users/edit' => ['UserController', 'edit', ['id']],
     'users/login' => ['UserController', 'login'],
     'users/logout' => ['UserController', 'logout'],
-    'myaccount' => ['GameController', 'add',],
+    'myaccount' => ['GameController', 'add', ['view']],
 ];

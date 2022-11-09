@@ -1,9 +1,9 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <h1 class="text-center m-5 mb-4">Modifier les informations du jeu</h1>
+    <h1 class="text-center m-5 mb-4">Modifier un jeu</h1>
     <h2 class="text-center">{{ game.name }} {% if view == 1 %} de {{game.firstname}} {{game.lastname}}	{% endif %}</h2>
-	{% if view == 19A93 %}
+	{% if view == 1 %}
 		{% include 'Game/_formAdmin.html.twig' %}
 	{% else %}
 		{% include 'Game/_formUser.html.twig' %}

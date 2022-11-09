@@ -18,7 +18,7 @@ class UserManager extends AbstractManager
         $statement->bindValue(':firstname', $userData['userFirstname'], PDO::PARAM_STR);
         $statement->bindValue(':lastname', $userData['userLastname'], PDO::PARAM_STR);
         $statement->bindValue(':email', $userData['userEmail'], PDO::PARAM_STR);
-        $statement->bindValue(':password', $userData['userPassword'], PDO::PARAM_STR);
+        $statement->bindValue(':password', password_hash($userData['userPassword'], PASSWORD_BCRYPT), PDO::PARAM_STR);
         return $statement->execute();
     }
 
@@ -31,7 +31,7 @@ class UserManager extends AbstractManager
         $statement->bindValue(':firstname', $user['userFirstname'], PDO::PARAM_STR);
         $statement->bindValue(':lastname', $user['userLastname'], PDO::PARAM_STR);
         $statement->bindValue(':email', $user['userEmail'], PDO::PARAM_STR);
-        $statement->bindValue(':password', $user['userPassword'], PDO::PARAM_STR);
+        $statement->bindValue(':password', password_hash($user['userPassword'], PASSWORD_BCRYPT), PDO::PARAM_STR);
 
         $statement->execute();
         return (int)$this->pdo->lastInsertId();

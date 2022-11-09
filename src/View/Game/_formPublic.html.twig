@@ -1,5 +1,5 @@
 {% block content %}
-	<div class="container texte-center">
+	<div class="container text-center">
 		<div class="row">
 			<div class="col-sm-10 col-md-8 col-lg-6 mb-5 mx-auto d-table">
 				<div class="d-table-cell align-middle">
@@ -17,7 +17,7 @@
 
 						<div class="mb-3">
 							<label for="gameGenre" class="form-label d-flex justify-content-center">Genre *</label>
-							<select name="gameGenre" id="gameGenre" value="{{ game.type }}" class="form-control text-center" required>
+							<select name="gameGenre" id="gameGenre" value="{{ game.type }}" class="form-control" required>
 								<option disabled selected value="">--Choisis un genre--</option>
 								<option value="Stratégie" {% if game.type == 'Stratégie' %} selected {% endif %}>Stratégie</option>
 								<option value="Ambiance" {% if game.type == 'Ambiance' %} selected {% endif %}>Ambiance</option>
