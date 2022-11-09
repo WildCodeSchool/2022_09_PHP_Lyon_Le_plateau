@@ -37,7 +37,7 @@ VALUES
 ('Jerome', 'Dannfald', 'j.dannfald@gmail.com', '$2y$10$jWvlhE5tE5vmXzZ3E0R0a.rXEvajAFnF8Fw6XeVYCaTB6nCqqr7xm', false),
 ('Charlene', 'Da Rugna', 'c.darugna@gmail.com', '$2y$10$STEv7r3mRow93gvK7hcTkuhlQgwfXeZVRXoVs62bu4LiRUWabMZA6', false),
 ('Kevin', 'Albespy', 'k.albespy@gmail.com', '$2y$10$BzZjamtUMbI/AJVspRVbheERQx8vPp8vcuaBXvQFHkYjBbbUMSq1u', false),
-('Ibrahim', 'Mohamed', 'i.mohammed@gmail.com', '$2y$10$h086skRCxEGu/N5S6JXlo.6GQzsRd5gLrV9LLjLb42ElBROnaXLia', false),
+('Ibrahim', 'Mohamed', 'i.mohamed@gmail.com', '$2y$10$h086skRCxEGu/N5S6JXlo.6GQzsRd5gLrV9LLjLb42ElBROnaXLia', false),
 ('Matthieu', 'Dufloux', 'm.dufloux@gmail.com', '$2y$10$NzekPyv21wpqy.yBjoBo4e7ra5hzVNBaSAOkeSdJqut4rOVvzbsWu',false);
 
 /* MDP EN CLAIR :
