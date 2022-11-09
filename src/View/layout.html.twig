@@ -22,7 +22,7 @@
 						<img src="/assets/images/logo.png" class="img-fluid logo" alt="Le plateau">
 					</a>
 					<div class="icons">
-						<a class="nav-link link-dark active" aria-current="page" href="/../home">
+						<a class="nav-link link-dark active" aria-current="page" href="/home">
 							<img id="icons-nav" src="/assets/images/ring.png">
 						</a>
 						<a class="nav-link link-dark active" aria-current="page" href={% if user_session %} "/users/logout" {% else %} "/users/login" {% endif %}>
@@ -40,13 +40,13 @@
 								</li>
 							{% endif %}
 							<li class="mb-1">
-								<a class="nav-link link-dark active" aria-current="page" href="/../home">Accueil</a>
+								<a class="nav-link link-dark active" aria-current="page" href="/home">Accueil</a>
 							</li>
 							<li class="mb-1">
-								<a class="nav-link link-dark active" aria-current="page" href="/../games?page=1">Les jeux</a>
+								<a class="nav-link link-dark active" aria-current="page" href="/games?page=1">Les jeux</a>
 							</li>
 							<li class="mb-1">
-								<a class="nav-link link-dark active" aria-current="page" href="/../myaccount?view=0">Mon compte</a>
+								<a class="nav-link link-dark active" aria-current="page" href="/myaccount">Mon compte</a>
 							</li>
 							<li class="mb-1">
 								<a class="nav-link link-dark active" aria-current="page" href="/contact">A propos</a>
@@ -72,13 +72,13 @@
 						<div class="col-md-4 mt-4 mb-2">
 							<ul class="list-unstyled mb-0 text-center">
 								<li class="mb-1">
-									<a href="/../home" class="nav-link px-2 link-dark">Accueil</a>
+									<a href="/home" class="nav-link px-2 link-dark">Accueil</a>
 								</li>
 								<li class="mb-1">
-									<a href="/../games?page=1" class="nav-link px-2 link-dark">Les jeux</a>
+									<a href="/games?page=1" class="nav-link px-2 link-dark">Les jeux</a>
 								</li>
 								<li class="mb-1">
-									<a href="/../myaccount?view=0" class="nav-link px-2 link-dark">Mon compte</a>
+									<a href="/myaccount" class="nav-link px-2 link-dark">Mon compte</a>
 								</li>
 								<li class="mb-1">
 									<a href="/contact" class=" nav-link px-2 link-dark">A propos</a>
