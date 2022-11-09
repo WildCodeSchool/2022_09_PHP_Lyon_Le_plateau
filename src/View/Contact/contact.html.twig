@@ -1,0 +1,91 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Contact
+{% endblock %}
+
+{% block content %}
+
+	<main>
+		<div class='m-3 mb-5 mt-5'>
+			<h2 class="text-center">Contactez nous</h1>
+
+			<form method="post" class='form m-3 bg-lightgray p-3 shadow col-sm-10 col-md-8 col-lg-6 mx-auto' accept-charset="UTF-8">
+				<input type="hidden" value="{{ user.id }}" name="id">
+
+				<div class='container'>
+					<div class="row">
+						<div class="mb-3 mr-3 col-sm-6">
+							<label for="userFirstname" class="form-label mb-0 d-flex justify-content-center">Prénom *</label>
+							<input type="text" value="{{ user.firstname }}" name="userFirstname" id="userFirstname" maxlength="100" class="form-control" required>
+						</div>
+
+						<div class="mb-3 col-sm-6">
+							<label for="userLastname" class="form-label mb-0 d-flex justify-content-center">Nom *</label>
+							<input type="text" value="{{ user.lastname }}" name="userLastname" id="userLastname" maxlength="100" class="form-control" required>
+						</div>
+					</div>
+
+					<div class="mb-3">
+						<label for="userEmail" class="form-label mb-0 d-flex justify-content-center">Email *</label>
+						<input type="text" value="{{ user.email }}" name="userEmail" id="userEmail" maxlength="100" class="form-control" required>
+					</div>
+
+					<div class="mb-3">
+						<label for="userMessage" class="form-label mb-0 d-flex justify-content-center">Message *</label>
+						<textarea class="form-control" name="userMessage" id="userMessage" rows="3" maxlength="255" required></textarea>
+					</div>
+
+
+					<p class="form-text">
+						* Champs obligatoires
+					</p>
+
+					{% if errors is defined %}
+						<ul class="errors text-danger">
+							{% for error in errors %}
+								<li>{{ error }}</li>
+							{% endfor %}
+						</ul>
+					{% endif %}
+
+					<span class="d-flex justify-content-center">
+						<button class="btn tomatoButton">Envoyer</button>
+					</span>
+				</div>
+			</form>
+			{% if thanks is defined %}
+				<p class="alert alert-success p-2 col-sm-10 col-md-8 col-lg-6 mx-auto text-center">
+					{{ thanks }}
+				</p>
+			{% endif %}
+		</div>
+
+		<div class='m-3 mb-5'>
+			<h2 class="text-center">Le projet</h1>
+			<p class="m-4 mt-3 col-sm-10 col-md-8 col-lg-6 mx-auto">
+				Ce site internet a été développé dans le cadre d’un Projet au sein de la WildCodeSchool de Lyon en respectant le cahier des charges suivant :
+																				Le site devait être dynamique et développé en PHP avec Twig et en utilisant un MVC développé par l’école.
+																				Nous nous sommes organisés avec les méthodes agiles, les maquettes du site ont été réalisé via Figma et l’organisation quotidienne des User Story via Trello.
+																				L’intégralité de notre code est disponible sur GitHub.
+																				N’hésitez pas à nous contactez pour des questions ou pour nous féliciter, ça fait toujours plaisir !
+			</p>
+		</div>
+
+		<div class='m-3 mb-5'>
+			<h2 class="text-center">L'équipe du Plateau</h1>
+			<div class="mt-3 container ">
+				<div class="d-flex justify-content-center flex-wrap col-sm-10 col-md-8 col-lg-5 mx-auto">
+					<a href="https://www.linkedin.com/in/charlenedr/" class="linkedin" target="_blank">
+						<img class="teamPicture shadow m-2" src="assets/images/CDR_P2.jpg" alt="Photo de l'équipe du plateau"></a>
+					<a href="https://www.linkedin.com/in/ibrahim-mohamed-26b0b0253/" class="linkedin" target="_blank">
+						<img class="teamPicture shadow m-2" src="assets/images/IMO_P2.jpg" alt="Photo de l'équipe du plateau"></a>
+					<a href="https://www.linkedin.com/in/j%C3%A9r%C3%B4me-dannfald/" class="linkedin" target="_blank">
+						<img class="teamPicture shadow m-2" src="assets/images/JDA_P2.jpg" alt="Photo de l'équipe du plateau"></a>
+					<a href="https://www.linkedin.com/in/matthieu-dufloux-036a498a/" class="linkedin" target="_blank">
+						<img class="teamPicture shadow m-2" src="assets/images/MDU_P2.jpg" alt="Photo de l'équipe du plateau"></a>
+					<a href="https://www.linkedin.com/in/kevin-albespy/" class="linkedin" target="_blank">
+						<img class="teamPicture shadow m-2" src="assets/images/KAL_P2.jpg" alt="Photo de l'équipe du plateau"></a>
+				</div>
+			</div>
+		</main>
+	{% endblock %}
