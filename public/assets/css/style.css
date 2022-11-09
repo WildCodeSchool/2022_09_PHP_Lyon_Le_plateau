@@ -111,6 +111,14 @@ body {
     color: black;
 }
 
+#userMessage {
+    resize: none;
+}
+
+.teamPicture {
+    width: 140px;
+}
+
 h2 {
     font-size: 24px;
 }
@@ -118,3 +126,13 @@ h2 {
 h3 {
     font-size: 20px;
 }
+
+
+#admin-nav-link {
+    color: #c92f1b;
+}
+
+.linkedin:hover {
+    opacity: 0.7;
+}
+

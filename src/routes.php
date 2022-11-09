@@ -16,6 +16,8 @@ return [
     'users/show' => ['UserController', 'index'],
     'games/edit' => ['GameController', 'editAdmin', ['id']],
     'users/edit' => ['UserController', 'editAdmin', ['id']],
+    'contact' => ['ContactController', 'add',],
+    'contact/show' => ['ContactController', 'index',],
     'users/login' => ['UserController', 'login'],
     'users/logout' => ['UserController', 'logout'],
     'myaccount' => ['GameController', 'addPublic']
