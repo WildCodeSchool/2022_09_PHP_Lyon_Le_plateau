@@ -114,3 +114,8 @@ body {
 h2 {
     font-size: 20px;
 }
+
+#admin-nav-link {
+    color: #c92f1b;
+    /* font-weight: bold; */
+}

@@ -128,7 +128,7 @@ class UserController extends AbstractController
         return $this->twig->render('User/add.html.twig');
     }
 
-    public function login(): string
+    public function login(): string|null
     {
         $error = null;
 
@@ -138,9 +138,9 @@ class UserController extends AbstractController
             $user = $userManager->selectOneByEmail($dataConnexion['userEmail']);
             if ($user && password_verify($dataConnexion['userPassword'], $user['password'])) {
                 $_SESSION['user_id'] = $user['id'];
-                header('Location: /myaccount');
+                $user['admin'] ? header('Location: /games/show') : header('Location: /myaccount');
             }
-            $error = 'Erreur d\'identifiant ou mot de passe';
+            $error = 'Erreur d\'email ou mot de passe';
         }
 
         return $this->twig->render('User/login.html.twig', ['error' => $error]);
