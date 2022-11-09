@@ -5,16 +5,9 @@
 				<div class="d-table-cell align-middle">
 					<form class="form m-3 bg-lightgrey p-3 shadow" method="post" enctype="multipart/form-data">
 
-						<input type="hidden" value="{{ game.id }}" name="id">
+						<input type="hidden" value="{{ game.id }}" name="gameId">
 						<div class="mb-3">
-							<label for="idGameOwner" class="form-label d-flex justify-content-center">Propriétaire du jeu *</label>
-							<select name="idGameOwner" id="idGameOwner" class="form-control text-center" required>
-								<option disabled selected value="">--Choisis le propriétaire du jeu--</option>
-								{% for user in users %}
-									<option value="{{user.id}}" {% if game.firstname == user.firstname and game.lastname == user.lastname %} selected {% endif %}>{{ user.firstname }}
-										{{ user.lastname }}</option>
-								{% endfor %}
-							</select>
+							<input type="hidden" value="{{user_session.id}}" name="idGameOwner"</input>
 						</div>
 
 						<div class="mb-3">

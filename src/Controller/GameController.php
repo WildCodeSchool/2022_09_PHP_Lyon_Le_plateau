@@ -18,7 +18,7 @@ class GameController extends AbstractController
         return $this->twig->render('Game/index.html.twig', ['games' => $games]);
     }
 
-    public function add(): ?string
+    public function add(int $view): ?string
     {
         $userManager = new UserManager();
         $users = $userManager->selectAll('firstname');
@@ -50,10 +50,10 @@ class GameController extends AbstractController
             }
         }
 
-        return $this->twig->render('Game/add.html.twig', ['users' => $users]);
+        return $this->twig->render('Game/add.html.twig', ['users' => $users, 'view' => $view]);
     }
 
-    public function edit(int $id): ?string
+    public function edit(int $id, int $view): ?string
     {
         $gameManager = new GameManager();
         $game = $gameManager->selectOneGameById($id);
@@ -84,7 +84,8 @@ class GameController extends AbstractController
 
         return $this->twig->render('Game/edit.html.twig', [
             'game' => $game,
-            'users' => $users
+            'users' => $users,
+            'view' => $view
         ]);
     }
 
