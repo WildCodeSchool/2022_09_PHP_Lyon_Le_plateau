@@ -136,6 +136,7 @@ class UserController extends AbstractController
             $dataConnexion = array_map('trim', $_POST);
             $userManager = new UserManager();
             $user = $userManager->selectOneByEmail($dataConnexion['userEmail']);
+
             if ($user && password_verify($dataConnexion['userPassword'], $user['password'])) {
                 $_SESSION['user_id'] = $user['id'];
                 $user['admin'] ? header('Location: /games/show') : header('Location: /myaccount');
