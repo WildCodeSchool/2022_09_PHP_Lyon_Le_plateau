@@ -12,7 +12,7 @@ class GameController extends AbstractController
 
     public function index(): string|null
     {
-        if (!$this->user['admin']) {
+        if (!isset($this->user['admin']) || !$this->user['admin']) {
             echo 'Accès interdit';
             header('HTTP/1.1 401 Unauthorized');
             return null;
@@ -26,7 +26,7 @@ class GameController extends AbstractController
 
     public function addAdmin(): ?string
     {
-        if (!$this->user['admin']) {
+        if (!isset($this->user['admin']) || !$this->user['admin']) {
             echo 'Accès interdit';
             header('HTTP/1.1 401 Unauthorized');
             return null;
@@ -67,6 +67,11 @@ class GameController extends AbstractController
 
     public function addPublic(): ?string
     {
+        if (!isset($this->user['admin'])) {
+            header('Location: /users/login');
+            return null;
+        }
+
         $userManager = new UserManager();
         $users = $userManager->selectAll('firstname');
 
@@ -103,7 +108,7 @@ class GameController extends AbstractController
 
     public function editAdmin(int $id): ?string
     {
-        if (!$this->user['admin']) {
+        if (!isset($this->user['admin']) || !$this->user['admin']) {
             echo 'Accès interdit';
             header('HTTP/1.1 401 Unauthorized');
             return null;
@@ -120,7 +125,11 @@ class GameController extends AbstractController
             $errors = $gameVerification->gameFormVerification($gameData);
 
             if (!empty($errors)) {
-                return $this->twig->render('Game/editAdmin.html.twig', ['errors' => $errors, 'game' => $gameData]);
+                $gameData = "";
+                return $this->twig->render('Game/editAdmin.html.twig', [
+                    'errors' => $errors, 'game' => $game,
+                    'users' => $users
+                ]);
             } else {
                 $gameData['gameImage'] = $game['image'];
                 if (!empty($_FILES['gameImage']['tmp_name'])) {
