@@ -77,8 +77,14 @@ class UserController extends AbstractController
         }
     }
 
-    public function index(): string
+    public function index(): string|null
     {
+        if (!$this->user['admin']) {
+            echo 'Accès interdit';
+            header('HTTP/1.1 401 Unauthorized');
+            return null;
+        }
+
         $userManager = new UserManager();
         $users = $userManager->selectAll('id');
 
@@ -142,7 +148,6 @@ class UserController extends AbstractController
             }
             $error = 'Erreur d\'identifiant ou mot de passe';
         }
-
         return $this->twig->render('User/login.html.twig', ['error' => $error]);
     }
 

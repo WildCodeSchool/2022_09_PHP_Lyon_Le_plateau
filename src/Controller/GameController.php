@@ -10,8 +10,14 @@ class GameController extends AbstractController
 {
     protected array $errors = [];
 
-    public function index(): string
+    public function index(): string|null
     {
+        if (!$this->user['admin']) {
+            echo 'Accès interdit';
+            header('HTTP/1.1 401 Unauthorized');
+            return null;
+        }
+
         $gameManager = new GameManager();
         $games = $gameManager->selectAll('game_id');
 
