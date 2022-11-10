@@ -125,7 +125,7 @@ class GameController extends AbstractController
             $errors = $gameVerification->gameFormVerification($gameData);
 
             if (!empty($errors)) {
-                return $this->twig->render('Game/editAdmin.html.twig', ['errors' => $errors, 'game' => $gameData]);
+                return $this->twig->render('Game/editAdmin.html.twig', ['errors' => $errors, 'game' => $game]);
             } else {
                 $gameData['gameImage'] = $game['image'];
                 if (!empty($_FILES['gameImage']['tmp_name'])) {
