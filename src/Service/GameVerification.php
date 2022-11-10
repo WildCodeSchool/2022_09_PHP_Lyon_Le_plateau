@@ -101,15 +101,22 @@ class GameVerification
 
     public function gameImageVerification(): void
     {
-        if (!empty($_FILES['gameImage']['tmp_name'])) {
-            if ($_FILES['gameImage']['error'] !== 0) {
-                $this->errors[] = "Erreur de téléchargement de l'image du jeu";
+        if ($_FILES['gameImage']['error'] !== 4) {
+            switch ($_FILES['gameImage']['error']) {
+                case 0:
+                    if (strpos($_FILES['gameImage']['type'], "image/") !== 0) {
+                        $this->errors[] = "Le fichier téléchargé n'est pas une image";
+                    }
+                    break;
+                case 1:
+                    $this->errors[] = "La taille de l'image du jeu doit être inférieure à 2Mo";
+                    // no break
+                case 2:
+                    $this->errors[] = "La taille de l'image du jeu doit être inférieure à 2Mo";
+                    // no break
+                default:
+                    $this->errors[] = "Erreur de téléchargement de l'image du jeu";
             }
-            if (strpos($_FILES['gameImage']['type'], "image/") !== 0) {
-                $this->errors[] = "Le fichier téléchargé n'est pas une image";
-            }
-        } else {
-            $this->errors[] = "L'image du jeu doit avoir une taille inférieure à 2Mo";
         }
     }
 }

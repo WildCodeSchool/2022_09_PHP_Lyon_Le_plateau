@@ -111,7 +111,7 @@ class UserController extends AbstractController
         return $this->twig->render('User/edit.html.twig', ['user' => $user]);
     }
 
-    public function add(): ?string
+    public function addAdmin(): ?string
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // clean $_POST data
