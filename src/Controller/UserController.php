@@ -77,16 +77,28 @@ class UserController extends AbstractController
         }
     }
 
-    public function index(): string
+    public function index(): string|null
     {
+        if (!$this->user['admin']) {
+            echo 'Accès interdit';
+            header('HTTP/1.1 401 Unauthorized');
+            return null;
+        }
+
         $userManager = new UserManager();
         $users = $userManager->selectAll('id');
 
         return $this->twig->render('User/index.html.twig', ['users' => $users]);
     }
 
-    public function edit(int $id): ?string
+    public function editAdmin(int $id): ?string
     {
+        if (!$this->user['admin']) {
+            echo 'Accès interdit';
+            header('HTTP/1.1 401 Unauthorized');
+            return null;
+        }
+
         $userManager = new UserManager();
         $user = $userManager->selectOneById($id);
 
@@ -95,18 +107,24 @@ class UserController extends AbstractController
             $this->userFormVerification($userData);
 
             if (!empty($this->errors)) {
-                return $this->twig->render('User/edit.html.twig', ['errors' => $this->errors, 'user' => $user]);
+                return $this->twig->render('User/editAdmin.html.twig', ['errors' => $this->errors, 'user' => $user]);
             } else {
                 $userManager->update($userData, $id);
                 header('Location: /users/show');
                 return null;
             }
         }
-        return $this->twig->render('User/edit.html.twig', ['user' => $user]);
+        return $this->twig->render('User/editAdmin.html.twig', ['user' => $user]);
     }
 
     public function addAdmin(): ?string
     {
+        if (!$this->user['admin']) {
+            echo 'Accès interdit';
+            header('HTTP/1.1 401 Unauthorized');
+            return null;
+        }
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // clean $_POST data
             $user = array_map('trim', $_POST);
@@ -116,7 +134,7 @@ class UserController extends AbstractController
 
             // Display error (to be modified for image case)
             if (!empty($this->errors)) {
-                return $this->twig->render('User/add.html.twig', ['errors' => $this->errors, 'user' => $user]);
+                return $this->twig->render('User/addAdmin.html.twig', ['errors' => $this->errors, 'user' => $user]);
             } else {
                 $userManager = new UserManager();
                 $userManager->insert($user);
@@ -125,7 +143,7 @@ class UserController extends AbstractController
             }
         }
 
-        return $this->twig->render('User/add.html.twig');
+        return $this->twig->render('User/addAdmin.html.twig');
     }
 
     public function login(): string|null
@@ -143,7 +161,6 @@ class UserController extends AbstractController
             }
             $error = 'Erreur d\'email ou mot de passe';
         }
-
         return $this->twig->render('User/login.html.twig', ['error' => $error]);
     }
 

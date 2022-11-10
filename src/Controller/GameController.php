@@ -10,8 +10,14 @@ class GameController extends AbstractController
 {
     protected array $errors = [];
 
-    public function index(): string
+    public function index(): string|null
     {
+        if (!$this->user['admin']) {
+            echo 'Accès interdit';
+            header('HTTP/1.1 401 Unauthorized');
+            return null;
+        }
+
         $gameManager = new GameManager();
         $games = $gameManager->selectAll('game_id');
 
@@ -20,6 +26,12 @@ class GameController extends AbstractController
 
     public function addAdmin(): ?string
     {
+        if (!$this->user['admin']) {
+            echo 'Accès interdit';
+            header('HTTP/1.1 401 Unauthorized');
+            return null;
+        }
+
         $userManager = new UserManager();
         $users = $userManager->selectAll('firstname');
 
@@ -80,7 +92,7 @@ class GameController extends AbstractController
 
                 $gameManager = new GameManager();
                 $gameManager->insert($game);
-                header('Location: /games/show');
+                header('Location: /games?page=1');
                 return null;
             }
         }
@@ -91,6 +103,12 @@ class GameController extends AbstractController
 
     public function editAdmin(int $id): ?string
     {
+        if (!$this->user['admin']) {
+            echo 'Accès interdit';
+            header('HTTP/1.1 401 Unauthorized');
+            return null;
+        }
+
         $gameManager = new GameManager();
         $game = $gameManager->selectOneGameById($id);
         $userManager = new UserManager();

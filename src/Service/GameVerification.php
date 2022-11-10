@@ -111,9 +111,6 @@ class GameVerification
                 case 1:
                     $this->errors[] = "La taille de l'image du jeu doit être inférieure à 2Mo";
                     // no break
-                case 2:
-                    $this->errors[] = "La taille de l'image du jeu doit être inférieure à 2Mo";
-                    // no break
                 default:
                     $this->errors[] = "Erreur de téléchargement de l'image du jeu";
             }
