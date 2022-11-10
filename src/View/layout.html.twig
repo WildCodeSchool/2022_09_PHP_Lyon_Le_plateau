@@ -25,7 +25,7 @@
 						<a class="nav-link link-dark active" aria-current="page" href="/../home">
 							<img id="icons-nav" src="/assets/images/ring.png">
 						</a>
-						<a class="nav-link link-dark active" aria-current="page" href={% if user_session %} "/../users/logout" {% else %} "/../users/login" {% endif %}>
+						<a class="nav-link link-dark active" aria-current="page" href={% if user_session %} "/users/logout" {% else %} "/users/login" {% endif %}>
 							<img id="icons-nav" src="{% if user_session %}/assets/images/logout.png {% else %}/assets/images/login.png {% endif %}">
 						</a>
 						<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,6 +34,11 @@
 					</div>
 					<div class="collapse navbar-collapse justify-content-end text-center" id="navbarNav">
 						<ul class="navbar-nav">
+							{% if user_session.admin %}
+								<li class="mb-1">
+									<a class="nav-link active" id="admin-nav-link" aria-current="page" href="/games/show">Admin</a>
+								</li>
+							{% endif %}
 							<li class="mb-1">
 								<a class="nav-link link-dark active" aria-current="page" href="/../home">Accueil</a>
 							</li>
