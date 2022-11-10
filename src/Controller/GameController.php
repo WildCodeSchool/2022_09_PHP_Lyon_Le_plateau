@@ -125,6 +125,7 @@ class GameController extends AbstractController
             $errors = $gameVerification->gameFormVerification($gameData);
 
             if (!empty($errors)) {
+                $gameData = "";
                 return $this->twig->render('Game/editAdmin.html.twig', [
                     'errors' => $errors, 'game' => $game,
                     'users' => $users
