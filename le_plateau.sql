@@ -28,7 +28,8 @@ id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
 firstname VARCHAR(100) NOT NULL,
 lastname VARCHAR (100) NOT NULL,
 email VARCHAR(100) NOT NULL,
-message VARCHAR(255) NOT NULL
+message VARCHAR(255) NOT NULL,
+isRead BOOL NOT NULL DEFAULT true
 );
 
 INSERT INTO user (firstname, lastname, email, password, admin)
