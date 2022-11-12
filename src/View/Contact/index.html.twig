@@ -16,7 +16,8 @@
 					<th>Prénom</th>
 					<th>Nom</th>
 					<th>Email</th>
-					<th colspan="2">Status</th>
+					<th>Status</th>
+					<th>Action</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -29,29 +30,30 @@
 						{% if contact.isRead %}
 							<td class="text-success">
 								<strong>
-									● Déja lu
+									Lu
 								</strong>
 							</td>
 						{% else %}
 							<td class="text-danger">
 								<strong>
-									● Non lu
+									Non lu
 								</strong>
 							</td>
 						{% endif %}
-
+						<td>
+							<a class="text-decoration-none" href="/contact/isread?id={{ contact.id }}">
+								<button class="border-0 nav-link rounded m-0 p-1 px-2 {% if contact.isRead %}tomatoButton{% else %}alert alert-success readButton{% endif %}">
+									{% if contact.isRead %}
+										Marquer comme non lu
+									{% else %}
+										Marquer comme lu
+									{% endif %}
+								</button>
+							</a>
+						</td>
 					</tr>
 					<tr>
-						<td class="messageCell" colspan="4">{{ contact.message }}
-						</td>
-						<td rowspan="2">
-							<a href="/contact/isread?id={{ contact.id }}">
-								{% if contact.isRead %}
-									Marquer comme non lu
-								{% else %}
-									Marquer comme lu
-								{% endif %}
-							</a>
+						<td class="messageCell" colspan="6">{{ contact.message }}
 						</td>
 					</tr>
 				</td>
