@@ -20,6 +20,9 @@ max_number_players INT NOT NULL,
 minimum_players_age INT NOT NULL,
 image VARCHAR(255) NOT NULL DEFAULT 'default.jpg',
 id_owner INT NOT NULL,
+    CONSTRAINT fk_game_user    
+        FOREIGN KEY (id_owner)             
+        REFERENCES user(id),
 availability BOOL NOT NULL DEFAULT true
 );
 
@@ -29,6 +32,20 @@ firstname VARCHAR(100) NOT NULL,
 lastname VARCHAR (100) NOT NULL,
 email VARCHAR(100) NOT NULL,
 message VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE borrow (
+id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+acceptance_date DATE,
+acceptance BOOL,
+id_game INT NOT NULL,
+    CONSTRAINT fk_borrow_game     
+        FOREIGN KEY (id_game)             
+        REFERENCES game(id),
+id_user INT NOT NULL,
+    CONSTRAINT fk_borrow_user     
+        FOREIGN KEY (id_user)             
+        REFERENCES user(id)
 );
 
 INSERT INTO user (firstname, lastname, email, password, admin)
@@ -81,3 +98,6 @@ VALUES
 ('Sophie', 'Plaisance', 's.plaisance@yahoo.com', 'Personnellement, je préfère les jeux vidéo !'),
 ('Inco', 'gnito', 'i.gnito@hotmail.com', 'Bonjour, je suis un prince Nigérian et j\'ai besoin de votre aide. Je vous propose de me verser 2.000 € en mandat cash afin de me permettre de récupérer ma fortune. Je vous les rendrais au centuple!'),
 ('Nord', 'VPN', 'nvpn@outlook.fr', 'Vous connaissez Nord VPN ? Pour seulement 3€ par mois les 3 premiers mois, NordVPN vous permettra de naviguer sur le web de manière sécurisé et invisible. N\'attendez plus et essayez NordVPN dès maintenant ;\)');
+
+INSERT INTO borrow (id_game, id_user, acceptance)
+VALUES (6,2,default),(9,4,default),(10,6,default),(20,2,true),(14,2,false),(1,1,true),(2,1,false),(3,1,default);
