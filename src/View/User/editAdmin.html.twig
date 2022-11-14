@@ -1,8 +1,10 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <h2 class="text-center m-5 mb-4">Modifier un utilisateur</h1>
-    <h3 class="text-center">{{ user.firstname }} {{ user.lastname }}</h3>
-    {% include 'User/_form.html.twig' %}
-    <a href="/users/show">Retour</a>
+	<h2 class="text-center m-5 mb-4">Modifier un utilisateur</h1>
+	<h3 class="text-center">{{ user.firstname }}
+		{{ user.lastname }}</h3>
+	{% include 'User/_formEditUser.html.twig' %}
+	<a href="/users/editPassword?id={{ user.id }}">Modifier le mot de passe</a>
+	<a href="/users/show">Retour</a>
 {% endblock %}

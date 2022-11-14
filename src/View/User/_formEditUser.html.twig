@@ -23,15 +23,6 @@
 							<input type="text" value="{{ user.email }}" name="userEmail" id="email" maxlength="100" class="form-control">
 						</div>
 
-						<div class="mb-3">
-							<label for="userPassword" class="form-label d-flex justify-content-center">Mot de passe *</label>
-							<input type="password" value="{{user.password}}" name="userPassword" id="password" maxlength="100" class="form-control">
-						</div>
-
-						<div class="mb-3">
-							<label for="userPasswordConfirmation" class="form-label d-flex justify-content-center">Confirme le mot de passe *</label>
-							<input type="password" value="{{user.password}}" name="userPasswordConfirmation" id="passwordConfirmation" maxlength="100" class="form-control">
-						</div>
 						{% if errors is defined %}
 							<div class="text-danger">
 								<ul>
