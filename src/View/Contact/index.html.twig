@@ -17,7 +17,7 @@
 					<th>Nom</th>
 					<th>Email</th>
 					<th>Status</th>
-					<th>Action</th>
+					<th class="text-center">Action</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -41,15 +41,15 @@
 							</td>
 						{% endif %}
 						<td>
-							<a class="text-decoration-none" href="/contact/isread?id={{ contact.id }}">
-								<button class="border-0 nav-link rounded m-0 p-1 px-2 {% if contact.isRead %}tomatoButton{% else %}alert alert-success readButton{% endif %}">
+							<button class="text-decoration-none border-0 nav-link rounded p-1 px-2 m-auto {% if contact.isRead %}tomatoButton{% else %}alert alert-success mb-0 {% endif %}">
+								<a class="text-decoration-none nav-link" href="/contact/isread?id={{ contact.id }}">
 									{% if contact.isRead %}
 										Marquer comme non lu
 									{% else %}
 										Marquer comme lu
 									{% endif %}
-								</button>
-							</a>
+								</a>
+							</button>
 						</td>
 					</tr>
 					<tr>
