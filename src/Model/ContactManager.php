@@ -23,15 +23,6 @@ class ContactManager extends AbstractManager
         return (int)$this->pdo->lastInsertId();
     }
 
-    public function selectOneById(int $id): array
-    {
-        $query = "SELECT * FROM " . static::TABLE . " WHERE id = $id;";
-        $statement = $this->pdo->query($query);
-        $userMessage = $statement->fetch();
-
-        return $userMessage;
-    }
-
     public function updateAsRead(int $id): void
     {
         $statement = $this->pdo->prepare('UPDATE contact SET isRead = 1 WHERE id = :id;');
