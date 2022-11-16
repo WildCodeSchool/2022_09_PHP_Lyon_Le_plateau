@@ -18,6 +18,7 @@ return [
     'users/edit' => ['UserController', 'editAdmin', ['id']],
     'contact' => ['ContactController', 'add',],
     'contact/show' => ['ContactController', 'index',],
+    'contact/isread' => ['ContactController', 'changeReadStatus',['id']],
     'users/login' => ['UserController', 'login'],
     'users/logout' => ['UserController', 'logout'],
     'myaccount' => ['BorrowController', 'myAccount'],

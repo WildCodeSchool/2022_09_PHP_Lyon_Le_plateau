@@ -111,6 +111,14 @@ body {
     color: black;
 }
 
+.readButton:hover {
+    color: black;
+}
+
+.readButton:active {
+    color: black;
+}
+
 #userMessage {
     resize: none;
 }
@@ -155,3 +163,7 @@ h4 {
 .logoGitHub {
     width: 100px;
 }
+
+.imagedenied {
+    width: 500px;
+} 
