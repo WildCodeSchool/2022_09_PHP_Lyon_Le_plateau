@@ -7,7 +7,7 @@
 
 	<main>
 		<div class='m-3 mb-5 mt-5'>
-			<h2 class="text-center">Contactez nous</h1>
+			<h2 class="text-center">Contactez nous</h2>
 
 			<form method="post" class='form m-3 bg-lightgray p-3 shadow col-sm-10 col-md-8 col-lg-6 mx-auto' accept-charset="UTF-8">
 				<input type="hidden" value="{{ user.id }}" name="id">
@@ -39,7 +39,10 @@
 					<p class="form-text">
 						* Champs obligatoires
 					</p>
-
+					<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+					<div class="align-self-center">
+						<div class="g-recaptcha m-3 d-flex justify-content-center" data-sitekey="6LfaewIjAAAAADdyvUwWxRkNOZXOa1_TY5cLG0x1" id="captcha"></div>
+					</div>
 					{% if errors is defined %}
 						<ul class="errors text-danger">
 							{% for error in errors %}
@@ -58,17 +61,22 @@
 					{{ thanks }}
 				</p>
 			{% endif %}
+			{% if captcha is defined %}
+				<p class="alert alert-danger p-2 col-sm-10 col-md-8 col-lg-6 mx-auto text-center">
+					{{ captcha }}
+				</p>
+			{% endif %}
 		</div>
 
 		<div class='m-3 mb-5'>
 			<h2 class="text-center">Le projet</h1>
 			<p class="m-4 mt-3 col-sm-10 col-md-8 col-lg-6 mb-1 mx-auto">
 				Le plateau est un site internet développé dans le cadre d’un projet au sein de la Wild Code School de Lyon, et respectant 
-				le cahier des charges suivant : site web dynamique, développé avec PHP et Twig et en se basant sur un framework MVC mis 
-				à disposition par l’école. Les maquettes du site ont été réalisées grâce à la plateforme Figma et le suivi des User Stories 
-				via le logiciel de gestion Trello. Le développement s’est déroulé dans le respect de la méthode Agile Scrum. N’hésitez pas 
-				à nous contacter pour toute question ou remarque, nous lirons vos retours avec attention. L’intégralité de notre code est 
-				disponible sur GitHub, sentez-vous libre d’y jeter un œil en cliquant sur l’icône ci-dessous.
+																																																																																								le cahier des charges suivant : site web dynamique, développé avec PHP et Twig et en se basant sur un framework MVC mis 
+																																																																																								à disposition par l’école. Les maquettes du site ont été réalisées grâce à la plateforme Figma et le suivi des User Stories 
+																																																																																								via le logiciel de gestion Trello. Le développement s’est déroulé dans le respect de la méthode Agile Scrum. N’hésitez pas 
+																																																																																								à nous contacter pour toute question ou remarque, nous lirons vos retours avec attention. L’intégralité de notre code est 
+																																																																																								disponible sur GitHub, sentez-vous libre d’y jeter un œil en cliquant sur l’icône ci-dessous.
 			</p>
 
 			<div class="d-flex justify-content-center flex-wrap col-sm-10 col-md-8 col-lg-5 mx-auto">

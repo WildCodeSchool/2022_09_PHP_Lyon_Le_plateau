@@ -60,14 +60,23 @@ class ContactController extends AbstractController
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $userMessage = array_map('trim', $_POST);
             $this->userContactFormVerification($userMessage);
-
-            if (!empty($this->errors)) {
-                return $this->twig->render('Contact/contact.html.twig', ['errors' => $this->errors]);
+            if (isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'])) {
+                $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='
+                    . SECRETCAPTCHA . '&response=' . $_POST['g-recaptcha-response']);
+                $responseData = json_decode($verifyResponse);
+                if ($responseData->success) {
+                    if (!empty($this->errors)) {
+                        return $this->twig->render('Contact/contact.html.twig', ['errors' => $this->errors]);
+                    } else {
+                        $contactManager = new ContactManager();
+                        $contactManager->insert($userMessage);
+                        $thanksNote = "Merci pour votre message !";
+                        return $this->twig->render('Contact/contact.html.twig', ['thanks' => $thanksNote]);
+                    }
+                }
             } else {
-                $contactManager = new ContactManager();
-                $contactManager->insert($userMessage);
-                $thanksNote = "Merci pour votre message !";
-                return $this->twig->render('Contact/contact.html.twig', ['thanks' => $thanksNote]);
+                $captchaNote = "Merci de cocher le Captcha";
+                return $this->twig->render('Contact/contact.html.twig', ['captcha' => $captchaNote]);
             }
         }
         return $this->twig->render('Contact/contact.html.twig');
@@ -82,8 +91,22 @@ class ContactController extends AbstractController
         }
 
         $contactManager = new ContactManager();
-        $contacts = $contactManager->selectAll('id');
+        $contacts = $contactManager->selectAll('isRead');
 
         return $this->twig->render('Contact/index.html.twig', ['contacts' => $contacts]);
+    }
+
+    public function changeReadStatus(int $id): void
+    {
+        $contactManager = new ContactManager();
+        $userMessage = $contactManager->selectOneById($id);
+
+        if ($userMessage['isRead'] == true) {
+            $contactManager->updateAsNotRead($id);
+        } else {
+            $contactManager->updateAsRead($id);
+        }
+
+        header('Location: /contact/show');
     }
 }
