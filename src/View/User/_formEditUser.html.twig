@@ -1,11 +1,13 @@
 {% block content %}
-
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-10 col-md-8 col-lg-6 mb-5 mx-auto d-table">
 				<div class="d-table-cell align-middle">
-					<form class="form m-3 bg-lightgrey p-3 shadow" method="post">
+					<h1 class="text-center m-5 mb-5">Modifier un utilisateur</h1>
+					<h2 class="text-center">{{ user.firstname }}
+						{{ user.lastname }}</h2>
 
+					<form class="form m-3 bg-lightgrey p-3 shadow" method="post">
 						<input type="hidden" value="{{ user.id }}" name="id">
 
 						<div class="mb-3">
