@@ -136,10 +136,26 @@ h3 {
 }
 
 
+/* PAGE MON COMPTE */
+h4 {
+    background-color: #2C363F;
+    color: white;
+    font-size: 18px;
+}
+
+.section {
+    width: 90%;
+    max-width: 1140px;
+}
+
+
+/* PAGE ADMIN */
 #admin-nav-link {
     color: #c92f1b;
 }
 
+
+/* PAGE CONTACT */
 .linkedin:hover {
     opacity: 0.7;
 }

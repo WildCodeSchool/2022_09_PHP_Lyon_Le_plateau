@@ -96,7 +96,6 @@ class GameController extends AbstractController
         }
     }
 
-
     public function editAdmin(int $id): ?string
     {
         if (!isset($this->user['admin']) || !$this->user['admin']) {

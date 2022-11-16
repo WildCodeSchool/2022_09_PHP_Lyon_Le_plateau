@@ -21,5 +21,6 @@ return [
     'contact/isread' => ['ContactController', 'changeReadStatus',['id']],
     'users/login' => ['UserController', 'login'],
     'users/logout' => ['UserController', 'logout'],
-    'myaccount' => ['BorrowController', 'myAccount']
+    'myaccount' => ['BorrowController', 'myAccount'],
+    'myaccount/manageRequests' => ['BorrowController', 'manageRequests', ['id', 'status']]
 ];
