@@ -16,10 +16,12 @@ return [
     'users/show' => ['UserController', 'index'],
     'games/edit' => ['GameController', 'editAdmin', ['id']],
     'users/edit' => ['UserController', 'editAdmin', ['id']],
+    'users/editPassword' => ['UserController', 'editPasswordAdmin', ['id']],
     'contact' => ['ContactController', 'add',],
     'contact/show' => ['ContactController', 'index',],
     'contact/isread' => ['ContactController', 'changeReadStatus',['id']],
     'users/login' => ['UserController', 'login'],
     'users/logout' => ['UserController', 'logout'],
-    'myaccount' => ['BorrowController', 'myAccount']
+    'myaccount' => ['BorrowController', 'myAccount'],
+    'myaccount/manageRequests' => ['BorrowController', 'manageRequests', ['id', 'status']]
 ];
