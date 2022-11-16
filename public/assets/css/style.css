@@ -111,6 +111,14 @@ body {
     color: black;
 }
 
+.readButton:hover {
+    color: black;
+}
+
+.readButton:active {
+    color: black;
+}
+
 #userMessage {
     resize: none;
 }
