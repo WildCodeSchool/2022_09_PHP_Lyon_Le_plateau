@@ -1,10 +1,14 @@
 <div class="section border border-dark my-4 m-auto">
 	<h4 class="text-center p-2 ">
-		Mes demandes d'emprunts
+		Mes emprunts en attente de validation
 	</h4>
 
 	<div class="container d-flex w-100  justify-content-center">
 		<div class="row justify-content-start w-100">
+			{% if pendingloans is empty %}
+				<span class="text-center">Aucune demande en cours.</span>
+			{% endif %}
+
 			{% for pendingloan in pendingloans %}
 				{% set loan = pendingloan %}
 				{% include "/Myaccount/_borrowcard.html.twig" %}
@@ -20,6 +24,10 @@
 
 	<div class="container d-flex w-100  justify-content-center">
 		<div class="row justify-content-start w-100">
+			{% if acceptedloans is empty %}
+				<span class="text-center">Aucun emprunt en cours.</span>
+			{% endif %}
+
 			{% for acceptedloan in acceptedloans %}
 				{% set loan = acceptedloan %}
 				{% include "/Myaccount/_borrowcard.html.twig" %}
@@ -35,6 +43,10 @@
 
 	<div class="container d-flex w-100  justify-content-center">
 		<div class="row justify-content-start w-100">
+			{% if acceptedloans is empty %}
+				<span class="text-center">Aucun emprunt refusé.</span>
+			{% endif %}
+
 			{% for declineloan in declineloans %}
 				{% set loan = declineloan %}
 				{% include "/Myaccount/_borrowcard.html.twig" %}

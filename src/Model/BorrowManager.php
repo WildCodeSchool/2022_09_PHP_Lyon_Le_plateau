@@ -73,6 +73,14 @@ class BorrowManager extends GameManager
         return (int)$this->pdo->lastInsertId();
     }
 
+    public function updateBorrowStatusAsOver(int $borrowId): void
+    {
+        $query = "UPDATE " . static::TABLE . " AS g SET id_status=4 WHERE g.id=:id";
+        $statement = $this->pdo->prepare($query);
+        $statement->bindValue(':id', $borrowId, \PDO::PARAM_INT);
+        $statement->execute();
+    }
+
     public function selectBorrowRequestsReceived(int $idOwner, string $orderBy = '', string $direction = 'ASC'): array
     {
         $query = 'SELECT *, b.id as borrow_id 

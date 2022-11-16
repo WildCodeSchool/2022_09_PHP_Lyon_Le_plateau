@@ -31,7 +31,7 @@
 				ans
 			</p>
 			{% if loan.borrow_status == 'En attente' %}
-				<a href="/myaccount?loan_id={{loan.borrow_id}}" class="btn tomatoButton">Annuler</a>
+				<a href="myaccount/myborrow/cancel?id={{loan.borrow_id}}" class="btn tomatoButton">Annuler</a>
 			{% endif %}
 		</div>
 	</div>
