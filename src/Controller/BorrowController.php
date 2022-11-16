@@ -6,21 +6,30 @@ use App\Model\BorrowManager;
 
 class BorrowController extends GameController
 {
-    public function myAccount(): string|null
+    public function myAccount(): ?string
     {
         if (!isset($this->user['id'])) {
             header('Location: /users/login');
             return null;
         }
+
         $this->addPublic();
         $this->addBorrow();
         $pendingLoans = $this->showPendingBorrow();
         $acceptedLoans = $this->showAcceptedBorrow();
-        $declineLoans = $this->showDeclineBorrow();
+        $declinedLoans = $this->showDeclinedBorrow();
+        $requestsReceived = $this->showBorrowRequests();
+        $myGames = $this->showMyGames();
 
         return $this->twig->render(
             'Myaccount/index.html.twig',
-            ['Pendingloans' => $pendingLoans, 'Acceptedloans' => $acceptedLoans, 'Declineloans' => $declineLoans]
+            [
+                'Pendingloans' => $pendingLoans,
+                'Acceptedloans' => $acceptedLoans,
+                'Declinedloans' => $declinedLoans,
+                'requestsReceived' => $requestsReceived,
+                'myGames' => $myGames
+            ]
         );
     }
 
@@ -48,10 +57,10 @@ class BorrowController extends GameController
         return $loans;
     }
 
-    public function showDeclineBorrow(): array|null
+    public function showDeclinedBorrow(): array|null
     {
         $borrowManager = new BorrowManager();
-        $loans = $borrowManager->selectDeclineBorrowByUserId($this->user['id']);
+        $loans = $borrowManager->selectDeclinedBorrowByUserId($this->user['id']);
 
         return $loans;
     }
@@ -65,5 +74,20 @@ class BorrowController extends GameController
             header('Location: /myaccount');
             return null;
         }
+    }
+    public function showBorrowRequests(): ?array
+    {
+        $borrowManager = new BorrowManager();
+        $requestsReceived = $borrowManager->selectBorrowRequestsReceived($this->user['id']);
+
+        return $requestsReceived;
+    }
+
+    public function manageRequests(int $id, int $status): void
+    {
+        $borrowManager = new BorrowManager();
+        $borrowManager->updateRequest($id, $status);
+
+        header('Location: /myaccount');
     }
 }

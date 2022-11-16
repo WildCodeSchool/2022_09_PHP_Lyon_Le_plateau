@@ -1,0 +1,38 @@
+<div class="mb-2 p-3 col-lg-4 col-xs-12 d-flex justify-content-center">
+	<div class="card border-0 shadow align-items-center">
+		<div class="card-header text-center {% if game != requestReceived %} d-none {% endif %}">
+			{{ requestReceived.firstname }}
+			{{ requestReceived.lastname}}
+			veut emprunter votre jeu :
+		</div>
+
+		<div class="card-image-top mt-2" style="background-image: url('{{'/uploads/' ~ game.image}}')"></div>
+		<div class="card-subtitle d-flex justify-content-between align-items-center pt-2 {% if game == requestReceived %} d-none {% endif %}">
+			<div class="availability d-flex">
+				<p class="{% if game.availability == false %} text-danger {% else %} text-success {% endif %}mb-0">●</p>
+				<p class="m-0 ps-1">
+					{% if game.availability == false %}Non disponible
+					{% else %}
+						Disponible
+					{% endif %}
+				</p>
+			</div>
+			<div class="owner">@{{ game.firstname }}
+				{{ game.lastname }}</div>
+		</div>
+		<div class="card-body w-100 text-center d-flex flex-column align-items-center pt-1">
+			<p class="card-title pt-2 ">{{ game.name }}</p>
+			<p class="card-text {% if game == requestReceived %} d-none {% endif %}">{{ game.type }}
+			</p>
+		</br>
+		De
+		{{ game.min_number_players }}
+		à
+		{{ game.max_number_players }}
+		joueurs</br>
+	À partir de
+	{{ game.minimum_players_age }}
+	ans
+</p></div><div class="card-footer text-center w-100 d-flex justify-content-around {% if game != requestReceived %} d-none {% endif %}">
+<a href="/myaccount/manageRequests?id={{requestReceived.borrow_id}}&status=2" class="btn btn-success">Accepter</a>
+<a href="/myaccount/manageRequests?id={{requestReceived.borrow_id}}&status=3" class="btn btn-danger">Refuser</a></div></div></div>
