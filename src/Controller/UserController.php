@@ -80,9 +80,7 @@ class UserController extends AbstractController
     public function index(): string|null
     {
         if (!isset($this->user['admin']) || !$this->user['admin']) {
-            echo 'Accès interdit';
-            header('HTTP/1.1 401 Unauthorized');
-            return null;
+            return $this->twig->render('errors/error.html.twig');
         }
 
         $userManager = new UserManager();
@@ -94,9 +92,7 @@ class UserController extends AbstractController
     public function editAdmin(int $id): ?string
     {
         if (!isset($this->user['admin']) || !$this->user['admin']) {
-            echo 'Accès interdit';
-            header('HTTP/1.1 401 Unauthorized');
-            return null;
+            return $this->twig->render('errors/error.html.twig');
         }
 
         $userManager = new UserManager();
@@ -120,9 +116,7 @@ class UserController extends AbstractController
     public function addAdmin(): ?string
     {
         if (!isset($this->user['admin']) || !$this->user['admin']) {
-            echo 'Accès interdit';
-            header('HTTP/1.1 401 Unauthorized');
-            return null;
+            return $this->twig->render('errors/error.html.twig');
         }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
