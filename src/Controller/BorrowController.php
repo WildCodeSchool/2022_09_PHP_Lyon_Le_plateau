@@ -6,7 +6,7 @@ use App\Model\BorrowManager;
 
 class BorrowController extends GameController
 {
-    public function myAccount(): string|null
+    public function myAccount(): ?string
     {
         if (!isset($this->user['id'])) {
             header('Location: /users/login');
@@ -17,11 +17,17 @@ class BorrowController extends GameController
         $this->addBorrow();
         $pendingLoans = $this->showPendingBorrow();
         $acceptedLoans = $this->showAcceptedBorrow();
-        $declineLoans = $this->showDeclineBorrow();
+        $declinedLoans = $this->showDeclinedBorrow();
+        $requestsReceived = $this->showBorrowRequests();
 
         return $this->twig->render(
             'Myaccount/index.html.twig',
-            ['pendingloans' => $pendingLoans, 'acceptedloans' => $acceptedLoans, 'declineloans' => $declineLoans]
+            [
+                'pendingloans' => $pendingLoans,
+                'acceptedloans' => $acceptedLoans,
+                'declineloans' => $declinedLoans,
+                'requestsReceived' => $requestsReceived
+            ]
         );
     }
 
@@ -49,7 +55,7 @@ class BorrowController extends GameController
         return $loans;
     }
 
-    public function showDeclineBorrow(): array|null
+    public function showDeclinedBorrow(): array|null
     {
         $borrowManager = new BorrowManager();
         $loans = $borrowManager->selectDeclinedBorrowByUserId($this->user['id']);
@@ -66,5 +72,20 @@ class BorrowController extends GameController
             header('Location: /myaccount');
             return null;
         }
+    }
+    public function showBorrowRequests(): ?array
+    {
+        $borrowManager = new BorrowManager();
+        $requestsReceived = $borrowManager->selectBorrowRequestsReceived($this->user['id']);
+
+        return $requestsReceived;
+    }
+
+    public function manageRequests(int $id, int $status): void
+    {
+        $borrowManager = new BorrowManager();
+        $borrowManager->updateRequest($id, $status);
+
+        header('Location: /myaccount');
     }
 }

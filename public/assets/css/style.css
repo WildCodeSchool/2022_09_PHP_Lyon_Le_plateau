@@ -127,6 +127,9 @@ h3 {
     font-size: 20px;
 }
 
+.noHover {
+    pointer-events: none;
+}
 
 /* PAGE MON COMPTE */
 h4 {
@@ -158,8 +161,4 @@ h4 {
 
 .imagedenied {
     width: 500px;
-}
-
-.noHover {
-    pointer-events: none;
 }

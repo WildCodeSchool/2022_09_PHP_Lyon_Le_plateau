@@ -3,79 +3,11 @@
 namespace App\Controller;
 
 use App\Model\UserManager;
+use App\Service\UserVerification;
 
 class UserController extends AbstractController
 {
     protected array $errors = [];
-
-    public function userFormVerification(array $userData)
-    {
-        $this->userNameVerification($userData);
-        if (!empty($userData['id'])) {
-            $userManager = new UserManager();
-            $user = $userManager->selectOneById($userData['id']);
-            if ($userData['userEmail'] !== ($user['email'])) {
-                $this->userEmailVerification($userData);
-            }
-        } else {
-            $this->userEmailVerification($userData);
-        }
-        $this->userPasswordVerification($userData);
-        return $this->errors;
-    }
-
-    public function userNameVerification(array $userData): void
-    {
-        if (!isset($userData['userFirstname']) || empty($userData['userFirstname'])) {
-            $this->errors[] = "Le prénom est obligatoire";
-        }
-        if (strlen($userData['userFirstname']) > 100) {
-            $this->errors[] = 'Le prénom doit être inférieur à 100 caractères';
-        }
-        if (!isset($userData['userLastname']) || empty($userData['userLastname'])) {
-            $this->errors[] = "Le nom est obligatoire";
-        }
-        if (strlen($userData['userLastname']) > 100) {
-            $this->errors[] = 'Le nom doit être inférieur à 100 caractères';
-        }
-    }
-
-    public function userEmailVerification(array $userData): void
-    {
-        if (!isset($userData['userEmail']) || !filter_var($userData['userEmail'], FILTER_VALIDATE_EMAIL)) {
-            $this->errors[] = "L'email n'a pas le bon format";
-        }
-        if (strlen($userData['userEmail']) > 100) {
-            $this->errors[] = 'L\'email doit être inférieur à 100 caractères';
-        }
-        $userManager = new UserManager();
-        $user = $userManager->uniqueEmail($userData['userEmail']);
-        if ($user == true) {
-            $this->errors[] = 'L\'email existe déja';
-        };
-    }
-
-    public function userPasswordVerification(array $userData): void
-    {
-        if (!isset($userData['userPassword']) || empty($userData['userPassword'])) {
-            $this->errors[] = "Le mot de passe est obligatoire";
-        }
-        if (strlen($userData['userPassword']) < 8) {
-            $this->errors[] = 'Le mot de passe doit être supérieur à 8 caractères';
-        }
-        if (strlen(filter_var($userData['userPassword'], FILTER_SANITIZE_NUMBER_INT)) == 0) {
-            $this->errors[] = 'Le mot de passe doit contenir au moins un chiffre';
-        }
-        if (strlen(filter_var($userData['userPassword'], FILTER_SANITIZE_SPECIAL_CHARS)) == 0) {
-            $this->errors[] = 'Le mot de passe doit contenir au moins un caractère spécial';
-        }
-        if (!isset($userData['userPasswordConfirmation']) || empty($userData['userPasswordConfirmation'])) {
-            $this->errors[] = "La confirmation du mot de passe est obligatoire";
-        }
-        if ($userData['userPasswordConfirmation'] !== $userData['userPassword']) {
-            $this->errors[] = "Les mots de passe doivent être identiques";
-        }
-    }
 
     public function index(): string|null
     {
@@ -89,6 +21,33 @@ class UserController extends AbstractController
         return $this->twig->render('User/index.html.twig', ['users' => $users]);
     }
 
+    public function addAdmin(): ?string
+    {
+        if (!isset($this->user['admin']) || !$this->user['admin']) {
+            echo 'Accès interdit';
+            header('HTTP/1.1 401 Unauthorized');
+            return null;
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $user = array_map('trim', $_POST);
+
+            $userVerification = new UserVerification();
+            $errors = $userVerification->userFormVerification($user);
+
+            if (!empty($errors)) {
+                return $this->twig->render('User/addAdmin.html.twig', ['errors' => $errors, 'user' => $user]);
+            } else {
+                $userManager = new UserManager();
+                $userManager->insert($user);
+                header('Location: /users/show');
+                return null;
+            }
+        }
+
+        return $this->twig->render('User/addAdmin.html.twig');
+    }
+
     public function editAdmin(int $id): ?string
     {
         if (!isset($this->user['admin']) || !$this->user['admin']) {
@@ -100,12 +59,15 @@ class UserController extends AbstractController
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $userData = array_map('trim', $_POST);
-            $this->userFormVerification($userData);
 
-            if (!empty($this->errors)) {
-                return $this->twig->render('User/editAdmin.html.twig', ['errors' => $this->errors, 'user' => $user]);
+            $userVerification = new UserVerification();
+            $errors = $userVerification->userNameVerification($userData);
+            $errors = $userVerification->userEmailEditVerification($userData);
+
+            if (!empty($errors)) {
+                return $this->twig->render('User/editAdmin.html.twig', ['errors' => $errors, 'user' => $user]);
             } else {
-                $userManager->update($userData, $id);
+                $userManager->updateUser($userData, $id);
                 header('Location: /users/show');
                 return null;
             }
@@ -113,31 +75,33 @@ class UserController extends AbstractController
         return $this->twig->render('User/editAdmin.html.twig', ['user' => $user]);
     }
 
-    public function addAdmin(): ?string
+    public function editPasswordAdmin(int $id): ?string
     {
         if (!isset($this->user['admin']) || !$this->user['admin']) {
             return $this->twig->render('errors/error.html.twig');
         }
 
+        $userManager = new UserManager();
+        $user = $userManager->selectOneById($id);
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // clean $_POST data
-            $user = array_map('trim', $_POST);
+            $userData = array_map('trim', $_POST);
+            $user = $userManager->selectOneById($id);
 
-            // TODO validations (length, format...)
-            $this->userFormVerification($user);
+            $userVerification = new UserVerification();
+            $errors = $userVerification->userPasswordVerification($userData);
+            $errors = $userVerification->userPasswordConfirmationVerification($userData);
 
-            // Display error (to be modified for image case)
-            if (!empty($this->errors)) {
-                return $this->twig->render('User/addAdmin.html.twig', ['errors' => $this->errors, 'user' => $user]);
+            if (!empty($errors)) {
+                return $this->twig->render('User/editPasswordAdmin.html.twig', ['user' => $user, 'errors' => $errors]);
             } else {
-                $userManager = new UserManager();
-                $userManager->insert($user);
+                $userManager->updatePassword($userData, $id);
                 header('Location: /users/show');
                 return null;
             }
         }
 
-        return $this->twig->render('User/addAdmin.html.twig');
+        return $this->twig->render('User/editPasswordAdmin.html.twig', ['user' => $user]);
     }
 
     public function login(): string|null

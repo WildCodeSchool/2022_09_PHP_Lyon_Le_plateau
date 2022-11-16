@@ -7,12 +7,16 @@
 {% endblock %}
 
 {% block content %}
-
-
-	<h2 class="text-center m-5 mb-4">Ajouter un jeu</h2>
-	<h3 class="text-center">Renseigner les informations du jeu</h3>
+	<h3 class="text-center">Ajouter un jeu</h2>
 	{% include 'Game/_formPublic.html.twig' %}
 
-	{% include 'Myaccount/_borrow.html.twig' %}
+	<div>
+		{% include 'Myaccount/_requestsReceived.html.twig' %}
+	</div>
+
+	<div>
+		{% include 'Myaccount/_borrow.html.twig' %}
+	</div>
+
 
 {% endblock %}
