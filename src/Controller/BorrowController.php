@@ -6,8 +6,12 @@ use App\Model\BorrowManager;
 
 class BorrowController extends GameController
 {
-    public function myAccount(): string
+    public function myAccount(): string|null
     {
+        if (!isset($this->user['id'])) {
+            header('Location: /users/login');
+            return null;
+        }
         $this->addPublic();
         $this->addBorrow();
         $pendingLoans = $this->showPendingBorrow();
@@ -54,11 +58,6 @@ class BorrowController extends GameController
 
     public function addBorrow()
     {
-        if (!isset($this->user['id'])) {
-            header('Location: /users/login');
-            return null;
-        }
-
         if (!empty($_GET['game_id'])) {
             $borrowManager = new BorrowManager();
             $borrowManager->insertBorrow($_GET['game_id'], $this->user['id']);

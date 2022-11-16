@@ -1,0 +1,19 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+	<div class="section border border-dark my-4 m-auto">
+		<h4 class="text-center p-2 ">
+			Mes jeux
+		</h4>
+
+		<div class="container d-flex w-100  justify-content-center">
+			<div class="row justify-content-start w-100">
+				{% for myGame in myGames %}
+					{% set game = myGame %}
+					{% include "/Game/_mygamecard.html.twig" %}
+				{% endfor %}
+			</div>
+		</div>
+
+	</div>
+{% endblock %}

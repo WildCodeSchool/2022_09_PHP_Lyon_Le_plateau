@@ -18,8 +18,10 @@ return [
     'users/edit' => ['UserController', 'editAdmin', ['id']],
     'contact' => ['ContactController', 'add',],
     'contact/show' => ['ContactController', 'index',],
-    'contact/isread' => ['ContactController', 'changeReadStatus',['id']],
+    'contact/isread' => ['ContactController', 'changeReadStatus', ['id']],
     'users/login' => ['UserController', 'login'],
     'users/logout' => ['UserController', 'logout'],
-    'myaccount' => ['BorrowController', 'myAccount']
+    'myaccount' => ['BorrowController', 'myAccount'],
+    'mygames' =>  ['GameController', 'showMyGames', ['id']],
+    'mygames/return' => ['GameController', 'returnGame', ['id']]
 ];

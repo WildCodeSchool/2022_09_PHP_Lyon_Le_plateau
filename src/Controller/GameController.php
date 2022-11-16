@@ -155,4 +155,20 @@ class GameController extends AbstractController
 
         return $this->twig->render('Game/games.html.twig', ['games' => $games, 'selectedGames' => $selectedGames]);
     }
+
+    public function showMyGames(): string
+    {
+        $gameManager = new GameManager();
+        $myGames = $gameManager->selectMyGames($this->user['id']);
+
+        return $this->twig->render('Myaccount/_mygames.html.twig', ['myGames' => $myGames]);
+    }
+
+    public function returnGame(int $id)
+    {
+        $gameManager = new GameManager();
+        $gameManager->returnGame($id);
+
+        header('Location: /mygames');
+    }
 }
