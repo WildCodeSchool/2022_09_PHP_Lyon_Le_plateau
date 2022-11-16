@@ -85,9 +85,7 @@ class ContactController extends AbstractController
     public function index(): string|null
     {
         if (!$this->user['admin']) {
-            echo 'Accès interdit';
-            header('HTTP/1.1 401 Unauthorized');
-            return null;
+            return $this->twig->render('errors/error.html.twig');
         }
 
         $contactManager = new ContactManager();
