@@ -2,62 +2,64 @@
 
 {% block content %}
 
-<div class="container-fluid d-md-flex p-0">
+	<div class="container-fluid d-md-flex p-0">
 
-	{% include 'components/_navAdmin.html.twig' %}
+		{% include 'components/_navAdmin.html.twig' %}
 
-	<section class="m-5">
-		<h1 class="text-center">Les messages</h1>
+		<section class="m-5">
+			<h1 class="text-center">Les messages</h1>
 
-		<table class="mt-3 table table-striped">
-			<thead>
-				<tr>
-					<th>ID</th>
-					<th>Prénom</th>
-					<th>Nom</th>
-					<th>Email</th>
-					<th>Status</th>
-					<th class="text-center">Action</th>
-				</tr>
-			</thead>
-			<tbody>
-				{% for contact in contacts %}
+			<table class="mt-3 table table-striped">
+				<thead>
 					<tr>
-						<td>{{ contact.id }}</td>
-						<td>{{ contact.firstname}}</td>
-						<td>{{ contact.lastname }}</td>
-						<td>{{ contact.email }}</td>
-						{% if contact.isRead %}
-							<td class="text-success">
-								<strong>
-									Lu
-								</strong>
-							</td>
-						{% else %}
-							<td class="text-danger">
-								<strong>
-									Non lu
-								</strong>
-							</td>
-						{% endif %}
-						<td>
-							<button class="text-decoration-none border-0 nav-link rounded p-1 px-2 m-auto {% if contact.isRead %}tomatoButton{% else %}alert alert-success mb-0 {% endif %}">
-								<a class="text-decoration-none nav-link" href="/contact/isread?id={{ contact.id }}">
-									{% if contact.isRead %}
-										Marquer comme non lu
-									{% else %}
-										Marquer comme lu
-									{% endif %}
-								</a>
-							</button>
-						</td>
+						<th>ID</th>
+						<th>Prénom</th>
+						<th>Nom</th>
+						<th>Email</th>
+						<th>Status</th>
+						<th class="text-center">Action</th>
 					</tr>
-					<tr>
-						<td class="messageCell" colspan="6">{{ contact.message }}
-						</td>
-					</tr>
-				</td>
-			</tbody>
-		</tr>
-	</a>
-</tbody></td></tr>{% endfor %}</tbody></table></section></div>{% endblock %}
+				</thead>
+				<tbody>
+					{% for contact in contacts %}
+						<tr>
+							<td>{{ contact.id }}</td>
+							<td>{{ contact.firstname}}</td>
+							<td>{{ contact.lastname }}</td>
+							<td>{{ contact.email }}</td>
+							{% if contact.isRead %}
+								<td class="text-success">
+									<strong>
+										Lu
+									</strong>
+								</td>
+							{% else %}
+								<td class="text-danger">
+									<strong>
+										Non lu
+									</strong>
+								</td>
+							{% endif %}
+							<td>
+								<button class="text-decoration-none border-0 nav-link rounded p-1 px-2 m-auto {% if contact.isRead %}tomatoButton{% else %}alert alert-success mb-0 {% endif %}">
+									<a class="text-decoration-none nav-link" href="/contact/isread?id={{ contact.id }}">
+										{% if contact.isRead %}
+											Marquer comme non lu
+										{% else %}
+											Marquer comme lu
+										{% endif %}
+									</a>
+								</button>
+							</td>
+						</tr>
+						<tr>
+							<td class="messageCell" colspan="6">{{ contact.message }}
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</section>
+	</div>
+
+{% endblock %}
