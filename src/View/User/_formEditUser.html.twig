@@ -10,17 +10,17 @@
 
 						<div class="mb-3">
 							<label for="userFirstname" class="form-label d-flex justify-content-center">Prénom *</label>
-							<input type="text" value="{{ user.firstname }}" name="userFirstname" id="firstname" maxlength="100" class="form-control">
+							<input type="text" value="{{ user.firstname }}" name="userFirstname" id="firstname" maxlength="100" class="form-control" required>
 						</div>
 
 						<div class="mb-3">
 							<label for="userLastname" class="form-label d-flex justify-content-center">Nom *</label>
-							<input type="text" value="{{ user.lastname }}" name="userLastname" id="lastname" maxlength="100" class="form-control">
+							<input type="text" value="{{ user.lastname }}" name="userLastname" id="lastname" maxlength="100" class="form-control" required>
 						</div>
 
 						<div class="mb-3">
 							<label for="userEmail" class="form-label d-flex justify-content-center">Email *</label>
-							<input type="text" value="{{ user.email }}" name="userEmail" id="email" maxlength="100" class="form-control">
+							<input type="text" value="{{ user.email }}" name="userEmail" id="email" maxlength="100" class="form-control" required>
 						</div>
 
 						{% if errors is defined %}
@@ -41,6 +41,9 @@
 						</p>
 
 					</form>
+					<div class="mb-3 d-flex justify-content-center">
+						<a href="/users/editPassword?id={{ user.id }}">Modifier le mot de passe</a>
+					</div>
 				</div>
 			</div>
 		</div>
