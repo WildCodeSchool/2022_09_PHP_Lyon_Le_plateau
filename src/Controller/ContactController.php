@@ -61,9 +61,8 @@ class ContactController extends AbstractController
             $userMessage = array_map('trim', $_POST);
             $this->userContactFormVerification($userMessage);
             if (isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'])) {
-                $secret = '6LfaewIjAAAAAGE2jVosKMD84I94tiN060GEBmhP';
-                $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secret
-                    . '&response=' . $_POST['g-recaptcha-response']);
+                $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='
+                    . SECRETCAPTCHA . '&response=' . $_POST['g-recaptcha-response']);
                 $responseData = json_decode($verifyResponse);
                 if ($responseData->success) {
                     if (!empty($this->errors)) {
