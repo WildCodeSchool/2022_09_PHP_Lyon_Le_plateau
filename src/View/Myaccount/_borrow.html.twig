@@ -1,0 +1,44 @@
+<div class="section border border-dark my-4 m-auto">
+	<h4 class="text-center p-2 ">
+		Mes demandes d'emprunts
+	</h4>
+
+	<div class="container d-flex w-100  justify-content-center">
+		<div class="row justify-content-start w-100">
+			{% for pendingloan in pendingloans %}
+				{% set loan = pendingloan %}
+				{% include "/Myaccount/_borrowcard.html.twig" %}
+			{% endfor %}
+		</div>
+	</div>
+</div>
+
+<div class="section border border-dark my-4 m-auto">
+	<h4 class="text-center p-2 ">
+		Mes emprunts en cours
+	</h4>
+
+	<div class="container d-flex w-100  justify-content-center">
+		<div class="row justify-content-start w-100">
+			{% for acceptedloan in acceptedloans %}
+				{% set loan = acceptedloan %}
+				{% include "/Myaccount/_borrowcard.html.twig" %}
+			{% endfor %}
+		</div>
+	</div>
+</div>
+
+<div class="section border border-dark my-4 m-auto">
+	<h4 class="text-center p-2 ">
+		Mes emprunts refusés
+	</h4>
+
+	<div class="container d-flex w-100  justify-content-center">
+		<div class="row justify-content-start w-100">
+			{% for declineloan in declineloans %}
+				{% set loan = declineloan %}
+				{% include "/Myaccount/_borrowcard.html.twig" %}
+			{% endfor %}
+		</div>
+	</div>
+</div>

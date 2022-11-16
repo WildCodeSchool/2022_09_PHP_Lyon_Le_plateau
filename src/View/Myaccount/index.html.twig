@@ -13,15 +13,6 @@
 	<h3 class="text-center">Renseigner les informations du jeu</h3>
 	{% include 'Game/_formPublic.html.twig' %}
 
-
-	<div class="container d-flex w-100  justify-content-center border border-dark mb-3">
-		<div class="row justify-content-start w-100">
-			<div class="bg-dark text-white">Mes emprunts</div>
-			{% for Pendingloan in Pendingloans %}
-				{% include 'Myaccount/_borrowcard.html.twig' %}
-			{% endfor %}
-		</div>
-	</div>
-
+	{% include 'Myaccount/_borrow.html.twig' %}
 
 {% endblock %}

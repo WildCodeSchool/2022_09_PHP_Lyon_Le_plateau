@@ -10,8 +10,8 @@ class BorrowManager extends GameManager
 
     public function selectAllBorrowByUserId(int $id): array|false
     {
-        $query = "SELECT b.id_game, g.name as game_name, g.type, g.min_number_players, g.max_number_players, 
-        g.minimum_players_age, g.image, g.availability, owner.firstname as owner_firstname, 
+        $query = "SELECT b.id AS borrow_id, b.id_game, g.name as game_name, g.type, g.min_number_players,
+        g.max_number_players, g.minimum_players_age, g.image, g.availability, owner.firstname as owner_firstname, 
         owner.lastname as owner_lastname, g.id_owner as owner_id, u.firstname as borrower_firstname,
         u.lastname as borrower_lastname, u.id as borrower_id, b. request_date, b.acceptance_date, 
         s.borrow_status  FROM " . static::TABLE . " as b inner join user as u on u.id = b.id_user
@@ -23,8 +23,8 @@ class BorrowManager extends GameManager
 
     public function selectPendingBorrowByUserId(int $id): array|false
     {
-        $query = "SELECT b.id_game, g.name as game_name, g.type, g.min_number_players, g.max_number_players, 
-        g.minimum_players_age, g.image, g.availability, owner.firstname as owner_firstname, 
+        $query = "SELECT b.id AS borrow_id, b.id_game, g.name as game_name, g.type, g.min_number_players, 
+        g.max_number_players, g.minimum_players_age, g.image, g.availability, owner.firstname as owner_firstname, 
         owner.lastname as owner_lastname, g.id_owner as owner_id, u.firstname as borrower_firstname,
         u.lastname as borrower_lastname, u.id as borrower_id, b. request_date, b.acceptance_date, 
         s.borrow_status  FROM " . static::TABLE . " as b inner join user as u on u.id = b.id_user
@@ -36,8 +36,8 @@ class BorrowManager extends GameManager
 
     public function selectAcceptedBorrowByUserId(int $id): array|false
     {
-        $query = "SELECT b.id_game, g.name as game_name, g.type, g.min_number_players, g.max_number_players, 
-        g.minimum_players_age, g.image, g.availability, owner.firstname as owner_firstname, 
+        $query = "SELECT b.id AS borrow_id, b.id_game, g.name as game_name, g.type, g.min_number_players, 
+        g.max_number_players, g.minimum_players_age, g.image, g.availability, owner.firstname as owner_firstname, 
         owner.lastname as owner_lastname, g.id_owner as owner_id, u.firstname as borrower_firstname,
         u.lastname as borrower_lastname, u.id as borrower_id, b. request_date, b.acceptance_date, 
         s.borrow_status  FROM " . static::TABLE . " as b inner join user as u on u.id = b.id_user
@@ -47,10 +47,10 @@ class BorrowManager extends GameManager
         return $this->pdo->query($query)->fetchAll();
     }
 
-    public function selectDeclineBorrowByUserId(int $id): array|false
+    public function selectDeclinedBorrowByUserId(int $id): array|false
     {
-        $query = "SELECT b.id_game, g.name as game_name, g.type, g.min_number_players, g.max_number_players, 
-        g.minimum_players_age, g.image, g.availability, owner.firstname as owner_firstname, 
+        $query = "SELECT b.id AS borrow_id, b.id_game, g.name as game_name, g.type, g.min_number_players, 
+        g.max_number_players, g.minimum_players_age, g.image, g.availability, owner.firstname as owner_firstname, 
         owner.lastname as owner_lastname, g.id_owner as owner_id, u.firstname as borrower_firstname,
         u.lastname as borrower_lastname, u.id as borrower_id, b. request_date, b.acceptance_date, 
         s.borrow_status  FROM " . static::TABLE . " as b inner join user as u on u.id = b.id_user

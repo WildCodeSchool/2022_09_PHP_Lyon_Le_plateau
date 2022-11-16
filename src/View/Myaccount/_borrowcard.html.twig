@@ -1,32 +1,38 @@
 <div class="mb-2 p-3 col-lg-4 col-xs-12 d-flex justify-content-center">
-	<div class="card border-0 shadow align-items-center d-flex flex-row">
-		<div class="card-image-top m-2" style="background-image: url('{{'uploads/' ~ Pendingloan.image}}')"></div>
-		<div class="card-body w-100 d-flex flex-column align-items-center pt-1">
-			<p class="card-title pt-3">{{ Pendingloan.game_name }}</p>
+	<div class="card border-0 shadow align-items-center">
+		<div class="fw-bold">Appartient à
+			{{ loan.owner_firstname }}
+			{{ loan.owner_lastname }}
+		</div>
+		<div class="card-image-top mt-2" style="background-image: url('{{'uploads/' ~ loan.image}}')"></div>
+		<div class="card-subtitle d-flex justify-content-between align-items-center pt-2 ">
+			<div class="availability d-flex">
+				<p class="{% if loan.availability == false %} text-danger {% else %} text-success {% endif %}mb-0">●</p>
+				<p class="m-0 ps-1">
+					{% if loan.availability == false %}Non disponible
+					{% else %}
+						Disponible
+					{% endif %}
+				</p>
+			</div>
+
+		</div>
+		<div class="card-body w-100 text-center d-flex flex-column align-items-center pt-1">
+			<p class="card-title pt-3">{{ loan.game_name }}</p>
 			<p class="card-text">
-				Genre :
-				{{ Pendingloan.type }}
-				<br>
-				Nbre de joueurs :
-				{{ Pendingloan.min_number_players }}
-				-
-				{{ Pendingloan.max_number_players }}
-				<br>
-				A partir de :
-				{{ Pendingloan.minimum_players_age }}
+				{{ loan.type }}<br>
+				De
+				{{ loan.min_number_players }}
+				à
+				{{ loan.max_number_players }}
+				joueurs<br>
+				À partir de
+				{{ loan.minimum_players_age }}
 				ans
-				<br>
-				Disponible :
-				{% if Pendingloan.availability == false %}Non
-				{% else %}
-					Oui
-				{% endif %}<br>
-				Propriétaire :
-				{{ Pendingloan.owner_firstname }}
-				{{ Pendingloan.owner_lastname }}<br>
-				Statut:
-				{{ Pendingloan.request_status }}
 			</p>
+			{% if loan.borrow_status == 'En attente' %}
+				<a href="/myaccount?loan_id={{loan.borrow_id}}" class="btn tomatoButton">Annuler</a>
+			{% endif %}
 		</div>
 	</div>
 </div>
