@@ -36,18 +36,18 @@
 
 						<div class="mb-3">
 							<label for="gameMaximumNumberPlayers" class="form-label d-flex justify-content-center">Nombre de joueurs maximum *</label>
-							<input type="number" value="{{ game.max_number_players }}" name="gameMaximumNumberPlayers" id="gameNugameMaximumNumberPlayersmberPlayers" min="1" max="99" class="form-control" required>
+							<input type="number" value="{{ game.max_number_players }}" name="gameMaximumNumberPlayers" id="gameMaximumNumberPlayers" min="1" max="99" class="form-control" required>
 						</div>
 
 						<div class="mb-3">
-							<label for="gameAgeMinimumPlayers" class="form-label d-flex justify-content-center">A partir de *</label>
+							<label for="gameAgeMinimumPlayers" class="form-label d-flex justify-content-center">Age minimum *</label>
 							<input type="number" value="{{ game.minimum_players_age }}" name="gameAgeMinimumPlayers" id="gameAgeMinimumPlayers" min="1" max="99" class="form-control" required>
 						</div>
 
 						<div class="mb-3">
 							<label for="gameImage" class="form-label d-flex justify-content-center">Image du jeu</label>
 							<input type="hidden" name="MAX_FILE_SIZE" value="2097152" class="form-control">
-							<input type="file" value="{{ game.image }}" accept="image/*" name="gameImage" id="image" class="form-control" maxlength="255">
+							<input type="file" value="{{ game.image }}" accept="image/*" name="gameImage" id="gameImage" class="form-control" maxlength="255">
 						</div>
 						{% if errors is defined %}
 							<div class="text-danger">
