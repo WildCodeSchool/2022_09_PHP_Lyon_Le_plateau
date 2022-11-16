@@ -62,7 +62,7 @@ class BorrowManager extends GameManager
 
     public function insertBorrow(int $gameId, int $userId): int
     {
-        $query = "INSERT INTO " . self::TABLE . " (id_game, id_user, request_date) 
+        $query = "INSERT INTO "  . static::TABLE . " (id_game, id_user, request_date) 
         VALUES (:id_game, :id_user, NOW())";
 
         $statement = $this->pdo->prepare($query);

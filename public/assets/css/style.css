@@ -158,4 +158,8 @@ h4 {
 
 .imagedenied {
     width: 500px;
-} 
+}
+
+.noHover {
+    pointer-events: none;
+}

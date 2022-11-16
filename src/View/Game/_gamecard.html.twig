@@ -27,7 +27,13 @@
 				{{ game.minimum_players_age }}
 				ans
 			</p>
-			<a href="/myaccount?game_id={{game.game_id}}" class="btn tomatoButton">Emprunter</a>
+			{% if game.availability == true %}
+				<a href="/myaccount?game_id={{game.game_id}}" class="btn tomatoButton">
+					Emprunter</a>
+			{% else %}
+				<a class="btn btn-secondary noHover">
+					Indisponible</a>
+			{% endif %}
 		</div>
 	</div>
 </div>
