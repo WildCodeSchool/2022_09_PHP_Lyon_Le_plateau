@@ -5,12 +5,12 @@
 
 	<div class="container d-flex w-100  justify-content-center">
 		<div class="row justify-content-start w-100">
-			{% if pendingloans is empty %}
+			{% if pendingLoans is empty %}
 				<span class="text-center">Aucune demande en cours.</span>
 			{% endif %}
 
-			{% for pendingloan in pendingloans %}
-				{% set loan = pendingloan %}
+			{% for pendingLoan in pendingLoans %}
+				{% set loan = pendingLoan %}
 				{% include "/Myaccount/_borrowcard.html.twig" %}
 			{% endfor %}
 		</div>
@@ -24,12 +24,12 @@
 
 	<div class="container d-flex w-100  justify-content-center">
 		<div class="row justify-content-start w-100">
-			{% if acceptedloans is empty %}
+			{% if acceptedLoans is empty %}
 				<span class="text-center">Aucun emprunt en cours.</span>
 			{% endif %}
 
-			{% for acceptedloan in acceptedloans %}
-				{% set loan = acceptedloan %}
+			{% for acceptedLoan in acceptedLoans %}
+				{% set loan = acceptedLoan %}
 				{% include "/Myaccount/_borrowcard.html.twig" %}
 			{% endfor %}
 		</div>
@@ -43,12 +43,12 @@
 
 	<div class="container d-flex w-100  justify-content-center">
 		<div class="row justify-content-start w-100">
-			{% if acceptedloans is empty %}
+			{% if acceptedLoans is empty %}
 				<span class="text-center">Aucun emprunt refusé.</span>
 			{% endif %}
 
-			{% for declineloan in declineloans %}
-				{% set loan = declineloan %}
+			{% for declineLoan in declineLoans %}
+				{% set loan = declineLoan %}
 				{% include "/Myaccount/_borrowcard.html.twig" %}
 			{% endfor %}
 		</div>

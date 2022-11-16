@@ -21,9 +21,9 @@ class BorrowController extends GameController
         return $this->twig->render(
             'Myaccount/index.html.twig',
             [
-                'pendingloans' => $pendingLoans,
-                'acceptedloans' => $acceptedLoans,
-                'declineloans' => $declinedLoans,
+                'pendingLoans' => $pendingLoans,
+                'acceptedLoans' => $acceptedLoans,
+                'declineLoans' => $declinedLoans,
                 'requestsReceived' => $requestsReceived
             ]
         );

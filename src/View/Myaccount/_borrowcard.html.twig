@@ -1,26 +1,17 @@
 <div class="mb-2 p-3 col-lg-4 col-xs-12 d-flex justify-content-center">
 	<div class="card border-0 shadow align-items-center">
-		<div class="fw-bold">Appartient à
+		<div class="card-header text-center w-100 fw-bold">
+			Appartient à
 			{{ loan.owner_firstname }}
-			{{ loan.owner_lastname }}
+			{{ loan.owner_lastname}}
 		</div>
-		<div class="card-image-top mt-2" style="background-image: url('{{'uploads/' ~ loan.image}}')"></div>
-		<div class="card-subtitle d-flex justify-content-between align-items-center pt-2 ">
-			<div class="availability d-flex">
-				<p class="{% if loan.availability == false %} text-danger {% else %} text-success {% endif %}mb-0">●</p>
-				<p class="m-0 ps-1">
-					{% if loan.availability == false %}Non disponible
-					{% else %}
-						Disponible
-					{% endif %}
-				</p>
-			</div>
 
-		</div>
+		<div class="card-image-top mt-2" style="background-image: url('{{'/uploads/' ~ loan.image}}')"></div>
+		<div class="card-subtitle d-flex justify-content-between align-items-center pt-2"></div>
 		<div class="card-body w-100 text-center d-flex flex-column align-items-center pt-1">
-			<p class="card-title pt-3">{{ loan.game_name }}</p>
-			<p class="card-text">
-				{{ loan.type }}<br>
+			<p class="card-title pt-2 ">{{ loan.game_name }}</p>
+			<p class="card-text">{{ loan.type }}
+				<br>
 				De
 				{{ loan.min_number_players }}
 				à
@@ -30,8 +21,27 @@
 				{{ loan.minimum_players_age }}
 				ans
 			</p>
-			{% if loan.borrow_status == 'En attente' %}
-				<a href="myaccount/myborrow/cancel?id={{loan.borrow_id}}" class="btn tomatoButton">Annuler</a>
+		</div>
+		<div class="card-footer text-center w-100 d-flex justify-content-around {% if loan == declineLoan %} d-none {% endif %} ">
+			{% if loan == pendingLoan %}
+				<a href="myaccount/myborrow/cancel?id={{ loan.borrow_id }}" class="btn tomatoButton">Annuler</a>
+			{% else %}
+				<p class="card-text text-danger fw-bold">Temps restant :
+					{% set startDate = loan.acceptance_date|date("d/m/Y") %}
+					{% set endDate = loan.acceptance_date|date_modify("+30 day")|date("d/m/Y") %}
+					{% if startDate > endDate %}
+						{% set difference = date(endDate).diff(date(startDate)) %}
+						{% set leftDays = difference.days %}
+						{% if leftDays == 1 %}
+							1 jour
+						{% else %}
+							{{ leftDays }}
+							jours
+						{% endif %}
+					{% else %}
+						0 jour
+					{% endif %}
+				</p>
 			{% endif %}
 		</div>
 	</div>
