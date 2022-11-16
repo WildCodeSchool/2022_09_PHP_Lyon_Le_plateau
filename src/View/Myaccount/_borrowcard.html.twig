@@ -1,0 +1,32 @@
+<div class="mb-2 p-3 col-lg-4 col-xs-12 d-flex justify-content-center">
+	<div class="card border-0 shadow align-items-center d-flex flex-row">
+		<div class="card-image-top m-2" style="background-image: url('{{'uploads/' ~ Pendingloan.image}}')"></div>
+		<div class="card-body w-100 d-flex flex-column align-items-center pt-1">
+			<p class="card-title pt-3">{{ Pendingloan.game_name }}</p>
+			<p class="card-text">
+				Genre :
+				{{ Pendingloan.type }}
+				<br>
+				Nbre de joueurs :
+				{{ Pendingloan.min_number_players }}
+				-
+				{{ Pendingloan.max_number_players }}
+				<br>
+				A partir de :
+				{{ Pendingloan.minimum_players_age }}
+				ans
+				<br>
+				Disponible :
+				{% if Pendingloan.availability == false %}Non
+				{% else %}
+					Oui
+				{% endif %}<br>
+				Propriétaire :
+				{{ Pendingloan.owner_firstname }}
+				{{ Pendingloan.owner_lastname }}<br>
+				Statut:
+				{{ Pendingloan.request_status }}
+			</p>
+		</div>
+	</div>
+</div>
