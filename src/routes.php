@@ -21,5 +21,5 @@ return [
     'contact/show' => ['ContactController', 'index',],
     'users/login' => ['UserController', 'login'],
     'users/logout' => ['UserController', 'logout'],
-    'myaccount' => ['GameController', 'addPublic']
+    'myaccount' => ['BorrowController', 'myAccount']
 ];
