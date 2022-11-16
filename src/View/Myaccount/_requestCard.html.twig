@@ -21,8 +21,8 @@
             </p>
         </div>
             <div class="card-footer text-center w-100 d-flex justify-content-around" {% if game != requestReceived %} d-none {% endif %}">
-                <a href = "/myaccount/manageRequests?id={{requestReceived.borrow_id}}&accept=2" class = "btn btn-success">Accepter</a>
-                <a href = "/myaccount/manageRequests?id={{requestReceived.borrow_id}}&accept=3" class = "btn btn-danger">Refuser</a>
+                <a href = "/myaccount/manageRequests?id={{requestReceived.borrow_id}}&status=2" class = "btn btn-success">Accepter</a>
+                <a href = "/myaccount/manageRequests?id={{requestReceived.borrow_id}}&status=3" class = "btn btn-danger">Refuser</a>
             </div>
     </div>
 </div>

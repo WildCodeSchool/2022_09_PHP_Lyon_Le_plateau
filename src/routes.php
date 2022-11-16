@@ -20,6 +20,6 @@ return [
     'contact/show' => ['ContactController', 'index',],
     'users/login' => ['UserController', 'login'],
     'users/logout' => ['UserController', 'logout'],
-    'myaccount' => ['GameController', 'myAccount'],
-    'myaccount/manageRequests' => ['BorrowController', 'manageRequests', ['id', 'accept']]
+    'myaccount' => ['BorrowController', 'myAccount'],
+    'myaccount/manageRequests' => ['BorrowController', 'manageRequests', ['id', 'status']]
 ];

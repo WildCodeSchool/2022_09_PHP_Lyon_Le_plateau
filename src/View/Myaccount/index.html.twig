@@ -1,0 +1,17 @@
+{% extends 'layout.html.twig' %}
+
+{% block pageTitle %}
+	<h2 class="text-center my-4">
+		Dashboard
+	</h2>
+{% endblock %}
+
+{% block content %}
+	<h3 class="text-center">Ajouter un jeu</h2>
+	{% include 'Game/_formPublic.html.twig' %}
+
+	<div>
+		{% include 'Myaccount/_requestsReceived.html.twig' %}
+	</div>
+
+{% endblock %}
