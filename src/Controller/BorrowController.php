@@ -17,7 +17,7 @@ class BorrowController extends GameController
         $this->addBorrow();
         $pendingLoans = $this->showPendingBorrow();
         $acceptedLoans = $this->showAcceptedBorrow();
-        $declineLoans = $this->showDeclinedBorrow();
+        $declinedLoans = $this->showDeclinedBorrow();
         $requestsReceived = $this->showBorrowRequests();
 
         return $this->twig->render(
@@ -25,7 +25,7 @@ class BorrowController extends GameController
             [
                 'Pendingloans' => $pendingLoans,
                 'Acceptedloans' => $acceptedLoans,
-                'Declineloans' => $declineLoans,
+                'Declinedloans' => $declinedLoans,
                 'requestsReceived' => $requestsReceived
             ]
         );
