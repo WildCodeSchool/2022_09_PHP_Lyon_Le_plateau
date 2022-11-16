@@ -61,15 +61,12 @@ class GameController extends AbstractController
         return $this->twig->render('Game/addAdmin.html.twig', ['users' => $users]);
     }
 
-    public function addPublic(): ?string
+    public function addPublic()
     {
         if (!isset($this->user['admin'])) {
             header('Location: /users/login');
             return null;
         }
-
-        $userManager = new UserManager();
-        $users = $userManager->selectAll('firstname');
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // clean $_POST data
@@ -97,8 +94,6 @@ class GameController extends AbstractController
                 return null;
             }
         }
-
-        return $this->twig->render('Game/addPublic.html.twig', ['users' => $users]);
     }
 
 
