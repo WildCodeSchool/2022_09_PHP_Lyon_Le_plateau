@@ -26,7 +26,7 @@
 			</div>
 		</div>
 		<div class="card-footer text-center w-100 d-flex justify-content-around">
-			<a href="" class="btn tomatoButton">Modifier</a>
+			<a href="/myaccount/editgame?id={{ game.id }}" class="btn tomatoButton">Modifier</a>
 			{% if game.availability == false %}
 				<a href="/myaccount/returngame?id={{game.id}}" class="btn tomatoButton">Rendu</a>
 			{% endif %}

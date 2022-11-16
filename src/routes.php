@@ -24,5 +24,8 @@ return [
     'users/logout' => ['UserController', 'logout'],
     'myaccount' => ['BorrowController', 'myAccount'],
     'myaccount/manageRequests' => ['BorrowController', 'manageRequests', ['id', 'status']],
-    'myaccount/returngame' => ['GameController', 'returnGame', ['id']]
+    'myaccount/returngame' => ['GameController', 'returnGame', ['id']],
+    'myaccount/addgame' => ['GameController', 'addPublic'],
+    'myaccount/editgame' => ['GameController', 'editPublic', ['id']]
+
 ];

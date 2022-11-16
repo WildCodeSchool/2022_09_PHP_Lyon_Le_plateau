@@ -13,10 +13,12 @@
 	<div class="d-flex flex-row section m-auto justify-content-between my-4">
 		<div class=" border border-dark formAdd me-2 d-none d-md-block">
 			<h4 class="text-center p-2">Ajouter un jeu</h2>
-			{% include 'Game/_formPublic.html.twig' %}</div>
-		<div class=" ms-2">{% include 'Myaccount/_mygames.html.twig' %}</div>
+			{% include 'Game/_formPublicAccount.html.twig' %}</div>
+		{% include 'Myaccount/_mygames.html.twig' %}
 	</div>
 
-	<button class="btn addButton m-auto my-4 fixed-bottom">Ajouter un jeu</button>
+	<a href="/myaccount/addgame">
+		<button class="btn addButton m-auto my-4 fixed-bottom d-block d-md-none">Ajouter un jeu</button>
+	</a>
 
 {% endblock %}
