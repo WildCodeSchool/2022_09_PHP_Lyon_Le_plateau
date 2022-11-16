@@ -34,10 +34,19 @@ email VARCHAR(100) NOT NULL,
 message VARCHAR(255) NOT NULL
 );
 
+CREATE TABLE status (
+id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+borrow_status VARCHAR(100) NOT NULL
+);
+
 CREATE TABLE borrow (
 id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+request_date DATE,
 acceptance_date DATE,
-acceptance BOOL,
+id_status INT DEFAULT 1,
+    CONSTRAINT fk_borrow_status     
+        FOREIGN KEY (id_status)             
+        REFERENCES status(id),
 id_game INT NOT NULL,
     CONSTRAINT fk_borrow_game     
         FOREIGN KEY (id_game)             
@@ -99,5 +108,11 @@ VALUES
 ('Inco', 'gnito', 'i.gnito@hotmail.com', 'Bonjour, je suis un prince Nigérian et j\'ai besoin de votre aide. Je vous propose de me verser 2.000 € en mandat cash afin de me permettre de récupérer ma fortune. Je vous les rendrais au centuple!'),
 ('Nord', 'VPN', 'nvpn@outlook.fr', 'Vous connaissez Nord VPN ? Pour seulement 3€ par mois les 3 premiers mois, NordVPN vous permettra de naviguer sur le web de manière sécurisé et invisible. N\'attendez plus et essayez NordVPN dès maintenant ;\)');
 
-INSERT INTO borrow (id_game, id_user, acceptance)
-VALUES (6,2,default),(9,4,default),(10,6,default),(20,2,true),(14,2,false),(1,1,true),(2,1,false),(3,1,default);
+INSERT INTO status (borrow_status)
+VALUES ('En attente'),('Accepté'),('Refusé'),('Terminé');
+
+INSERT INTO borrow (id_game, id_user, id_status, request_date, acceptance_date)
+VALUES (6,2,1,'2022-10-05', default),(9,4,1,'2022-11-05', default),(10,6,1,'2022-11-10', default),
+(20,2,2,'2022-09-25','2022-10-05'),(14,2,3, '2022-09-30','2022-10-10'),(1,1,2, '2022-10-01','2022-11-05'),
+(2,1,3, '2022-10-31','2022-11-15'),(3,1,1,'2022-11-15', default),(3,1,4,'2022-08-15','2022-09-15'),
+(3,1,4,'2022-06-15','2022-08-15');
