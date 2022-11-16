@@ -82,8 +82,22 @@ class ContactController extends AbstractController
         }
 
         $contactManager = new ContactManager();
-        $contacts = $contactManager->selectAll('id');
+        $contacts = $contactManager->selectAll('isRead');
 
         return $this->twig->render('Contact/index.html.twig', ['contacts' => $contacts]);
+    }
+
+    public function changeReadStatus(int $id): void
+    {
+        $contactManager = new ContactManager();
+        $userMessage = $contactManager->selectOneById($id);
+
+        if ($userMessage['isRead'] == true) {
+            $contactManager->updateAsNotRead($id);
+        } else {
+            $contactManager->updateAsRead($id);
+        }
+
+        header('Location: /contact/show');
     }
 }

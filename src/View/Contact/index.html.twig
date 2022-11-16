@@ -16,7 +16,8 @@
 						<th>Prénom</th>
 						<th>Nom</th>
 						<th>Email</th>
-						<th>Message</th>
+						<th>Status</th>
+						<th class="text-center">Action</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -26,13 +27,39 @@
 							<td>{{ contact.firstname}}</td>
 							<td>{{ contact.lastname }}</td>
 							<td>{{ contact.email }}</td>
-							<td>{{ contact.message }}</td>
+							{% if contact.isRead %}
+								<td class="text-success">
+									<strong>
+										Lu
+									</strong>
+								</td>
+							{% else %}
+								<td class="text-danger">
+									<strong>
+										Non lu
+									</strong>
+								</td>
+							{% endif %}
+							<td>
+								<button class="text-decoration-none border-0 nav-link rounded p-1 px-2 m-auto {% if contact.isRead %}tomatoButton{% else %}alert alert-success mb-0 {% endif %}">
+									<a class="text-decoration-none nav-link" href="/contact/isread?id={{ contact.id }}">
+										{% if contact.isRead %}
+											Marquer comme non lu
+										{% else %}
+											Marquer comme lu
+										{% endif %}
+									</a>
+								</button>
+							</td>
+						</tr>
+						<tr>
+							<td class="messageCell" colspan="6">{{ contact.message }}
+							</td>
 						</tr>
 					{% endfor %}
 				</tbody>
 			</table>
 		</section>
-
 	</div>
 
 {% endblock %}
