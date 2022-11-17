@@ -53,10 +53,8 @@ class GameManager extends AbstractManager
 
     public function select12Games(int $page, string $orderBy = 'name', string $direction = 'ASC'): array
     {
-        $query = 'SELECT g.id as game_id, g.name, g.type, g.minimum_players_age, g.image, g.id_owner, 
-        g.min_number_players, g.max_number_players, g.availability, u.id as user_id, u.firstname, 
-        u.lastname, u.email, u.password FROM ' . static::TABLE . ' as g inner join user as u on u.id = g.id_owner
-        ORDER BY ' . $orderBy . " " . $direction . ' LIMIT 12 OFFSET ' . $page;
+        $query = 'SELECT * FROM game INNER JOIN user ON user.id = game.id_owner ORDER BY '
+            . $orderBy . " " . $direction . ' LIMIT 12 OFFSET ' . $page;
         return $this->pdo->query($query)->fetchAll();
     }
 
@@ -82,5 +80,25 @@ class GameManager extends AbstractManager
         $statement->execute();
 
         return $statement->fetch();
+    }
+
+    public function selectMyGames(int $id): array
+    {
+        $query = 'SELECT * FROM game as g WHERE g.id_owner=:id';
+        $statement = $this->pdo->prepare($query);
+        $statement->bindValue(':id', $id, \PDO::PARAM_INT);
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+
+    public function updateGameReturned(int $id): void
+    {
+        $query = 'UPDATE game AS g INNER JOIN borrow AS b ON b.id_game = g.id 
+        SET g.availability = true, b.id_status = 4 
+        WHERE g.id=:id AND b.id_status = 2;';
+        $statement = $this->pdo->prepare($query);
+        $statement->bindValue(':id', $id, \PDO::PARAM_INT);
+        $statement->execute();
     }
 }

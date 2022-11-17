@@ -13,12 +13,13 @@ class BorrowController extends GameController
             return null;
         }
 
-        $this->addPublic();
+        $errors = $this->addPublicDesktop();
         $this->addBorrow();
         $pendingLoans = $this->showPendingBorrow();
         $acceptedLoans = $this->showAcceptedBorrow();
         $declinedLoans = $this->showDeclinedBorrow();
         $requestsReceived = $this->showBorrowRequests();
+        $myGames = $this->showMyGames();
 
         return $this->twig->render(
             'Myaccount/index.html.twig',
@@ -26,7 +27,9 @@ class BorrowController extends GameController
                 'Pendingloans' => $pendingLoans,
                 'Acceptedloans' => $acceptedLoans,
                 'Declinedloans' => $declinedLoans,
-                'requestsReceived' => $requestsReceived
+                'requestsReceived' => $requestsReceived,
+                'myGames' => $myGames,
+                'errors' => $errors
             ]
         );
     }
