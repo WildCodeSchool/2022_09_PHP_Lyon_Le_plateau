@@ -91,7 +91,7 @@ class GameManager extends AbstractManager
         return $statement->fetchAll();
     }
 
-    public function returnGame(int $id)
+    public function updateGameReturned(int $id): void
     {
         $query = 'UPDATE game AS g INNER JOIN borrow AS b ON b.id_game = g.id 
         SET g.availability = true, b.id_status = 4 

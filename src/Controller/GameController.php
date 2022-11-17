@@ -200,10 +200,10 @@ class GameController extends AbstractController
         return $myGames;
     }
 
-    public function returnGame(int $id)
+    public function giveBackGame(int $id): void
     {
         $gameManager = new GameManager();
-        $gameManager->returnGame($id);
+        $gameManager->updateGameReturned($id);
 
         header('Location: /myaccount');
     }
