@@ -50,11 +50,6 @@ An example (a basic list of items) is provided (you can load the *simple-mvc.sql
 You can find all these routes declared in the file `src/routes.php`. This is the very same file where you'll add your own new routes to the application.
 
 
-## How does URL routing work ?
-
-![simple_MVC.png](.tours/simple_MVC.png)
-
-
 ## Thanks for your participation or for sharing the project
 
 ![thanks.jpg](/public/assets/images/youaregreat.jpg)
