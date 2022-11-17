@@ -28,7 +28,7 @@
 			{% else %}
 
 				{% set startDate = loan.acceptance_date %}
-				{% set endDate = loan.acceptance_date|date_modify("+30 day") %}
+				{% set endDate = loan.acceptance_date|date_modify("+31 day") %}
 				{% if date(dateNow) < date(endDate) %}
 					{% set difference = date(endDate).diff(date(dateNow)) %}
 					{% set leftDays = difference.days %}
