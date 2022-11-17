@@ -23,13 +23,12 @@
 		<div class="card-body w-100 text-center d-flex flex-column align-items-center pt-1">
 			<p class="card-title pt-2 ">{{ game.name }}</p>
 			<p class="card-text {% if game == requestReceived %} d-none {% endif %}">{{ game.type }}
-			</p>
-		</br>
+		<br>
 		De
 		{{ game.min_number_players }}
 		à
 		{{ game.max_number_players }}
-		joueurs</br>
+		joueurs<br>
 	À partir de
 	{{ game.minimum_players_age }}
 	ans
