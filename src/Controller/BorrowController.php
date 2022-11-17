@@ -17,6 +17,7 @@ class BorrowController extends GameController
         $acceptedLoans = $this->showAcceptedBorrow();
         $declinedLoans = $this->showDeclinedBorrow();
         $requestsReceived = $this->showBorrowRequests();
+        $dateNow = time();
 
         return $this->twig->render(
             'Myaccount/index.html.twig',
@@ -24,7 +25,8 @@ class BorrowController extends GameController
                 'pendingLoans' => $pendingLoans,
                 'acceptedLoans' => $acceptedLoans,
                 'declineLoans' => $declinedLoans,
-                'requestsReceived' => $requestsReceived
+                'requestsReceived' => $requestsReceived,
+                'dateNow' => $dateNow
             ]
         );
     }

@@ -26,12 +26,17 @@
 			{% if loan == pendingLoan %}
 				<a href="myaccount/myborrow/cancel?id={{ loan.borrow_id }}" class="btn tomatoButton">Annuler</a>
 			{% else %}
-				<p class="card-text text-danger fw-bold">Temps restant :
-					{% set startDate = loan.acceptance_date|date("d/m/Y") %}
-					{% set endDate = loan.acceptance_date|date_modify("+30 day")|date("d/m/Y") %}
-					{% if startDate > endDate %}
-						{% set difference = date(endDate).diff(date(startDate)) %}
-						{% set leftDays = difference.days %}
+
+				{% set startDate = loan.acceptance_date %}
+				{% set endDate = loan.acceptance_date|date_modify("+30 day") %}
+				{% if date(dateNow) < date(endDate) %}
+					{% set difference = date(endDate).diff(date(dateNow)) %}
+					{% set leftDays = difference.days %}
+				{% endif %}
+
+				<p class="card-text {% if leftDays <= 7 %} text-danger {% endif %} fw-bold">Temps restant :
+
+					{% if date(dateNow) < date(endDate) %}
 						{% if leftDays == 1 %}
 							1 jour
 						{% else %}
@@ -41,6 +46,7 @@
 					{% else %}
 						0 jour
 					{% endif %}
+
 				</p>
 			{% endif %}
 		</div>
