@@ -43,11 +43,11 @@
 
 	<div class="container d-flex w-100  justify-content-center">
 		<div class="row justify-content-start w-100">
-			{% if declineLoans is empty %}
+			{% if declinedLoans is empty %}
 				<span class="text-center">Aucun emprunt refusé.</span>
 			{% endif %}
 
-			{% for declineLoan in declineLoans %}
+			{% for declineLoan in declinedLoans %}
 				{% set loan = declineLoan %}
 				{% include "/Myaccount/_borrowcard.html.twig" %}
 			{% endfor %}
