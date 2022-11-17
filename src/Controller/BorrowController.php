@@ -13,7 +13,7 @@ class BorrowController extends GameController
             return null;
         }
 
-        $this->addPublic();
+        $errors = $this->addPublicDesktop();
         $this->addBorrow();
         $pendingLoans = $this->showPendingBorrow();
         $acceptedLoans = $this->showAcceptedBorrow();
@@ -28,7 +28,8 @@ class BorrowController extends GameController
                 'Acceptedloans' => $acceptedLoans,
                 'Declinedloans' => $declinedLoans,
                 'requestsReceived' => $requestsReceived,
-                'myGames' => $myGames
+                'myGames' => $myGames,
+                'errors' => $errors
             ]
         );
     }
