@@ -10,7 +10,6 @@
 		{% endif %}
 		
             {% for requestReceived in requestsReceived %}
-            {% set game = requestReceived %}
             {% include "/Myaccount/_requestCard.html.twig" %}
             {% endfor %}
     	</div>
