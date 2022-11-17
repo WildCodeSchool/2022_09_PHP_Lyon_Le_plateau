@@ -25,5 +25,9 @@ return [
     'myaccount' => ['BorrowController', 'myAccount'],
     'myaccount/myborrow' => ['BorrowController', 'addBorrow', ['id']],
     'myaccount/myborrow/cancel' => ['BorrowController', 'cancelBorrow', ['id']],
-    'myaccount/manageRequests' => ['BorrowController', 'manageRequests', ['id', 'status']]
+    'myaccount/manageRequests' => ['BorrowController', 'manageRequests', ['id', 'status']],
+    'myaccount/manageRequests' => ['BorrowController', 'manageRequests', ['id', 'status']],
+    'myaccount/returngame' => ['GameController', 'giveBackGame', ['id']],
+    'myaccount/addgame' => ['GameController', 'addPublic'],
+    'myaccount/editgame' => ['GameController', 'editPublic', ['id']]
 ];

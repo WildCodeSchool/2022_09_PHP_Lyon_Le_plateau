@@ -2,6 +2,7 @@
     --background-color: #FBFBFB;
     --primary-color: #8CBDB9;
     --secondary-color: #F87666;
+    --third-color: #2C363F;
     --font-family: 'Roboto', sans-serif;
 }
 
@@ -133,14 +134,32 @@ h3 {
 
 /* PAGE MON COMPTE */
 h4 {
-    background-color: #2C363F;
+    background-color: var(--third-color);
     color: white;
     font-size: 18px;
 }
 
 .section {
     width: 90%;
-    max-width: 1140px;
+
+}
+
+.mygames {
+    width: 95%;
+}
+
+.formAdd {
+    width: 50%;
+    height: auto;
+    max-height: 768px;
+}
+
+.addButton {
+    width: 65%;
+    background-color: var(--third-color);
+    color: var(--background-color);
+    opacity: 90%;
+    font-size: 26px;
 }
 
 
