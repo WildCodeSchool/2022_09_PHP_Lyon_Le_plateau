@@ -1,11 +1,13 @@
 {% block content %}
-
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-10 col-md-8 col-lg-6 mb-5 mx-auto d-table">
 				<div class="d-table-cell align-middle">
-					<form class="form m-3 bg-lightgrey p-3 shadow" method="post">
+					<h1 class="text-center m-5 mb-5">Modifier un utilisateur</h1>
+					<h2 class="text-center">{{ user.firstname }}
+						{{ user.lastname }}</h2>
 
+					<form class="form m-3 bg-lightgrey p-3 shadow" method="post">
 						<input type="hidden" value="{{ user.id }}" name="id">
 
 						<div class="mb-3">
@@ -23,15 +25,6 @@
 							<input type="text" value="{{ user.email }}" name="userEmail" id="email" maxlength="100" class="form-control" required>
 						</div>
 
-						<div class="mb-3">
-							<label for="userPassword" class="form-label d-flex justify-content-center">Mot de passe *</label>
-							<input type="password" value="{{user.password}}" name="userPassword" id="password" maxlength="100" class="form-control" required>
-						</div>
-
-						<div class="mb-3">
-							<label for="userPasswordConfirmation" class="form-label d-flex justify-content-center">Confirme le mot de passe *</label>
-							<input type="password" value="{{user.password}}" name="userPasswordConfirmation" id="passwordConfirmation" maxlength="100" class="form-control" required>
-						</div>
 						{% if errors is defined %}
 							<div class="text-danger">
 								<ul>
@@ -50,6 +43,9 @@
 						</p>
 
 					</form>
+					<div class="mb-3 d-flex justify-content-center">
+						<a href="/users/editPassword?id={{ user.id }}">Modifier le mot de passe</a>
+					</div>
 				</div>
 			</div>
 		</div>

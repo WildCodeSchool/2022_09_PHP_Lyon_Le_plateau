@@ -78,7 +78,6 @@ class GameController extends AbstractController
 
             // Display error (to be modified for image case)
             if (!empty($errors)) {
-                return $this->twig->render('Game/addPublic.html.twig', ['errors' => $errors, 'game' => $game]);
             } else {
                 $game['gameImage'] = 'default.jpg';
                 if (!empty($_FILES['gameImage']['tmp_name'])) {
@@ -90,10 +89,11 @@ class GameController extends AbstractController
 
                 $gameManager = new GameManager();
                 $gameManager->insert($game);
-                header('Location: /games?page=1');
+                header('Location: /myaccount');
                 return null;
             }
         }
+        return $this->twig->render('Game/addPublic.html.twig');
     }
 
     public function editAdmin(int $id): ?string
@@ -139,6 +139,49 @@ class GameController extends AbstractController
         ]);
     }
 
+    public function editPublic(int $id): ?string
+    {
+        if (!isset($this->user['id'])) {
+            return $this->twig->render('errors/error.html.twig');
+        }
+
+        $gameManager = new GameManager();
+        $game = $gameManager->selectOneGameById($id);
+        $userManager = new UserManager();
+        $users = $userManager->selectAll('firstname');
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $gameData = array_map('trim', $_POST);
+            $gameVerification = new GameVerification();
+            $errors = $gameVerification->gameFormVerification($gameData);
+
+            if (!empty($errors)) {
+                $gameData = "";
+                return $this->twig->render('Game/editAdmin.html.twig', [
+                    'errors' => $errors, 'game' => $game,
+                    'users' => $users
+                ]);
+            } else {
+                $gameData['gameImage'] = $game['image'];
+                if (!empty($_FILES['gameImage']['tmp_name'])) {
+                    $ext = "." . pathinfo($_FILES['gameImage']['name'], PATHINFO_EXTENSION);
+                    $gameImage = $gameData['idGameOwner'] . "_" . $gameData['gameName'] . "_" . uniqid() . $ext;
+                    move_uploaded_file($_FILES['gameImage']['tmp_name'], '../public/uploads/' . $gameImage);
+                    $gameData['gameImage'] = $gameImage;
+                }
+
+                $gameManager->update($gameData, $id);
+                header('Location: /myaccount');
+                return null;
+            }
+        }
+
+        return $this->twig->render('Game/editPublic.html.twig', [
+            'game' => $game,
+            'users' => $users,
+        ]);
+    }
+
     public function gamesPages(): string
     {
         $gameManager = new GameManager();
@@ -147,5 +190,21 @@ class GameController extends AbstractController
         $selectedGames = $gameManager->select12Games($page, 'name');
 
         return $this->twig->render('Game/games.html.twig', ['games' => $games, 'selectedGames' => $selectedGames]);
+    }
+
+    public function showMyGames(): array|null
+    {
+        $gameManager = new GameManager();
+        $myGames = $gameManager->selectMyGames($this->user['id']);
+
+        return $myGames;
+    }
+
+    public function giveBackGame(int $id): void
+    {
+        $gameManager = new GameManager();
+        $gameManager->updateGameReturned($id);
+
+        header('Location: /myaccount');
     }
 }
