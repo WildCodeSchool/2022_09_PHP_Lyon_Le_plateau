@@ -1,12 +1,8 @@
 {% extends 'layout.html.twig' %}
-
-{% block pageTitle %}
-	<h2 class="text-center my-4">
-		Les jeux
-	</h2>
-{% endblock %}
+{% block title %}Les jeux{% endblock %}
 
 {% block content %}
+	<h2 class="text-center my-4">Les jeux</h2>
 	<div class="container d-flex w-100  justify-content-center">
 		<div class="row justify-content-start w-100">
 			{% for game in selectedGames %}

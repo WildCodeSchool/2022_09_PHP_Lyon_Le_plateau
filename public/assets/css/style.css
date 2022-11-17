@@ -26,10 +26,6 @@ body {
     justify-content: center;
 }
 
-/*.backgroundtop, h1 {
-    filter: none;
-}*/
-
 .icons {
     flex-grow: 2;
     display: inline-flex;
@@ -130,11 +126,11 @@ body {
 }
 
 h2 {
-    font-size: 24px;
+    font-size: 30px;
 }
 
 h3 {
-    font-size: 20px;
+    font-size: 26px;
 }
 
 
@@ -168,4 +164,8 @@ h4 {
 
 .imagedenied {
     width: 500px;
+}
+
+.availability, .owner  {
+    font-size: 13px;
 }

@@ -3,6 +3,8 @@
 {% block content %}
     <h2 class="text-center m-5 mb-4">Modifier un jeu</h2>
     <h3 class="text-center">{{ game.name }} de {{game.firstname}} {{game.lastname}}</h3>
-	{% include 'Game/_formAdmin.html.twig' %}
-    <a href="/games/show">Retour</a>
+{% include 'Game/_formAdmin.html.twig' %}
+    <div>
+	    <a class="btn btn-outline-primary ms-3 mb-1" href="/users/show">Retour</a>
+	</div>
 {% endblock %}

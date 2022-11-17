@@ -8,7 +8,7 @@
 
 		<section class="m-auto">
 			<h1 class="text-center m-4 mb-4">Les jeux</h1>
-			<a href="/games/addAdmin">Ajouter</a>
+			<a class="btn btn-outline-primary" href="/games/add">Ajouter</a>
 
 			<table class="table table-striped">
 				<thead>
@@ -21,13 +21,13 @@
 						<th>Nbre joueurs max</th>
 						<th>Prénom</th>
 						<th>Nom</th>
+						<th>Disponibilité</th>
 						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
 					{% for game in games %}
 						<tr>
-
 							<td>{{ game.game_id }}</td>
 							<td>{{ game.name }}</td>
 							<td>{{ game.type }}</td>
@@ -36,15 +36,20 @@
 							<td class="text-center">{{ game.max_number_players }}</td>
 							<td class="text-center">{{ game.firstname }}</td>
 							<td class="text-center">{{ game.lastname }}</td>
+							<td class="text-center">
+								{% if game.availability == true %}
+									Oui
+								{% else %}
+									Non
+								{% endif %}
+							</td>
 							<td>
-								<a href="/games/edit?id={{ game.game_id }}">Modifier</a>
+								<a class="btn btn-outline-primary" href="/games/edit?id={{ game.game_id }}">Modifier</a>
 							</td>
 						</tr>
 					{% endfor %}
 				</tbody>
 			</table>
 		</section>
-
 	</div>
-
 {% endblock %}
