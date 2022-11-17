@@ -7,10 +7,10 @@
 Welcome fellow gamer !
 
 This repository is all you ever dreamed as a social (and poor) boardgamer.
-It contains a collaborative project called "Le plateau": a MVC based dynamic website that offers a solution to gamers to freely share and borrow boardgames to other members.
+It contains a collaborative project called "Le plateau": a MVC based dynamic website that offers a solution to gamers to freely share and borrow boardgames from other members.
 
 Do you want to join the adventure and help us develop the site?
-Alright ! You will find below instructions to install the project on your local machine.
+Alright ! You will find belo, instructions to install the project on your local machine.
 
 
 ## Steps
@@ -53,3 +53,4 @@ You can find all these routes declared in the file `src/routes.php`. This is the
 ## Thanks for your participation or for sharing the project
 
 ![thanks.jpg](/public/assets/images/youaregreat.jpg)
+![Your turn](https://media.giphy.com/media/kc6BNwUnGNNW6TxNpB/giphy.gif)
