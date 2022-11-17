@@ -162,6 +162,12 @@ h4 {
     font-size: 26px;
 }
 
+.addButton:hover {
+    background-color: var(--third-color);
+    opacity: 100%;
+    color: var(--background-color);
+}
+
 
 /* PAGE ADMIN */
 #admin-nav-link {
