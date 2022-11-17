@@ -78,6 +78,7 @@ class GameController extends AbstractController
 
             // Display error (to be modified for image case)
             if (!empty($errors)) {
+                return $this->twig->render('Game/addPublic.html.twig', ['errors' => $errors, 'game' => $game]);
             } else {
                 $game['gameImage'] = 'default.jpg';
                 if (!empty($_FILES['gameImage']['tmp_name'])) {
@@ -94,6 +95,35 @@ class GameController extends AbstractController
             }
         }
         return $this->twig->render('Game/addPublic.html.twig');
+    }
+
+    public function addPublicDesktop()
+    {
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // clean $_POST data
+            $game = array_map('trim', $_POST);
+
+            // TODO validations (length, format...)
+            $gameVerification = new GameVerification();
+            $errors = $gameVerification->gameFormVerification($game);
+
+            // Display error (to be modified for image case)
+            if (!empty($errors)) {
+                return $errors;
+            } else {
+                $game['gameImage'] = 'default.jpg';
+                if (!empty($_FILES['gameImage']['tmp_name'])) {
+                    $ext = "." . pathinfo($_FILES['gameImage']['name'], PATHINFO_EXTENSION);
+                    $gameImage = $game['idGameOwner'] . "_" . $game['gameName'] . "_" . uniqid() . $ext;
+                    move_uploaded_file($_FILES['gameImage']['tmp_name'], '../public/uploads/' . $gameImage);
+                    $game['gameImage'] = $gameImage;
+                }
+
+                $gameManager = new GameManager();
+                $gameManager->insert($game);
+            }
+        }
     }
 
     public function editAdmin(int $id): ?string
