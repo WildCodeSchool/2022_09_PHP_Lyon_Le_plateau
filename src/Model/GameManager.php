@@ -52,7 +52,9 @@ class GameManager extends AbstractManager
 
     public function select12Games(int $page, string $orderBy = 'name', string $direction = 'ASC'): array
     {
-        $query = 'SELECT * FROM game INNER JOIN user ON user.id = game.id_owner ORDER BY '
+        $query = 'SELECT g.id as game_id, g.name, g.type, g.minimum_players_age, g.image, g.id_owner, 
+        g.min_number_players, g.max_number_players, g.availability, u.id as user_id, u.firstname, 
+        u.lastname, u.email, u.password FROM game AS g INNER JOIN user AS u ON u.id = g.id_owner ORDER BY '
             . $orderBy . " " . $direction . ' LIMIT 12 OFFSET ' . $page;
         return $this->pdo->query($query)->fetchAll();
     }
