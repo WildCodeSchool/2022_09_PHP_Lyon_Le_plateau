@@ -76,7 +76,6 @@ keke+1234
 ibrabra+1234
 matmat+1234
 */
-
 INSERT INTO game (name, type, min_number_players, max_number_players, minimum_players_age, image, id_owner, availability)
 VALUES
 ('Trivial pursuit', 'Culture Générale', 2, 6, 16, 'trivialpursuit.jpg', 5, 0),
@@ -87,19 +86,19 @@ VALUES
 ('La bonne paye', 'Ambiance', 2, 6, 8, 'LBP.jpg', 5, 1),
 ('Codenames', 'Réflexion', 2, 8, 12, 'codenames.jpg', 2, 1),
 ('Codenames', 'Réflexion', 2, 8, 12, 'codenames.jpg', 1, 0),
-('7 wonders', 'Stratégie', 3, 7, 10, '7wonders.jpg', 2, 0),
+('7 wonders', 'Stratégie', 3, 7, 10, '7wonders.jpg', 2, 1),
 ('La bonne paye', 'Ambiance', 2, 6, 8, 'LBP.jpg', 3, 1),
 ('Trivial pursuit', 'Culture Générale', 2, 6, 16, 'trivialpursuit.jpg', 4, 0),
-('Cluedo', 'Réflexion', 3, 5, 9, 'cluedo.jpg', 5, 0),
+('Cluedo', 'Réflexion', 3, 5, 9, 'cluedo.jpg', 5, 1),
 ('Monopoly', 'Ambiance', 2, 6, 8, 'monopoly.jpg', 4, 1),
 ('Codenames', 'Réflexion', 2, 8, 12, 'codenames.jpg', 6, 1),
 ('Cluedo', 'Réflexion', 3, 5, 9, 'cluedo.jpg', 2, 1),
 ('Cluedo', 'Réflexion', 3, 5, 9, 'cluedo.jpg', 3, 1),
-('Trivial pursuit', 'Culture Générale', 2, 6, 16, 'trivialpursuit.jpg', 4, 0),
-('7 wonders', 'Stratégie', 3, 7, 10, '7wonders.jpg', 1, 0),
+('Trivial pursuit', 'Culture Générale', 2, 6, 16, 'trivialpursuit.jpg', 4, 1),
+('7 wonders', 'Stratégie', 3, 7, 10, '7wonders.jpg', 1, 1),
 ('Trivial pursuit', 'Culture Générale', 2, 6, 16, 'trivialpursuit.jpg', 6, 1),
 ('Les Loups-Garous de Thiercelieux', 'Ambiance', 8, 18, 10, 'loupgarou.jpg', 5, 1),
-('Scrabble', 'Réfléxion', 2, 4, 7, 'scrabble.jpg', 4, 1),
+('Scrabble', 'Réfléxion', 2, 4, 7, 'scrabble.jpg', 4, 0),
 ('Trivial pursuit', 'Culture Générale', 2, 6, 16, 'trivialpursuit.jpg', 4, 1);
 
 INSERT INTO contact (firstname, lastname, email, message)
