@@ -14,20 +14,21 @@ class BorrowController extends GameController
         }
 
         $errors = $this->addPublicDesktop();
-        $this->addBorrow();
         $pendingLoans = $this->showPendingBorrow();
         $acceptedLoans = $this->showAcceptedBorrow();
         $declinedLoans = $this->showDeclinedBorrow();
         $requestsReceived = $this->showBorrowRequests();
+        $dateNow = time();
         $myGames = $this->showMyGames();
 
         return $this->twig->render(
             'Myaccount/index.html.twig',
             [
-                'Pendingloans' => $pendingLoans,
-                'Acceptedloans' => $acceptedLoans,
-                'Declinedloans' => $declinedLoans,
+                'pendingLoans' => $pendingLoans,
+                'acceptedLoans' => $acceptedLoans,
+                'declinedLoans' => $declinedLoans,
                 'requestsReceived' => $requestsReceived,
+                'dateNow' => $dateNow,
                 'myGames' => $myGames,
                 'errors' => $errors
             ]
@@ -66,16 +67,25 @@ class BorrowController extends GameController
         return $loans;
     }
 
-    public function addBorrow()
+    public function addBorrow(int $id)
     {
-        if (!empty($_GET['game_id'])) {
-            $borrowManager = new BorrowManager();
-            $borrowManager->insertBorrow($_GET['game_id'], $this->user['id']);
+        $borrowManager = new BorrowManager();
+        $borrowManager->insertBorrow($id, $this->user['id']);
 
-            header('Location: /myaccount');
-            return null;
-        }
+        header('Location: /myaccount');
+        return null;
     }
+
+    public function cancelBorrow(int $id)
+    {
+        $borrowManager = new BorrowManager();
+        $borrowManager->updateBorrowStatusAsOver($id);
+
+        header('Location: /myaccount');
+        return null;
+    }
+
+
     public function showBorrowRequests(): ?array
     {
         $borrowManager = new BorrowManager();

@@ -126,6 +126,9 @@ h3 {
     font-size: 26px;
 }
 
+.noHover {
+    pointer-events: none;
+}
 
 /* PAGE MON COMPTE */
 h4 {
@@ -155,6 +158,12 @@ h4 {
     color: var(--background-color);
     opacity: 90%;
     font-size: 26px;
+}
+
+.addButton:hover {
+    background-color: var(--third-color);
+    opacity: 100%;
+    color: var(--background-color);
 }
 
 
