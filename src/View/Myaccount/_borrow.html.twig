@@ -1,0 +1,56 @@
+<div class="section border border-dark my-4 m-auto">
+	<h4 class="text-center p-2 ">
+		Mes emprunts en attente de validation
+	</h4>
+
+	<div class="container d-flex w-100  justify-content-center">
+		<div class="row justify-content-start w-100">
+			{% if pendingLoans is empty %}
+				<span class="text-center">Aucune demande en cours.</span>
+			{% endif %}
+
+			{% for pendingLoan in pendingLoans %}
+				{% set loan = pendingLoan %}
+				{% include "/Myaccount/_borrowcard.html.twig" %}
+			{% endfor %}
+		</div>
+	</div>
+</div>
+
+<div class="section border border-dark my-4 m-auto">
+	<h4 class="text-center p-2 ">
+		Mes emprunts en cours
+	</h4>
+
+	<div class="container d-flex w-100  justify-content-center">
+		<div class="row justify-content-start w-100">
+			{% if acceptedLoans is empty %}
+				<span class="text-center">Aucun emprunt en cours.</span>
+			{% endif %}
+
+			{% for acceptedLoan in acceptedLoans %}
+				{% set loan = acceptedLoan %}
+				{% include "/Myaccount/_borrowcard.html.twig" %}
+			{% endfor %}
+		</div>
+	</div>
+</div>
+
+<div class="section border border-dark my-4 m-auto">
+	<h4 class="text-center p-2 ">
+		Mes emprunts refusés
+	</h4>
+
+	<div class="container d-flex w-100  justify-content-center">
+		<div class="row justify-content-start w-100">
+			{% if declinedLoans is empty %}
+				<span class="text-center">Aucun emprunt refusé.</span>
+			{% endif %}
+
+			{% for declineLoan in declinedLoans %}
+				{% set loan = declineLoan %}
+				{% include "/Myaccount/_borrowcard.html.twig" %}
+			{% endfor %}
+		</div>
+	</div>
+</div>

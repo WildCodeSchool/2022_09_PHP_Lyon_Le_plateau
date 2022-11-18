@@ -10,8 +10,8 @@ class BorrowManager extends GameManager
 
     public function selectAllBorrowByUserId(int $id): array|false
     {
-        $query = "SELECT b.id_game, g.name as game_name, g.type, g.min_number_players, g.max_number_players, 
-        g.minimum_players_age, g.image, g.availability, owner.firstname as owner_firstname, 
+        $query = "SELECT b.id AS borrow_id, b.id_game, g.name as game_name, g.type, g.min_number_players,
+        g.max_number_players, g.minimum_players_age, g.image, g.availability, owner.firstname as owner_firstname, 
         owner.lastname as owner_lastname, g.id_owner as owner_id, u.firstname as borrower_firstname,
         u.lastname as borrower_lastname, u.id as borrower_id, b. request_date, b.acceptance_date, 
         s.borrow_status  FROM " . static::TABLE . " as b inner join user as u on u.id = b.id_user
@@ -23,8 +23,8 @@ class BorrowManager extends GameManager
 
     public function selectPendingBorrowByUserId(int $id): array|false
     {
-        $query = "SELECT b.id_game, g.name as game_name, g.type, g.min_number_players, g.max_number_players, 
-        g.minimum_players_age, g.image, g.availability, owner.firstname as owner_firstname, 
+        $query = "SELECT b.id AS borrow_id, b.id_game, g.name as game_name, g.type, g.min_number_players, 
+        g.max_number_players, g.minimum_players_age, g.image, g.availability, owner.firstname as owner_firstname, 
         owner.lastname as owner_lastname, g.id_owner as owner_id, u.firstname as borrower_firstname,
         u.lastname as borrower_lastname, u.id as borrower_id, b. request_date, b.acceptance_date, 
         s.borrow_status  FROM " . static::TABLE . " as b inner join user as u on u.id = b.id_user
@@ -36,8 +36,8 @@ class BorrowManager extends GameManager
 
     public function selectAcceptedBorrowByUserId(int $id): array|false
     {
-        $query = "SELECT b.id_game, g.name as game_name, g.type, g.min_number_players, g.max_number_players, 
-        g.minimum_players_age, g.image, g.availability, owner.firstname as owner_firstname, 
+        $query = "SELECT b.id AS borrow_id, b.id_game, g.name as game_name, g.type, g.min_number_players, 
+        g.max_number_players, g.minimum_players_age, g.image, g.availability, owner.firstname as owner_firstname, 
         owner.lastname as owner_lastname, g.id_owner as owner_id, u.firstname as borrower_firstname,
         u.lastname as borrower_lastname, u.id as borrower_id, b. request_date, b.acceptance_date, 
         s.borrow_status  FROM " . static::TABLE . " as b inner join user as u on u.id = b.id_user
@@ -49,8 +49,8 @@ class BorrowManager extends GameManager
 
     public function selectDeclinedBorrowByUserId(int $id): array|false
     {
-        $query = "SELECT b.id_game, g.name as game_name, g.type, g.min_number_players, g.max_number_players, 
-        g.minimum_players_age, g.image, g.availability, owner.firstname as owner_firstname, 
+        $query = "SELECT b.id AS borrow_id, b.id_game, g.name as game_name, g.type, g.min_number_players, 
+        g.max_number_players, g.minimum_players_age, g.image, g.availability, owner.firstname as owner_firstname, 
         owner.lastname as owner_lastname, g.id_owner as owner_id, u.firstname as borrower_firstname,
         u.lastname as borrower_lastname, u.id as borrower_id, b. request_date, b.acceptance_date, 
         s.borrow_status  FROM " . static::TABLE . " as b inner join user as u on u.id = b.id_user
@@ -62,7 +62,7 @@ class BorrowManager extends GameManager
 
     public function insertBorrow(int $gameId, int $userId): int
     {
-        $query = "INSERT INTO " . self::TABLE . " (id_game, id_user, request_date) 
+        $query = "INSERT INTO "  . static::TABLE . " (id_game, id_user, request_date) 
         VALUES (:id_game, :id_user, NOW())";
 
         $statement = $this->pdo->prepare($query);
@@ -71,6 +71,14 @@ class BorrowManager extends GameManager
 
         $statement->execute();
         return (int)$this->pdo->lastInsertId();
+    }
+
+    public function updateBorrowStatusAsOver(int $borrowId): void
+    {
+        $query = "UPDATE " . static::TABLE . " AS g SET id_status=4 WHERE g.id=:id";
+        $statement = $this->pdo->prepare($query);
+        $statement->bindValue(':id', $borrowId, \PDO::PARAM_INT);
+        $statement->execute();
     }
 
     public function selectBorrowRequestsReceived(int $idOwner, string $orderBy = '', string $direction = 'ASC'): array

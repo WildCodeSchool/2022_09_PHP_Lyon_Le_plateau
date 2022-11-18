@@ -29,7 +29,13 @@
 			</p>
 		</div>
 		<div class="card-footer text-center w-100 d-flex justify-content-around">
-			<a href="/myaccount?game_id={{game.game_id}}" class="btn tomatoButton">Emprunter</a>
+			{% if game.availability == true %}
+				<a href="/myaccount/myborrow?id={{game.game_id}}" class="btn tomatoButton">
+					Emprunter</a>
+			{% else %}
+				<a class="btn btn-secondary noHover">
+					Indisponible</a>
+			{% endif %}
 		</div>
 	</div>
 </div>
