@@ -63,7 +63,7 @@ class GameController extends AbstractController
 
     public function addPublic()
     {
-        if (!isset($this->user['admin'])) {
+        if (!isset($this->user['id'])) {
             header('Location: /users/login');
             return null;
         }
@@ -179,6 +179,11 @@ class GameController extends AbstractController
 
         $gameManager = new GameManager();
         $game = $gameManager->selectOneGameById($id);
+
+        if ($this->user['id'] != $game['id_owner']) {
+            return $this->twig->render('errors/error.html.twig');
+        }
+
         $userManager = new UserManager();
         $users = $userManager->selectAll('firstname');
 
@@ -236,11 +241,17 @@ class GameController extends AbstractController
         return $myGames;
     }
 
-    public function editGameAvailability(int $id, int $availability): void
+    public function editGameAvailability(int $id, int $availability): string|null
     {
         $gameManager = new GameManager();
-        $gameManager->changeAvailability($id, $availability);
+        $game = $gameManager->selectOneGameById($id);
 
+        if ($this->user['id'] != $game['id_owner']) {
+            return $this->twig->render('errors/error.html.twig');
+        }
+
+        $gameManager->changeAvailability($id, $availability);
         header('Location: /myaccount');
+        return null;
     }
 }

@@ -120,4 +120,14 @@ class BorrowManager extends GameManager
         $statement->bindValue(':id', $id, \PDO::PARAM_INT);
         $statement->execute();
     }
+
+    public function selectOneById(int $id): array|false
+    {
+        $query = "SELECT * FROM borrow as b INNER JOIN game as g ON b.id_game = g.id WHERE b.id=:id;";
+        $statement = $this->pdo->prepare($query);
+        $statement->bindValue('id', $id, \PDO::PARAM_INT);
+        $statement->execute();
+
+        return $statement->fetch();
+    }
 }

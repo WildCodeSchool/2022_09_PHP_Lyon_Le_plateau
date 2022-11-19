@@ -28,15 +28,15 @@
 			</div>
 		</div>
 		<div class="card-footer text-center w-100 d-flex justify-content-around">
-			<a href="/myaccount/editgame?id={{ game.game_id }}" class="btn tomatoButton action-btn">Modifier</a>
+			<a href="/myaccount/editgame?id={{ game.game_id }}" class="btn tomatoButton action-btn px-1">Modifier</a>
 			{% if game.availability == false and game.id_status == 2 %}
-				<a href="/myaccount/returngame?id={{game.game_id}}" class="btn tomatoButton action-btn">Rendu !</a>
+				<a href="/myaccount/returngame?id={{game.game_id}}" class="btn tomatoButton action-btn px-1">Rendu !</a>
 			{% elseif game.availability == false %}
-				<a href="/myaccount/gameavailability?id={{game.game_id}}&availability=1" class="btn tomatoButton action-btn">Dispo !</a>
+				<a href="/myaccount/gameavailability?id={{game.game_id}}&availability=1" class="btn tomatoButton action-btn px-1">Dispo !</a>
 			{% elseif game.availability == true and game.id_status == 1 %}
 				<a class="btn btn-secondary noHover">Pas dispo !</a>
 			{% elseif game.availability == true %}
-				<a href="/myaccount/gameavailability?id={{game.game_id}}&availability=0" class="btn tomatoButton action-btn">Pas dispo !</a>
+				<a href="/myaccount/gameavailability?id={{game.game_id}}&availability=0" class="btn tomatoButton action-btn px-1">Pas dispo !</a>
 			{% endif %}
 		</div>
 	</div>

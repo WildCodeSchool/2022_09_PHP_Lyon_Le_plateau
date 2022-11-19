@@ -80,11 +80,16 @@ class BorrowController extends GameController
         return null;
     }
 
-    public function cancelBorrow(int $id)
+    public function cancelBorrow(int $id): string|null
     {
         $borrowManager = new BorrowManager();
-        $borrowManager->updateBorrowStatusAsOver($id);
+        $borrow = $borrowManager->selectOneById($id);
 
+        if ($this->user['id'] != $borrow['id_user']) {
+            return $this->twig->render('errors/error.html.twig');
+        }
+
+        $borrowManager->updateBorrowStatusAsOver($id);
         header('Location: /myaccount#pendingLoans');
         return null;
     }
@@ -98,19 +103,31 @@ class BorrowController extends GameController
         return $requestsReceived;
     }
 
-    public function manageRequests(int $id, int $status): void
+    public function manageRequests(int $id, int $status): string|null
     {
         $borrowManager = new BorrowManager();
-        $borrowManager->updateRequest($id, $status);
+        $borrow = $borrowManager->selectOneById($id);
 
+        if ($this->user['id'] != $borrow['id_owner']) {
+            return $this->twig->render('errors/error.html.twig');
+        }
+
+        $borrowManager->updateRequest($id, $status);
         header('Location: /myaccount#requestsReceived');
+        return null;
     }
 
-    public function giveBackGame(int $id): void
+    public function giveBackGame(int $id): string|null
     {
         $borrowManager = new BorrowManager();
-        $borrowManager->updateGameReturned($id);
+        $borrow = $borrowManager->selectOneById($id);
 
+        if ($this->user['id'] != $borrow['id_owner']) {
+            return $this->twig->render('errors/error.html.twig');
+        }
+
+        $borrowManager->updateGameReturned($id);
         header('Location: /myaccount#myGames');
+        return null;
     }
 }
