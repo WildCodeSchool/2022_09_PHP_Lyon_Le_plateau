@@ -1,13 +1,18 @@
 {% extends 'layout.html.twig' %}
 
+{% block title %}
+	Administration - Les utilisateurs
+{% endblock %}
+
 {% block content %}
-
 	<div class="container-fluid d-md-flex p-0">
-
 		{% include 'components/_navAdmin.html.twig' %}
 
 		<section class="m-auto">
-			<h1 class="text-center m-5 mb-4">Les utilisateurs</h1>
+			<h2 class="text-center mt-4">
+				Administration
+			</h2>
+			<h3 class="text-center mt-2 mb-4">Les utilisateurs</h3>
 			<a href="/users/add" class="text-center">Ajouter</a>
 
 			<table class="table table-striped">

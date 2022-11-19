@@ -128,6 +128,9 @@ h3 {
     font-size: 20px;
 }
 
+.noHover {
+    pointer-events: none;
+}
 
 /* PAGE MON COMPTE */
 h4 {
@@ -148,7 +151,6 @@ h4 {
 .formAdd {
     width: 50%;
     height: auto;
-    max-height: 768px;
 }
 
 .addButton {
@@ -160,9 +162,15 @@ h4 {
 }
 
 .action-btn {
-    width: 45%;
+    width: 49%;
+    max-width: 125px;
 }
 
+.addButton:hover {
+    background-color: var(--third-color);
+    opacity: 100%;
+    color: var(--background-color);
+}
 
 /* PAGE ADMIN */
 #admin-nav-link {

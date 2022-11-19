@@ -4,7 +4,7 @@
 		<div class="row">
 			<div class="col-sm-10 col-md-8 col-lg-6 mb-5 mx-auto d-table">
 				<div class="d-table-cell align-middle">
-					<form class="form m-3 bg-lightgrey p-3 shadow" method="post" enctype="multipart/form-data">
+					<form class="form m-3 bg-lightgrey p-3 shadow" method="post" enctype="multipart/form-data" action="#ancre">
 
 						<input type="hidden" value="{{ game.id }}" name="gameId">
 						<input type="hidden" value="{{user_session.id}}" name="idGameOwner">
@@ -16,7 +16,7 @@
 
 						<div class="mb-3">
 							<label for="gameGenre" class="form-label d-flex justify-content-center">Genre *</label>
-							<select name="gameGenre" id="gameGenre" value="{{ game.type }}" class="form-control text-center" required>
+							<select name="gameGenre" id="gameGenre" value="{{ game.type }}" class="form-control" required>
 								<option disabled selected value="">--Choisis un genre--</option>
 								<option value="Stratégie" {% if game.type == 'Stratégie' %} selected {% endif %}>Stratégie</option>
 								<option value="Ambiance" {% if game.type == 'Ambiance' %} selected {% endif %}>Ambiance</option>
@@ -58,7 +58,7 @@
 							</div>
 						{% endif %}
 
-						<div class="mb-3 d-flex justify-content-center">
+						<div class="mb-3 d-flex justify-content-center" id='ancre'>
 							<button class="btn tomatoButton">Envoyer</button>
 						</div>
 						<p class="form-text text-start">* Champs obligatoires</p>

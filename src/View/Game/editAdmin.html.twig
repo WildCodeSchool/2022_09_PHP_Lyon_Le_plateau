@@ -1,8 +1,14 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <h2 class="text-center m-5 mb-4">Modifier un jeu</h2>
-    <h3 class="text-center">{{ game.name }} de {{game.firstname}} {{game.lastname}}</h3>
+	<h2 class="text-center mt-4">
+		Administration
+	</h2>
+	<h3 class="text-center mt-2">Modifier un jeu</h3>
+	<p class="text-center">{{ game.name }}
+		de
+		{{game.firstname}}
+		{{game.lastname}}</p>
 	{% include 'Game/_formAdmin.html.twig' %}
-    <a href="/games/show">Retour</a>
+	<a href="/games/show">Retour</a>
 {% endblock %}

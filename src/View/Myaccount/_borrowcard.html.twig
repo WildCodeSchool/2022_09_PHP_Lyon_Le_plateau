@@ -1,32 +1,54 @@
 <div class="mb-2 p-3 col-lg-4 col-xs-12 d-flex justify-content-center">
-	<div class="card border-0 shadow align-items-center d-flex flex-row">
-		<div class="card-image-top m-2" style="background-image: url('{{'uploads/' ~ Pendingloan.image}}')"></div>
-		<div class="card-body w-100 d-flex flex-column align-items-center pt-1">
-			<p class="card-title pt-3">{{ Pendingloan.game_name }}</p>
-			<p class="card-text">
-				Genre :
-				{{ Pendingloan.type }}
+	<div class="card border-0 shadow align-items-center">
+		<div class="card-header text-center w-100 fw-bold">
+			Appartient à<br>
+			{{ loan.owner_firstname }}
+			{{ loan.owner_lastname}}
+		</div>
+
+		<div class="card-image-top mt-2" style="background-image: url('{{'/uploads/' ~ loan.image}}')"></div>
+		<div class="card-subtitle d-flex justify-content-between align-items-center pt-2"></div>
+		<div class="card-body w-100 text-center d-flex flex-column align-items-center pt-1">
+			<p class="card-title pt-2 ">{{ loan.game_name }}</p>
+			<p class="card-text">{{ loan.type }}
 				<br>
-				Nbre de joueurs :
-				{{ Pendingloan.min_number_players }}
-				-
-				{{ Pendingloan.max_number_players }}
-				<br>
-				A partir de :
-				{{ Pendingloan.minimum_players_age }}
+				De
+				{{ loan.min_number_players }}
+				à
+				{{ loan.max_number_players }}
+				joueurs<br>
+				À partir de
+				{{ loan.minimum_players_age }}
 				ans
-				<br>
-				Disponible :
-				{% if Pendingloan.availability == false %}Non
-				{% else %}
-					Oui
-				{% endif %}<br>
-				Propriétaire :
-				{{ Pendingloan.owner_firstname }}
-				{{ Pendingloan.owner_lastname }}<br>
-				Statut:
-				{{ Pendingloan.request_status }}
 			</p>
+		</div>
+		<div class="card-footer text-center w-100 d-flex justify-content-around {% if loan == declineLoan %} d-none {% endif %} ">
+			{% if loan == pendingLoan %}
+				<a href="myaccount/myborrow/cancel?id={{ loan.borrow_id }}" class="btn tomatoButton">Annuler</a>
+			{% else %}
+
+				{% set startDate = loan.acceptance_date %}
+				{% set endDate = loan.acceptance_date|date_modify("+31 day") %}
+				{% if date(dateNow) < date(endDate) %}
+					{% set difference = date(endDate).diff(date(dateNow)) %}
+					{% set leftDays = difference.days %}
+				{% endif %}
+
+				<p class="card-text {% if leftDays <= 7 %} text-danger {% endif %} fw-bold">Temps restant :
+
+					{% if date(dateNow) < date(endDate) %}
+						{% if leftDays == 1 %}
+							1 jour
+						{% else %}
+							{{ leftDays }}
+							jours
+						{% endif %}
+					{% else %}
+						0 jour
+					{% endif %}
+
+				</p>
+			{% endif %}
 		</div>
 	</div>
 </div>

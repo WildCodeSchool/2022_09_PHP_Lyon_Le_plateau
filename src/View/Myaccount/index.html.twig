@@ -11,7 +11,7 @@
 		{% include 'Myaccount/_requestsReceived.html.twig' %}
 	</div>
 	<div class="d-flex flex-row section m-auto justify-content-between my-4">
-		<div class=" border border-dark formAdd me-2 d-none d-md-block">
+		<div class=" border border-dark formAdd me-4 d-none d-md-block" id='myGames'>
 			<h4 class="text-center p-2">Ajouter un jeu</h2>
 			{% include 'Game/_formPublicAccount.html.twig' %}</div>
 		{% include 'Myaccount/_mygames.html.twig' %}
@@ -20,5 +20,10 @@
 	<a href="/myaccount/addgame">
 		<button class="btn addButton m-auto my-4 fixed-bottom d-block d-md-none">Ajouter un jeu</button>
 	</a>
+
+	<div>
+		{% include 'Myaccount/_borrow.html.twig' %}
+	</div>
+
 
 {% endblock %}

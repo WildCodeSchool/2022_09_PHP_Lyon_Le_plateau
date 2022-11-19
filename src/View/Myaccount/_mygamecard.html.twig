@@ -2,7 +2,7 @@
 	<div class="card border-0 shadow align-items-center">
 		<div class="card-image-top mt-2" style="background-image: url('{{'uploads/' ~ game.image}}')"></div>
 		<div class="card-subtitle d-flex justify-content-between align-items-center pt-2 "></div>
-		<div class="card-body w-100 text-center d-flex flex-column align-items-center pt-1">
+		<div class="card-body w-100 text-center d-flex flex-column align-items-center pt-1 pb-2">
 			<p class="card-title pt-3">{{ game.name }}</p>
 			<p class="card-text">
 				{{ game.type }}<br>
@@ -33,8 +33,8 @@
 				<a href="/myaccount/returngame?id={{game.game_id}}" class="btn tomatoButton action-btn">Rendu !</a>
 			{% elseif game.availability == false %}
 				<a href="/myaccount/gameavailability?id={{game.game_id}}&availability=1" class="btn tomatoButton action-btn">Dispo !</a>
-			{% elseif game.availability == true & game.id_status = 1 %}
-				<a href="/myaccount/gameavailability?id={{game.game_id}}&availability=0" class="btn tomatoButton action-btn">Pas dispo !</a>
+			{% elseif game.availability == true and game.id_status == 1 %}
+				<a class="btn btn-secondary noHover">Pas dispo !</a>
 			{% elseif game.availability == true %}
 				<a href="/myaccount/gameavailability?id={{game.game_id}}&availability=0" class="btn tomatoButton action-btn">Pas dispo !</a>
 			{% endif %}

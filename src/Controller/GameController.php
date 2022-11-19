@@ -97,7 +97,7 @@ class GameController extends AbstractController
         return $this->twig->render('Game/addPublic.html.twig');
     }
 
-    public function addPublicDesktop()
+    public function addPublicDesktop(): array|null
     {
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -122,8 +122,10 @@ class GameController extends AbstractController
 
                 $gameManager = new GameManager();
                 $gameManager->insert($game);
+                return null;
             }
         }
+        return null;
     }
 
     public function editAdmin(int $id): ?string
@@ -201,7 +203,7 @@ class GameController extends AbstractController
                 }
 
                 $gameManager->update($gameData, $id);
-                header('Location: /myaccount');
+                header('Location: /myaccount#myGames');
                 return null;
             }
         }
@@ -217,7 +219,11 @@ class GameController extends AbstractController
         $gameManager = new GameManager();
         $games = $gameManager->selectAll('name');
         $page = ($_GET['page'] - 1) * 12;
-        $selectedGames = $gameManager->select12Games($page, 'name');
+        $user = null;
+        if (isset($this->user['id'])) {
+            $user = $this->user['id'];
+        }
+        $selectedGames = $gameManager->select12Games($page, $user);
 
         return $this->twig->render('Game/games.html.twig', ['games' => $games, 'selectedGames' => $selectedGames]);
     }

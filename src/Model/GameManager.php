@@ -50,10 +50,15 @@ class GameManager extends AbstractManager
         return $statement->execute();
     }
 
-    public function select12Games(int $page, string $orderBy = 'name', string $direction = 'ASC'): array
+    public function select12Games(int $page, ?int $user, string $orderBy = 'name', string $direction = 'ASC'): array
     {
-        $query = 'SELECT * FROM game INNER JOIN user ON user.id = game.id_owner ORDER BY '
-            . $orderBy . " " . $direction . ' LIMIT 12 OFFSET ' . $page;
+        $query = 'SELECT g.id as game_id, g.name, g.type, g.minimum_players_age, g.image, g.id_owner, 
+        g.min_number_players, g.max_number_players, g.availability, u.id as user_id, u.firstname, 
+        u.lastname, u.email, u.password FROM game AS g INNER JOIN user AS u ON u.id = g.id_owner';
+        if ($user != null) {
+            $query .= ' WHERE u.id <> ' . $user;
+        }
+        $query .= ' ORDER BY ' . $orderBy . " " . $direction . ' LIMIT 12 OFFSET ' . $page;
         return $this->pdo->query($query)->fetchAll();
     }
 
@@ -86,9 +91,9 @@ class GameManager extends AbstractManager
         $query = 'SELECT g.id AS game_id, g.name, g.type, g.minimum_players_age, g.image, g.id_owner, 
         g.min_number_players, g.max_number_players, g.availability, u.id AS user_id, u.firstname, 
         u.lastname, u.email, u.password, b.id AS borrow_id, b.id_game, b.id_user, b.id_status FROM game as g
-        INNER JOIN borrow as b ON b.id_game = g.id
-        INNER JOIN user as u ON b.id_user = u.id
-        WHERE g.id_owner=:id';
+        INNER JOIN user as u ON g.id_owner = u.id
+        LEFT JOIN borrow as b ON b.id_game = g.id
+        WHERE g.id_owner=:id ORDER BY g.name ASC';
         $statement = $this->pdo->prepare($query);
         $statement->bindValue(':id', $id, \PDO::PARAM_INT);
         $statement->execute();

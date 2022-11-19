@@ -23,6 +23,8 @@ return [
     'users/login' => ['UserController', 'login'],
     'users/logout' => ['UserController', 'logout'],
     'myaccount' => ['BorrowController', 'myAccount'],
+    'myaccount/myborrow' => ['BorrowController', 'addBorrow', ['id']],
+    'myaccount/myborrow/cancel' => ['BorrowController', 'cancelBorrow', ['id']],
     'myaccount/manageRequests' => ['BorrowController', 'manageRequests', ['id', 'status']],
     'myaccount/returngame' => ['BorrowController', 'giveBackGame', ['id']],
     'myaccount/addgame' => ['GameController', 'addPublic'],
