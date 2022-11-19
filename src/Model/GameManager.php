@@ -7,7 +7,6 @@ use PDO;
 class GameManager extends AbstractManager
 {
     public const TABLE = 'game';
-    public const FOREIGN_TABLE = 'user';
 
     /**
      * Insert new item in database
@@ -34,7 +33,8 @@ class GameManager extends AbstractManager
     public function update(array $gameData, int $id): bool
     {
         $query = "UPDATE " . self::TABLE
-            . " SET `id_owner` = :id_owner, `name` = :name, `type` = :type, `min_number_players` = :minNumberPlayers,
+            . " SET `id_owner` = :id_owner, `name` = :name, `type` = :type, `availability` = :availability,
+             `min_number_players` = :minNumberPlayers,
         `max_number_players` = :maxNumberPlayers, `minimum_players_age` = :minimumPlayersAge,
         `image` = :image WHERE id=:id;";
         $statement = $this->pdo->prepare($query);
@@ -45,6 +45,7 @@ class GameManager extends AbstractManager
         $statement->bindValue(':minNumberPlayers', $gameData['gameMinimumNumberPlayers'], PDO::PARAM_INT);
         $statement->bindValue(':maxNumberPlayers', $gameData['gameMaximumNumberPlayers'], PDO::PARAM_INT);
         $statement->bindValue(':minimumPlayersAge', $gameData['gameAgeMinimumPlayers'], PDO::PARAM_INT);
+        $statement->bindValue(':availability', $gameData['gameAvailability'], PDO::PARAM_INT);
         $statement->bindValue(':image', $gameData['gameImage'], PDO::PARAM_STR);
 
         return $statement->execute();
