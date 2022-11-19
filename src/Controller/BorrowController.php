@@ -69,6 +69,10 @@ class BorrowController extends GameController
 
     public function addBorrow(int $id)
     {
+        if (!isset($this->user['id'])) {
+            header('Location: /users/login');
+            return null;
+        }
         $borrowManager = new BorrowManager();
         $borrowManager->insertBorrow($id, $this->user['id']);
 
