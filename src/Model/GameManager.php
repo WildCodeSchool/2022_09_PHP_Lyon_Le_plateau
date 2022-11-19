@@ -83,7 +83,12 @@ class GameManager extends AbstractManager
 
     public function selectMyGames(int $id): array
     {
-        $query = 'SELECT * FROM game as g WHERE g.id_owner=:id';
+        $query = 'SELECT g.id AS game_id, g.name, g.type, g.minimum_players_age, g.image, g.id_owner, 
+        g.min_number_players, g.max_number_players, g.availability, u.id AS user_id, u.firstname, 
+        u.lastname, u.email, u.password, b.id AS borrow_id, b.id_game, b.id_user, b.id_status FROM game as g
+        INNER JOIN borrow as b ON b.id_game = g.id
+        INNER JOIN user as u ON b.id_user = u.id
+        WHERE g.id_owner=:id';
         $statement = $this->pdo->prepare($query);
         $statement->bindValue(':id', $id, \PDO::PARAM_INT);
         $statement->execute();
@@ -91,13 +96,12 @@ class GameManager extends AbstractManager
         return $statement->fetchAll();
     }
 
-    public function updateGameReturned(int $id): void
+    public function changeAvailability(int $id, int $availability): void
     {
-        $query = 'UPDATE game AS g INNER JOIN borrow AS b ON b.id_game = g.id 
-        SET g.availability = true, b.id_status = 4 
-        WHERE g.id=:id AND b.id_status = 2;';
+        $query = 'UPDATE game AS g SET g.availability = :availability WHERE g.id=:id;';
         $statement = $this->pdo->prepare($query);
         $statement->bindValue(':id', $id, \PDO::PARAM_INT);
+        $statement->bindValue(':availability', $availability, \PDO::PARAM_BOOL);
         $statement->execute();
     }
 }

@@ -88,16 +88,28 @@ class BorrowManager extends GameManager
 
     public function updateRequest(int $id, int $status): bool
     {
-        $query = 'UPDATE borrow AS b INNER JOIN game AS g ON b.id_game = g.id 
+        $query = 'UPDATE borrow AS b
+        INNER JOIN game AS g ON b.id_game = g.id
+        INNER JOIN user AS u ON g.id_owner = u.id
         SET id_status = :status, acceptance_date = now()';
         if ($status == 2) {
-            $query .= ', availability = false';
+            $query .= ', g.availability = false';
         }
-        $query .= ' WHERE b.id = :id_request;';
+        $query .= ' WHERE b.id = :id_request';
         $statement = $this->pdo->prepare($query);
         $statement->bindValue(':id_request', $id, PDO::PARAM_INT);
         $statement->bindValue(':status', $status, PDO::PARAM_INT);
 
         return $statement->execute();
+    }
+
+    public function updateGameReturned(int $id): void
+    {
+        $query = 'UPDATE game AS g INNER JOIN borrow AS b ON b.id_game = g.id 
+        SET g.availability = true, b.id_status = 4 
+        WHERE g.id=:id AND b.id_status = 2;';
+        $statement = $this->pdo->prepare($query);
+        $statement->bindValue(':id', $id, \PDO::PARAM_INT);
+        $statement->execute();
     }
 }

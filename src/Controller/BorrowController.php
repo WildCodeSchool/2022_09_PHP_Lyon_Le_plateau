@@ -91,4 +91,12 @@ class BorrowController extends GameController
 
         header('Location: /myaccount');
     }
+
+    public function giveBackGame(int $id): void
+    {
+        $borrowManager = new BorrowManager();
+        $borrowManager->updateGameReturned($id);
+
+        header('Location: /myaccount');
+    }
 }

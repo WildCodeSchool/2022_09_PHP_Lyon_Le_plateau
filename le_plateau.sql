@@ -80,7 +80,7 @@ INSERT INTO game (name, type, min_number_players, max_number_players, minimum_pl
 VALUES
 ('Trivial pursuit', 'Culture Générale', 2, 6, 16, 'trivialpursuit.jpg', 5, 0),
 ('7 wonders', 'Stratégie', 3, 7, 10, '7wonders.jpg', 1, 1),
-('Uno', 'Ambiance', 2, 10, 7, 'uno.png', 3, 0),
+('Uno', 'Ambiance', 2, 10, 7, 'uno.png', 3, 1),
 ('Dice forge', 'Stratégie', 2, 4, 10, 'diceforge.jpg', 4, 1),
 ('Trivial pursuit', 'Culture Générale', 2, 6, 16, 'trivialpursuit.jpg', 2, 0),
 ('La bonne paye', 'Ambiance', 2, 6, 8, 'LBP.jpg', 5, 1),
