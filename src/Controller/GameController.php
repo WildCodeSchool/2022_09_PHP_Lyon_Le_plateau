@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Model\GameManager;
 use App\Model\UserManager;
 use App\Service\GameVerification;
+use App\Model\BorrowManager;
 
 class GameController extends AbstractController
 {
@@ -225,12 +226,23 @@ class GameController extends AbstractController
         $games = $gameManager->selectAll('name');
         $page = ($_GET['page'] - 1) * 12;
         $user = null;
+        $requestedGames = [];
+
         if (isset($this->user['id'])) {
             $user = $this->user['id'];
+            $borrowManager = new BorrowManager();
+            $borrows = $borrowManager->selectPendingBorrowByUserId($user);
+            foreach ($borrows as $borrow) {
+                $requestedGames[] = $borrow['id_game'];
+            }
         }
         $selectedGames = $gameManager->select12Games($page, $user);
 
-        return $this->twig->render('Game/games.html.twig', ['games' => $games, 'selectedGames' => $selectedGames]);
+        return $this->twig->render('Game/games.html.twig', [
+            'games' => $games,
+            'selectedGames' => $selectedGames,
+            'requestedGames' => $requestedGames
+        ]);
     }
 
     public function showMyGames(): array|null

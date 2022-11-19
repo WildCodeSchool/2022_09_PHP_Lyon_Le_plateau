@@ -132,6 +132,11 @@ h3 {
     pointer-events: none;
 }
 
+.pending {
+    background-color: var(--third-color);
+    color: var(--background-color);
+}
+
 /* PAGE MON COMPTE */
 h4 {
     background-color: var(--third-color);
