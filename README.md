@@ -6,11 +6,11 @@
 
 Welcome fellow gamer !
 
-This repository is all you ever dreamed as a social (and poor) boardgamer.
+This repository is all you have ever dreamed as a social (and poor) boardgamer.
 It contains a collaborative project called "Le plateau": a MVC based dynamic website that offers a solution to gamers to freely share and borrow boardgames from other members.
 
 Do you want to join the adventure and help us develop the site?
-Alright ! You will find belo, instructions to install the project on your local machine.
+Alright ! You will find instructions to install the project on your local machine below.
 
 
 ## Steps
@@ -28,14 +28,6 @@ define('APP_DB_NAME', 'your_db_name');          (may I suggest you to use "le_pl
 4. Import *le_plateau.sql* in your SQL server, you can do it manually or use the *migration.php* script which will import a *database.sql* file.
 5. Run the internal PHP webserver with `php -S localhost:8000 -t public/`. The option `-t` with `public` as parameter means your localhost will target the `/public` folder.
 6. Go to `localhost:8000` with your favorite browser.
-7. From this starter kit, create your own web application.
-
-
-### Windows Users
-
-If you develop on Windows, you should edit you git configuration to change your end of line rules with this command :
-
-`git config --global core.autocrlf true`
 
 
 ## Example 
@@ -47,7 +39,7 @@ An example (a basic list of items) is provided (you can load the *simple-mvc.sql
 * Login connection [localhost:8000/items/show?id=:id](localhost:8000/users/login)
 * Contact page [localhost:8000/contact](localhost:8000/contact)
 
-You can find all these routes declared in the file `src/routes.php`. This is the very same file where you'll add your own new routes to the application.
+You can find all these routes declared in the file `src/routes.php`.
 
 
 ## Thanks for your participation or for sharing the project
