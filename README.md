@@ -36,10 +36,16 @@ An example (a basic list of items) is provided (you can load the *simple-mvc.sql
 
 * Home page at [localhost:8000/home](localhost:8000/home)
 * Game list at [localhost:8000/games?page=1](localhost:8000/games?page=1)
-* Login connection [localhost:8000/items/show?id=:id](localhost:8000/users/login)
-* Contact page [localhost:8000/contact](localhost:8000/contact)
+* Login connection at [localhost:8000/items/show?id=:id](localhost:8000/users/login)
+* Contact page at [localhost:8000/contact](localhost:8000/contact)
 
 You can find all these routes declared in the file `src/routes.php`.
+
+### MySQL ERROR 1055 (42000)
+
+It could happen a MySQL ERROR 1055 (42000) on the game list page at [localhost:8000/games?page=1].
+If so, you could fix it by following this tutotial :
+<a href="https://ixnfo.com/en/solution-mysql-error-1055-42000.html">https://ixnfo.com/en/solution-mysql-error-1055-42000.html</a>.
 
 
 ## Thanks for your participation or for sharing the project
