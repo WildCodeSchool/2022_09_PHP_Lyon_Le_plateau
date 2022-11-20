@@ -1,9 +1,9 @@
 <div class="section border border-dark my-4 m-auto" id='pendingLoans'>
-	<h4 class="text-center p-2 ">
+	<h4 class="text-center p-2">
 		Mes emprunts en attente de validation
 	</h4>
 
-	<div class="container d-flex w-100  justify-content-center">
+	<div class="container d-flex w-100 justify-content-center">
 		<div class="row justify-content-start w-100 mb-2">
 			{% if pendingLoans is empty %}
 				<span class="text-center">Aucune demande en cours.</span>
@@ -18,12 +18,12 @@
 </div>
 
 <div class="section border border-dark my-4 m-auto" id='acceptedLoans'>
-	<h4 class="text-center p-2 ">
+	<h4 class="text-center p-2">
 		Mes emprunts en cours
 	</h4>
 
-	<div class="container d-flex w-100  justify-content-center">
-		<div class="row justify-content-startw-100 mb-2">
+	<div class="container d-flex w-100 justify-content-center">
+		<div class="row justify-content-start w-100 mb-2">
 			{% if acceptedLoans is empty %}
 				<span class="text-center">Aucun emprunt en cours.</span>
 			{% endif %}
@@ -37,11 +37,11 @@
 </div>
 
 <div class="section border border-dark my-4 m-auto" id='declinedLoans'>
-	<h4 class="text-center p-2 ">
+	<h4 class="text-center p-2">
 		Mes emprunts refusés
 	</h4>
 
-	<div class="container d-flex w-100  justify-content-center">
+	<div class="container d-flex w-100 justify-content-center">
 		<div class="row justify-content-start w-100 mb-2">
 			{% if declinedLoans is empty %}
 				<span class="text-center">Aucun emprunt refusé.</span>

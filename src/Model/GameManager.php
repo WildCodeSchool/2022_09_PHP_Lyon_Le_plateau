@@ -91,9 +91,9 @@ class GameManager extends AbstractManager
     {
         $query = 'SELECT g.id AS game_id, g.name, g.type, g.minimum_players_age, g.image, g.id_owner, 
         g.min_number_players, g.max_number_players, g.availability, u.id AS user_id, u.firstname, 
-        u.lastname, u.email, u.password, b.id AS borrow_id, b.id_game, b.id_user, b.id_status FROM game as g
+        u.lastname, u.email, u.password
+        FROM game AS g
         INNER JOIN user as u ON g.id_owner = u.id
-        LEFT JOIN borrow as b ON b.id_game = g.id
         WHERE g.id_owner=:id ORDER BY g.name ASC';
         $statement = $this->pdo->prepare($query);
         $statement->bindValue(':id', $id, \PDO::PARAM_INT);

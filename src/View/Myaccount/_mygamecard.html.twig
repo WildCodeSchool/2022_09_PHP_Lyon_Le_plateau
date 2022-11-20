@@ -18,8 +18,10 @@
 			<div class="d-flex justify-content-center m-0">
 				<p class="{% if game.availability == false %} text-danger {% else %} text-success {% endif %}mb-0">●</p>
 				<p class="m-0 ms-1">
-					{% if game.availability == false and game.id_status == 2 %}Emprunté par<br>{{game.firstname}}
-						{{game.lastname}}
+					{% if game.availability == false and game.id_status == 2 %}
+						Emprunté par<br>
+						{{game.user_firstname}}
+						{{game.user_lastname}}
 						{% elseif game.availability == false %}Non disponible
 					{% else %}
 						Disponible
@@ -30,7 +32,7 @@
 		<div class="card-footer text-center w-100 d-flex justify-content-around">
 			<a href="/myaccount/editgame?id={{ game.game_id }}" class="btn tomatoButton action-btn px-1">Modifier</a>
 			{% if game.availability == false and game.id_status == 2 %}
-				<a href="/myaccount/returngame?id={{game.game_id}}" class="btn tomatoButton action-btn px-1">Rendu !</a>
+				<a href="/myaccount/returngame?id={{game.borrow_id}}" class="btn tomatoButton action-btn px-1">Rendu !</a>
 			{% elseif game.availability == false %}
 				<a href="/myaccount/gameavailability?id={{game.game_id}}&availability=1" class="btn tomatoButton action-btn px-1">Dispo !</a>
 			{% elseif game.availability == true and game.id_status == 1 %}

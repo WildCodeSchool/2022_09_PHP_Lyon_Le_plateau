@@ -4,7 +4,7 @@
 		<div class="row">
 			<div class="mb-4 mx-auto d-table">
 				<div class="d-table-cell align-middle">
-					<form class="form m-3 bg-lightgrey p-3 shadow" method="post" enctype="multipart/form-data" {% if errors is not null %} action="#ancre" {% endif %}>
+					<form class="form m-3 bg-lightgrey p-3 shadow" method="post" enctype="multipart/form-data" {% if errors is not null %} action="#anchor" {% endif %}>
 
 						<input type="hidden" value="{{ game.game_id }}" name="gameId">
 						<input type="hidden" value="{{user_session.id}}" name="idGameOwner">
@@ -14,7 +14,7 @@
 							<input type="text" value="{{ game.name }}" name="gameName" id="gameName" maxlength="100" class="form-control" required>
 						</div>
 
-						<div class="mb-3" id="ancre">
+						<div class="mb-3" id="anchor">
 							<label for="gameGenre" class="form-label d-flex justify-content-center">Genre *</label>
 							<select name="gameGenre" id="gameGenre" value="{{ game.type }}" class="form-control" required>
 								<option disabled selected value="">--Choisis un genre--</option>

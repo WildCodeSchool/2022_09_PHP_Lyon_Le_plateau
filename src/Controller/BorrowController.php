@@ -106,7 +106,7 @@ class BorrowController extends GameController
     public function manageRequests(int $id, int $status): string|null
     {
         $borrowManager = new BorrowManager();
-        $borrow = $borrowManager->selectOneById($id);
+        $borrow = $borrowManager->selectOneBorrowById($id);
 
         if ($this->user['id'] != $borrow['id_owner']) {
             return $this->twig->render('errors/error.html.twig');
@@ -120,9 +120,9 @@ class BorrowController extends GameController
     public function giveBackGame(int $id): string|null
     {
         $borrowManager = new BorrowManager();
-        $borrow = $borrowManager->selectOneById($id);
+        $borrow = $borrowManager->selectOneBorrowById($id);
 
-        if ($this->user['id'] != $borrow['id_owner']) {
+        if ($this->user['id'] != $borrow['owner_id']) {
             return $this->twig->render('errors/error.html.twig');
         }
 

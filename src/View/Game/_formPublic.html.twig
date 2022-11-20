@@ -4,7 +4,7 @@
 		<div class="row">
 			<div class="col-sm-10 col-md-8 col-lg-6 mb-5 mx-auto d-table">
 				<div class="d-table-cell align-middle">
-					<form class="form m-3 bg-lightgrey p-3 shadow" method="post" enctype="multipart/form-data" action="#ancre">
+					<form class="form m-3 bg-lightgrey p-3 shadow" method="post" enctype="multipart/form-data" action="#anchor">
 
 						<input type="hidden" value="{{ game.id }}" name="gameId">
 						<input type="hidden" value="{{user_session.id}}" name="idGameOwner">
@@ -58,7 +58,7 @@
 							</div>
 						{% endif %}
 
-						<div class="mb-3 d-flex justify-content-center" id='ancre'>
+						<div class="mb-3 d-flex justify-content-center" id='anchor'>
 							<button class="btn tomatoButton">Envoyer</button>
 						</div>
 						<p class="form-text text-start">* Champs obligatoires</p>

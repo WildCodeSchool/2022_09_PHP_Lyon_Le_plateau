@@ -263,7 +263,7 @@ class GameController extends AbstractController
         }
 
         $gameManager->changeAvailability($id, $availability);
-        header('Location: /myaccount');
+        header('Location: /myaccount#myGames');
         return null;
     }
 }

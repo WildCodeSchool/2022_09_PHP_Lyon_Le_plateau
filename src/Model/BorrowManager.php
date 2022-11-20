@@ -103,7 +103,7 @@ class BorrowManager extends GameManager
         if ($status == 2) {
             $query .= ', g.availability = false';
         }
-        $query .= ' WHERE b.id = :id_request';
+        $query .= ' WHERE b.id = :id_request;';
         $statement = $this->pdo->prepare($query);
         $statement->bindValue(':id_request', $id, PDO::PARAM_INT);
         $statement->bindValue(':status', $status, PDO::PARAM_INT);
@@ -115,15 +115,23 @@ class BorrowManager extends GameManager
     {
         $query = 'UPDATE game AS g INNER JOIN borrow AS b ON b.id_game = g.id 
         SET g.availability = true, b.id_status = 4 
-        WHERE g.id=:id AND b.id_status = 2;';
+        WHERE b.id=:id;';
         $statement = $this->pdo->prepare($query);
         $statement->bindValue(':id', $id, \PDO::PARAM_INT);
         $statement->execute();
     }
 
-    public function selectOneById(int $id): array|false
+    public function selectOneBorrowById(int $id): array|false
     {
-        $query = "SELECT * FROM borrow as b INNER JOIN game as g ON b.id_game = g.id WHERE b.id=:id;";
+        $query = 'SELECT g.id AS game_id, g.name, g.type, g.minimum_players_age, g.image, g.id_owner, 
+        g.min_number_players, g.max_number_players, g.availability, u.id AS user_id, u.firstname AS user_firstname, 
+        u.lastname AS user_lastname, u.email, u.password, b.id AS borrow_id, b.id_game, b.id_user, b.id_status, 
+        o.id AS owner_id, o.firstname AS owner_firstname, o.lastname AS owner_lastname
+        FROM game AS g
+        INNER JOIN user AS o ON o.id = g.id_owner
+        INNER JOIN borrow as b ON b.id_game = g.id
+        INNER JOIN user as u ON b.id_user = u.id
+        WHERE b.id=:id;';
         $statement = $this->pdo->prepare($query);
         $statement->bindValue('id', $id, \PDO::PARAM_INT);
         $statement->execute();
