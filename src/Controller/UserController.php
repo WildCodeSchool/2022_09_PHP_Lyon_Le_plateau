@@ -127,4 +127,24 @@ class UserController extends AbstractController
         session_unset();
         header('Location: /');
     }
+
+    public function publicRegister(): ?string
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $user = array_map('trim', $_POST);
+
+            $userVerification = new UserVerification();
+            $errors = $userVerification->userFormVerification($user);
+
+            if (!empty($errors)) {
+                return $this->twig->render('User/addPublic.html.twig', ['errors' => $errors]);
+            } else {
+                $userManager = new UserManager();
+                $userManager->insert($user);
+                header('Location: /users/login');
+                return null;
+            }
+        }
+        return $this->twig->render('User/addPublic.html.twig');
+    }
 }
