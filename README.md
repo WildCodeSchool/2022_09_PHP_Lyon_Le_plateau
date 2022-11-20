@@ -1,4 +1,4 @@
-# Le PLateau
+# Le Plateau
 
 ## Description
 
