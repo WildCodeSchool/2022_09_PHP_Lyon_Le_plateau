@@ -29,10 +29,10 @@
 			</p>
 		</div>
 		<div class="card-footer text-center w-100 d-flex justify-content-around">
-			{% if game.availability == true and game.game_id in requestedGames %}
+			{% if game.availability and game.game_id in requestedGames %}
 				<a class="btn pending noHover">
 					En attente</a>
-			{% elseif game.availability == true %}
+			{% elseif game.availability %}
 				<a href="/myaccount/myborrow?id={{game.game_id}}" class="btn tomatoButton">
 					Emprunter</a>
 			{% else %}
