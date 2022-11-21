@@ -1,5 +1,5 @@
 
-    window.setTimeout(function () {
-        window.location.href = "/home";
-    }
-        , 5000);
+window.setTimeout(function () {
+    window.location.href = "/home";
+}
+    , 5000);

@@ -80,7 +80,7 @@ INSERT INTO game (name, type, min_number_players, max_number_players, minimum_pl
 VALUES
 ('Trivial pursuit', 'Culture Générale', 2, 6, 16, 'trivialpursuit.jpg', 5, 0),
 ('7 wonders', 'Stratégie', 3, 7, 10, '7wonders.jpg', 1, 1),
-('Uno', 'Ambiance', 2, 10, 7, 'uno.png', 3, 0),
+('Uno', 'Ambiance', 2, 10, 7, 'uno.png', 3, 1),
 ('Dice forge', 'Stratégie', 2, 4, 10, 'diceforge.jpg', 4, 1),
 ('Trivial pursuit', 'Culture Générale', 2, 6, 16, 'trivialpursuit.jpg', 2, 0),
 ('La bonne paye', 'Ambiance', 2, 6, 8, 'LBP.jpg', 5, 1),
@@ -94,12 +94,12 @@ VALUES
 ('Codenames', 'Réflexion', 2, 8, 12, 'codenames.jpg', 6, 1),
 ('Cluedo', 'Réflexion', 3, 5, 9, 'cluedo.jpg', 2, 1),
 ('Cluedo', 'Réflexion', 3, 5, 9, 'cluedo.jpg', 3, 1),
-('Trivial pursuit', 'Culture Générale', 2, 6, 16, 'trivialpursuit.jpg', 4, 1),
+('Trivial pursuit', 'Culture Générale', 2, 6, 16, 'trivialpursuit.jpg', 5, 1),
 ('7 wonders', 'Stratégie', 3, 7, 10, '7wonders.jpg', 1, 1),
 ('Trivial pursuit', 'Culture Générale', 2, 6, 16, 'trivialpursuit.jpg', 6, 1),
 ('Les Loups-Garous de Thiercelieux', 'Ambiance', 8, 18, 10, 'loupgarou.jpg', 5, 1),
 ('Scrabble', 'Réfléxion', 2, 4, 7, 'scrabble.jpg', 4, 0),
-('Trivial pursuit', 'Culture Générale', 2, 6, 16, 'trivialpursuit.jpg', 4, 1);
+('Trivial pursuit', 'Culture Générale', 2, 6, 16, 'trivialpursuit.jpg', 1, 1);
 
 INSERT INTO contact (firstname, lastname, email, message)
 VALUES
@@ -116,5 +116,5 @@ INSERT INTO borrow (id_game, id_user, id_status, request_date, acceptance_date)
 VALUES (6,2,1,'2022-11-15', NULL),(9,4,3,'2022-11-05', '2022-11-07'),(10,6,1,'2022-11-10', NULL),
 (20,2,2,'2022-10-25','2022-10-25'),(14,2,3, '2022-09-30','2022-10-10'),(1,1,2, '2022-11-01','2022-11-05'),
 (2,4,3, '2022-10-31','2022-11-15'),(3,1,1,'2022-11-15', NULL),(15,1,4,'2022-08-15','2022-08-15'),
-(8,2,4,'2022-06-15','2022-06-15'), (17,5,1,'2022-11-16', NULL),(21,5,2,'2022-11-16','2022-11-17'),
+(8,2,4,'2022-06-15','2022-06-15'), (17,4,1,'2022-11-16', NULL),(21,5,2,'2022-11-16','2022-11-17'),
 (12,3,4,'2022-06-15','2022-06-15');

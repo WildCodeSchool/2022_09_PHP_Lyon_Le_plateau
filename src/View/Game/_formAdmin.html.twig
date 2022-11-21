@@ -1,9 +1,9 @@
 {% block content %}
-	<div class="container text-center">
+	<div class="container">
 		<div class="row">
 			<div class="col-sm-10 col-md-8 col-lg-6 mb-5 mx-auto d-table">
 				<div class="d-table-cell align-middle">
-					<form class="form m-3 bg-lightgrey p-3 shadow" method="post" enctype="multipart/form-data">
+					<form class="form m-3 bg-lightgrey p-3 shadow" method="post" enctype="multipart/form-data" action="#anchor">
 
 						<input type="hidden" value="{{ game.id }}" name="id">
 						<div class="mb-3">
@@ -43,12 +43,20 @@
 
 						<div class="mb-3">
 							<label for="gameMaximumNumberPlayers" class="form-label d-flex justify-content-center">Nombre de joueurs maximum *</label>
-							<input type="number" value="{{ game.max_number_players }}" name="gameMaximumNumberPlayers" id="gameNugameMaximumNumberPlayersmberPlayers" min="1" max="99" class="form-control" required>
+							<input type="number" value="{{ game.max_number_players }}" name="gameMaximumNumberPlayers" id="gameMaximumNumberPlayers" min="1" max="99" class="form-control" required>
 						</div>
 
 						<div class="mb-3">
-							<label for="gameAgeMinimumPlayers" class="form-label d-flex justify-content-center">A partir de *</label>
+							<label for="gameAgeMinimumPlayers" class="form-label d-flex justify-content-center">Age minimum *</label>
 							<input type="number" value="{{ game.minimum_players_age }}" name="gameAgeMinimumPlayers" id="gameAgeMinimumPlayers" min="1" max="99" class="form-control" required>
+						</div>
+
+						<div class="mb-3">
+							<label for="gameAvailability" class="form-label d-flex justify-content-center">Disponibilité *</label>
+							<select name="gameAvailability" id="gameAvailability" value="{{ game.availability }}" class="form-control" required>
+								<option selected value="1">Oui</option>
+								<option value="0" {% if game.availability == '0' %} selected {% endif %}>Non</option>
+							</select>
 						</div>
 
 						<div class="mb-3">
@@ -66,7 +74,7 @@
 							</div>
 						{% endif %}
 
-						<div class="mb-3 d-flex justify-content-center">
+						<div class="mb-3 d-flex justify-content-center" id='anchor'>
 							<button class="btn tomatoButton">Envoyer</button>
 						</div>
 						<p class="form-text text-start">* Champs obligatoires</p>

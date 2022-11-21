@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Model\GameManager;
 use App\Model\UserManager;
 use App\Service\GameVerification;
+use App\Model\BorrowManager;
 
 class GameController extends AbstractController
 {
@@ -63,7 +64,7 @@ class GameController extends AbstractController
 
     public function addPublic()
     {
-        if (!isset($this->user['admin'])) {
+        if (!isset($this->user['id'])) {
             header('Location: /users/login');
             return null;
         }
@@ -97,7 +98,7 @@ class GameController extends AbstractController
         return $this->twig->render('Game/addPublic.html.twig');
     }
 
-    public function addPublicDesktop()
+    public function addPublicDesktop(): array|null
     {
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -122,8 +123,10 @@ class GameController extends AbstractController
 
                 $gameManager = new GameManager();
                 $gameManager->insert($game);
+                return null;
             }
         }
+        return null;
     }
 
     public function editAdmin(int $id): ?string
@@ -177,6 +180,11 @@ class GameController extends AbstractController
 
         $gameManager = new GameManager();
         $game = $gameManager->selectOneGameById($id);
+
+        if ($this->user['id'] != $game['id_owner']) {
+            return $this->twig->render('errors/error.html.twig');
+        }
+
         $userManager = new UserManager();
         $users = $userManager->selectAll('firstname');
 
@@ -201,7 +209,7 @@ class GameController extends AbstractController
                 }
 
                 $gameManager->update($gameData, $id);
-                header('Location: /myaccount');
+                header('Location: /myaccount#myGames');
                 return null;
             }
         }
@@ -217,9 +225,24 @@ class GameController extends AbstractController
         $gameManager = new GameManager();
         $games = $gameManager->selectAll('name');
         $page = ($_GET['page'] - 1) * 12;
-        $selectedGames = $gameManager->select12Games($page, 'name');
+        $user = null;
+        $requestedGames = [];
 
-        return $this->twig->render('Game/games.html.twig', ['games' => $games, 'selectedGames' => $selectedGames]);
+        if (isset($this->user['id'])) {
+            $user = $this->user['id'];
+            $borrowManager = new BorrowManager();
+            $borrows = $borrowManager->selectPendingBorrowByUserId($user);
+            foreach ($borrows as $borrow) {
+                $requestedGames[] = $borrow['id_game'];
+            }
+        }
+        $selectedGames = $gameManager->select12Games($page, $user);
+
+        return $this->twig->render('Game/games.html.twig', [
+            'games' => $games,
+            'selectedGames' => $selectedGames,
+            'requestedGames' => $requestedGames
+        ]);
     }
 
     public function showMyGames(): array|null
@@ -230,11 +253,17 @@ class GameController extends AbstractController
         return $myGames;
     }
 
-    public function giveBackGame(int $id): void
+    public function editGameAvailability(int $id, int $availability): string|null
     {
         $gameManager = new GameManager();
-        $gameManager->updateGameReturned($id);
+        $game = $gameManager->selectOneGameById($id);
 
-        header('Location: /myaccount');
+        if ($this->user['id'] != $game['id_owner']) {
+            return $this->twig->render('errors/error.html.twig');
+        }
+
+        $gameManager->changeAvailability($id, $availability);
+        header('Location: /myaccount#myGames');
+        return null;
     }
 }
