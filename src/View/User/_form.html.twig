@@ -4,7 +4,7 @@
 		<div class="row">
 			<div class="col-sm-10 col-md-8 col-lg-6 mb-5 mx-auto d-table">
 				<div class="d-table-cell align-middle">
-					<form class="form m-3 bg-lightgrey p-3 shadow" method="post">
+					<form class="form m-3 bg-lightgrey p-3 shadow" method="post" action="#anchor">
 
 						<input type="hidden" value="{{ user.id }}" name="id">
 
@@ -29,7 +29,7 @@
 						</div>
 
 						<div class="mb-3">
-							<label for="userPasswordConfirmation" class="form-label d-flex justify-content-center">Confirme le mot de passe *</label>
+							<label for="userPasswordConfirmation" class="form-label d-flex justify-content-center">Confirmez le mot de passe *</label>
 							<input type="password" value="{{user.password}}" name="userPasswordConfirmation" id="passwordConfirmation" maxlength="100" class="form-control" required>
 						</div>
 						{% if errors is defined %}
@@ -42,7 +42,7 @@
 							</div>
 						{% endif %}
 
-						<div class="mb-3 d-flex justify-content-center">
+						<div class="mb-3 d-flex justify-content-center" id='anchor'>
 							<button class="btn tomatoButton">Envoyer</button>
 						</div>
 						<p class="form-text">

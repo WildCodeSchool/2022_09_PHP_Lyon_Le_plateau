@@ -96,10 +96,12 @@ class BorrowManager extends GameManager
 
     public function updateRequest(int $id, int $status): bool
     {
-        $query = 'UPDATE borrow AS b INNER JOIN game AS g ON b.id_game = g.id 
+        $query = 'UPDATE borrow AS b
+        INNER JOIN game AS g ON b.id_game = g.id
+        INNER JOIN user AS u ON g.id_owner = u.id
         SET id_status = :status, acceptance_date = now()';
         if ($status == 2) {
-            $query .= ', availability = false';
+            $query .= ', g.availability = false';
         }
         $query .= ' WHERE b.id = :id_request;';
         $statement = $this->pdo->prepare($query);
@@ -107,5 +109,33 @@ class BorrowManager extends GameManager
         $statement->bindValue(':status', $status, PDO::PARAM_INT);
 
         return $statement->execute();
+    }
+
+    public function updateGameReturned(int $id): void
+    {
+        $query = 'UPDATE game AS g INNER JOIN borrow AS b ON b.id_game = g.id 
+        SET g.availability = true, b.id_status = 4 
+        WHERE b.id=:id;';
+        $statement = $this->pdo->prepare($query);
+        $statement->bindValue(':id', $id, \PDO::PARAM_INT);
+        $statement->execute();
+    }
+
+    public function selectOneBorrowById(int $id): array|false
+    {
+        $query = 'SELECT g.id AS game_id, g.name, g.type, g.minimum_players_age, g.image, g.id_owner, 
+        g.min_number_players, g.max_number_players, g.availability, u.id AS user_id, u.firstname AS user_firstname, 
+        u.lastname AS user_lastname, u.email, u.password, b.id AS borrow_id, b.id_game, b.id_user, b.id_status, 
+        o.id AS owner_id, o.firstname AS owner_firstname, o.lastname AS owner_lastname
+        FROM game AS g
+        INNER JOIN user AS o ON o.id = g.id_owner
+        INNER JOIN borrow as b ON b.id_game = g.id
+        INNER JOIN user as u ON b.id_user = u.id
+        WHERE b.id=:id;';
+        $statement = $this->pdo->prepare($query);
+        $statement->bindValue('id', $id, \PDO::PARAM_INT);
+        $statement->execute();
+
+        return $statement->fetch();
     }
 }

@@ -1,14 +1,16 @@
 {% extends 'layout.html.twig' %}
 
+{% block title %}
+	Administration - Les utilisateurs
+{% endblock %}
+
 {% block content %}
-
 	<div class="container-fluid d-md-flex p-0">
-
 		{% include 'components/_navAdmin.html.twig' %}
 
 		<section class="m-auto">
-			<h1 class="text-center m-5 mb-4">Les utilisateurs</h1>
-			<a href="/users/add" class="text-center">Ajouter</a>
+			<h2 class="text-center mt-4 mb-2">Les utilisateurs</h2>
+			<a class="btn btn-outline-primary" href="/users/add">Ajouter</a>
 
 			<table class="table table-striped">
 				<thead>
@@ -29,7 +31,7 @@
 							<td>{{ user.lastname}}</td>
 							<td>{{ user.email}}</td>
 							<td>
-								<a href="/users/edit?id={{ user.id }}">Modifier</a>
+								<a class="btn btn-outline-primary" href="/users/edit?id={{ user.id }}">Modifier</a>
 							</td>
 						</tr>
 					{% endfor %}

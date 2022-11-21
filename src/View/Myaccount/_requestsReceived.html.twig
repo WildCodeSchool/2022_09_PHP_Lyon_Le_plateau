@@ -1,18 +1,17 @@
-<div class= "section border border-dark my-4 m-auto">
+<div class="section border border-dark mb-4 m-auto" id='requestsReceived'>
 	<h4 class="text-center p-2 ">
 		Mes demandes d'emprunts
 	</h4>
 
 	<div class="container d-flex w-100  justify-content-center">
-		<div class="row justify-content-start w-100">
-		{% if requestsReceived is empty %}
-			<span class = "text-center">Aucune demande de jeu en attente.</span>
-		{% endif %}
-		
-            {% for requestReceived in requestsReceived %}
-            {% include "/Myaccount/_requestCard.html.twig" %}
-            {% endfor %}
-    	</div>
-    </div>
-</div>
+		<div class="row justify-content-start w-100 mb-2">
+			{% if requestsReceived is empty %}
+				<span class="text-center">Aucune demande de jeu en attente.</span>
+			{% endif %}
 
+			{% for requestReceived in requestsReceived %}
+				{% include "/Myaccount/_requestCard.html.twig" %}
+			{% endfor %}
+		</div>
+	</div>
+</div>

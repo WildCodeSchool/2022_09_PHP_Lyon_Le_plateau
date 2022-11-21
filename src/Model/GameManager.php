@@ -7,7 +7,6 @@ use PDO;
 class GameManager extends AbstractManager
 {
     public const TABLE = 'game';
-    public const FOREIGN_TABLE = 'user';
 
     /**
      * Insert new item in database
@@ -34,7 +33,8 @@ class GameManager extends AbstractManager
     public function update(array $gameData, int $id): bool
     {
         $query = "UPDATE " . self::TABLE
-            . " SET `id_owner` = :id_owner, `name` = :name, `type` = :type, `min_number_players` = :minNumberPlayers,
+            . " SET `id_owner` = :id_owner, `name` = :name, `type` = :type, `availability` = :availability,
+             `min_number_players` = :minNumberPlayers,
         `max_number_players` = :maxNumberPlayers, `minimum_players_age` = :minimumPlayersAge,
         `image` = :image WHERE id=:id;";
         $statement = $this->pdo->prepare($query);
@@ -45,17 +45,21 @@ class GameManager extends AbstractManager
         $statement->bindValue(':minNumberPlayers', $gameData['gameMinimumNumberPlayers'], PDO::PARAM_INT);
         $statement->bindValue(':maxNumberPlayers', $gameData['gameMaximumNumberPlayers'], PDO::PARAM_INT);
         $statement->bindValue(':minimumPlayersAge', $gameData['gameAgeMinimumPlayers'], PDO::PARAM_INT);
+        $statement->bindValue(':availability', $gameData['gameAvailability'], PDO::PARAM_INT);
         $statement->bindValue(':image', $gameData['gameImage'], PDO::PARAM_STR);
 
         return $statement->execute();
     }
 
-    public function select12Games(int $page, string $orderBy = 'name', string $direction = 'ASC'): array
+    public function select12Games(int $page, ?int $user, string $orderBy = 'name', string $direction = 'ASC'): array
     {
         $query = 'SELECT g.id as game_id, g.name, g.type, g.minimum_players_age, g.image, g.id_owner, 
         g.min_number_players, g.max_number_players, g.availability, u.id as user_id, u.firstname, 
-        u.lastname, u.email, u.password FROM game AS g INNER JOIN user AS u ON u.id = g.id_owner ORDER BY '
-            . $orderBy . " " . $direction . ' LIMIT 12 OFFSET ' . $page;
+        u.lastname, u.email, u.password FROM game AS g INNER JOIN user AS u ON u.id = g.id_owner';
+        if ($user != null) {
+            $query .= ' WHERE u.id <> ' . $user;
+        }
+        $query .= ' ORDER BY ' . $orderBy . " " . $direction . ' LIMIT 12 OFFSET ' . $page;
         return $this->pdo->query($query)->fetchAll();
     }
 
@@ -85,7 +89,19 @@ class GameManager extends AbstractManager
 
     public function selectMyGames(int $id): array
     {
-        $query = 'SELECT * FROM game as g WHERE g.id_owner=:id';
+        $query = 'SELECT g.id AS game_id, g.name, g.type, g.minimum_players_age, g.image, g.id_owner, 
+        g.min_number_players, g.max_number_players, g.availability, u.id AS user_id, u.firstname AS user_firstname, 
+        u.lastname AS user_lastname, b.id AS borrow_id, b.id_game, b.id_user, b.id_status, max(b.acceptance_date),
+        o.id AS owner_id, o.firstname AS owner_firstname, o.lastname AS owner_lastname
+        FROM game AS g
+        INNER JOIN user AS o ON o.id = g.id_owner
+        LEFT JOIN borrow as b ON b.id_game = g.id
+        LEFT JOIN user as u ON b.id_user = u.id
+        WHERE g.id_owner = :id
+        GROUP BY game_id, g.name, g.type, g.minimum_players_age, g.image, g.id_owner, 
+        g.min_number_players, g.max_number_players, g.availability, user_id, user_firstname, 
+        user_lastname,borrow_id, b.id_game, b.id_user, b.id_status, 
+        owner_id, owner_firstname, owner_lastname ORDER BY g.id ASC;';
         $statement = $this->pdo->prepare($query);
         $statement->bindValue(':id', $id, \PDO::PARAM_INT);
         $statement->execute();
@@ -93,13 +109,12 @@ class GameManager extends AbstractManager
         return $statement->fetchAll();
     }
 
-    public function updateGameReturned(int $id): void
+    public function changeAvailability(int $id, int $availability): void
     {
-        $query = 'UPDATE game AS g INNER JOIN borrow AS b ON b.id_game = g.id 
-        SET g.availability = true, b.id_status = 4 
-        WHERE g.id=:id AND b.id_status = 2;';
+        $query = 'UPDATE game AS g SET g.availability = :availability WHERE g.id=:id;';
         $statement = $this->pdo->prepare($query);
         $statement->bindValue(':id', $id, \PDO::PARAM_INT);
+        $statement->bindValue(':availability', $availability, \PDO::PARAM_BOOL);
         $statement->execute();
     }
 }

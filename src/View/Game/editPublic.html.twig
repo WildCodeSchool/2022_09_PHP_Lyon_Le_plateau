@@ -4,5 +4,7 @@
 	<h2 class="text-center m-5 mb-4">Modifier un jeu</h2>
 	<h3 class="text-center">{{ game.name }}</h3>
 	{% include 'Game/_formPublic.html.twig' %}
-	<a href="/myaccount">Retour</a>
+	<div>
+		<a class="btn btn-outline-primary ms-3 mb-1" href="/users/show">Retour</a>
+	</div>
 {% endblock %}
