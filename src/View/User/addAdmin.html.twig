@@ -1,7 +1,10 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-	<h1 class="text-center m-5 mb-4">Ajouter un utilisateur</h1>
+	<h2 class="text-center mt-4">Ajouter un utilisateur</h2>
+	<p class="text-center">Renseigner les informations de l'utilisateur</p>
 	{% include 'User/_form.html.twig' %}
-
+	<div>
+		<a class="btn btn-outline-primary ms-3 mb-1" href="/users/show">Retour</a>
+	</div>
 {% endblock %}

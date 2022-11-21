@@ -2,11 +2,11 @@
 
 	<div class="container text-center">
 		<div class="row">
-			<div class="mb-5 mx-auto d-table">
+			<div class="mb-4 mx-auto d-table">
 				<div class="d-table-cell align-middle">
-					<form class="form m-3 bg-lightgrey p-3 shadow" method="post" enctype="multipart/form-data">
+					<form class="form m-3 bg-lightgrey p-3 shadow" method="post" enctype="multipart/form-data" {% if errors is not null %} action="#anchor" {% endif %}>
 
-						<input type="hidden" value="{{ game.id }}" name="gameId">
+						<input type="hidden" value="{{ game.game_id }}" name="gameId">
 						<input type="hidden" value="{{user_session.id}}" name="idGameOwner">
 
 						<div class="mb-3">
@@ -14,9 +14,9 @@
 							<input type="text" value="{{ game.name }}" name="gameName" id="gameName" maxlength="100" class="form-control" required>
 						</div>
 
-						<div class="mb-3">
+						<div class="mb-3" id="anchor">
 							<label for="gameGenre" class="form-label d-flex justify-content-center">Genre *</label>
-							<select name="gameGenre" id="gameGenre" value="{{ game.type }}" class="form-control text-center" required>
+							<select name="gameGenre" id="gameGenre" value="{{ game.type }}" class="form-control" required>
 								<option disabled selected value="">--Choisis un genre--</option>
 								<option value="Stratégie" {% if game.type == 'Stratégie' %} selected {% endif %}>Stratégie</option>
 								<option value="Ambiance" {% if game.type == 'Ambiance' %} selected {% endif %}>Ambiance</option>
@@ -39,7 +39,7 @@
 						</div>
 
 						<div class="mb-3">
-							<label for="gameAgeMinimumPlayers" class="form-label d-flex justify-content-center">A partir de *</label>
+							<label for="gameAgeMinimumPlayers" class="form-label d-flex justify-content-center">Age minimum *</label>
 							<input type="number" value="{{ game.minimum_players_age }}" name="gameAgeMinimumPlayers" id="gameAgeMinimumPlayers" min="1" max="99" class="form-control" required>
 						</div>
 
@@ -48,7 +48,7 @@
 							<input type="hidden" name="MAX_FILE_SIZE" value="2097152" class="form-control">
 							<input type="file" value="{{ game.image }}" accept="image/*" name="gameImage" id="image" class="form-control" maxlength="255">
 						</div>
-						{% if errors is defined %}
+						{% if errors is not null %}
 							<div class="text-danger">
 								<ul>
 									{% for error in errors %}
