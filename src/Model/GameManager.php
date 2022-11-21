@@ -89,16 +89,19 @@ class GameManager extends AbstractManager
 
     public function selectMyGames(int $id): array
     {
-        $query = '       SELECT g.id AS game_id, g.name, g.type, g.minimum_players_age, g.image, g.id_owner, 
+        $query = 'SELECT g.id AS game_id, g.name, g.type, g.minimum_players_age, g.image, g.id_owner, 
         g.min_number_players, g.max_number_players, g.availability, u.id AS user_id, u.firstname AS user_firstname, 
-        u.lastname AS user_lastname, b.id AS borrow_id, b.id_game, b.id_user, b.id_status, max(b.id),
+        u.lastname AS user_lastname, b.id AS borrow_id, b.id_game, b.id_user, b.id_status, max(b.acceptance_date),
         o.id AS owner_id, o.firstname AS owner_firstname, o.lastname AS owner_lastname
         FROM game AS g
         INNER JOIN user AS o ON o.id = g.id_owner
         LEFT JOIN borrow as b ON b.id_game = g.id
         LEFT JOIN user as u ON b.id_user = u.id
-        WHERE g.id_owner=:id
-        GROUP BY g.id ORDER BY g.id ASC;';
+        WHERE g.id_owner = :id
+        GROUP BY game_id, g.name, g.type, g.minimum_players_age, g.image, g.id_owner, 
+        g.min_number_players, g.max_number_players, g.availability, user_id, user_firstname, 
+        user_lastname,borrow_id, b.id_game, b.id_user, b.id_status, 
+        owner_id, owner_firstname, owner_lastname ORDER BY g.id ASC;';
         $statement = $this->pdo->prepare($query);
         $statement->bindValue(':id', $id, \PDO::PARAM_INT);
         $statement->execute();
