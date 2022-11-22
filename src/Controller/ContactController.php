@@ -84,7 +84,7 @@ class ContactController extends AbstractController
 
     public function index(): string|null
     {
-        if (!$this->user['admin']) {
+        if (!isset($this->user['admin']) || !$this->user['admin']) {
             return $this->twig->render('errors/error.html.twig');
         }
 
