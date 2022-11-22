@@ -42,7 +42,11 @@ class GameController extends AbstractController
 
             // Display error (to be modified for image case)
             if (!empty($errors)) {
-                return $this->twig->render('Game/addAdmin.html.twig', ['errors' => $errors, 'game' => $game]);
+                return $this->twig->render('Game/addAdmin.html.twig', [
+                    'errors' => $errors,
+                    'game' => $game,
+                    'users' => $users
+                ]);
             } else {
                 $game['gameImage'] = 'default.jpg';
                 if (!empty($_FILES['gameImage']['tmp_name'])) {
