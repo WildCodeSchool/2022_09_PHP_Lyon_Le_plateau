@@ -29,7 +29,7 @@ define('APP_DB_NAME', 'your_db_name');          (may I suggest you to use "le_pl
 
 ```php
 
-define('SECRETCAPTCHA', '6LfaewIjAAAAAGE2jVosKMD84I94tiN060GEBmhP');
+define('SECRETCAPTCHA', 'YOUR_SECRET_KEY_OF_API_GOOGLE');
 ```
 
 5. Import *le_plateau.sql* in your SQL server, you can do it manually or use the *migration.php* script which will import a *database.sql* file.
