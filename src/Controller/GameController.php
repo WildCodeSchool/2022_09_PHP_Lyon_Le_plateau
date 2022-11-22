@@ -248,8 +248,17 @@ class GameController extends AbstractController
     public function showMyGames(): array|null
     {
         $gameManager = new GameManager();
-        $myGames = $gameManager->selectMyGames($this->user['id']);
+        $myGamesWithoutInfo = $gameManager->selectAllMyGames($this->user['id']);
+        $myGames = [];
 
+        foreach ($myGamesWithoutInfo as $myGameWithoutInfo) {
+            $myGames[$myGameWithoutInfo['game_id']] = $myGameWithoutInfo;
+            $myGameInfos = $gameManager->selectMyGamesOnce($myGameWithoutInfo['game_id']);
+
+            foreach ($myGameInfos as $myGameInfo) {
+                $myGames[$myGameWithoutInfo['game_id']]['request_info'] = $myGameInfo;
+            }
+        }
         return $myGames;
     }
 
