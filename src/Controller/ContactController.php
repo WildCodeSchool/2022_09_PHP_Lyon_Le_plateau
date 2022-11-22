@@ -89,7 +89,7 @@ class ContactController extends AbstractController
         }
 
         $contactManager = new ContactManager();
-        $contacts = $contactManager->selectAll('isRead');
+        $contacts = $contactManager->selectAll('isRead', 'DESC');
 
         return $this->twig->render('Contact/index.html.twig', ['contacts' => $contacts]);
     }
