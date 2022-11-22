@@ -195,7 +195,7 @@ h4 {
 }
 
 /* BOUTON RETOUR TOP PAGE */
-#cRetour {
+#cBack {
     display: inline-block;
     position: fixed;
     bottom: 150px;
@@ -212,19 +212,19 @@ h4 {
     -webkit-backface-visibility: hidden;
 }
 
-/* classe par défaut (invisible) du lien contenu dans la flèche de retour vers le haut */
-#cRetour.cInvisible {
+#cBack.cInvisible {
     bottom: -5vh;
     opacity: 0;
     transition: all ease-in 0.5s;
 }
 
-#cRetour.cVisible {
+#cBack.cVisible {
     bottom: 150px;
     right: 15px;
     opacity: 1;
 }
 
-.availability, .owner  {
+.availability,
+.owner {
     font-size: 13px;
 }
