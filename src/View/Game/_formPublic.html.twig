@@ -1,10 +1,10 @@
 {% block content %}
 
-	<div class="container text-center">
+	<div class="container">
 		<div class="row">
 			<div class="col-sm-10 col-md-8 col-lg-6 mb-5 mx-auto d-table">
 				<div class="d-table-cell align-middle">
-					<form class="form m-3 bg-lightgrey p-3 shadow" method="post" enctype="multipart/form-data" action="#anchor">
+					<form class="form m-3 bg-lightgrey p-3 shadow" method="post" enctype="multipart/form-data" {% if errors is not null %} action="#anchor" {% endif %}>
 
 						<input type="hidden" value="{{ game.id }}" name="gameId">
 						<input type="hidden" value="{{user_session.id}}" name="idGameOwner">
