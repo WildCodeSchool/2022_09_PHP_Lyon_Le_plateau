@@ -30,15 +30,15 @@
 							<td>{{ contact.lastname }}</td>
 							<td>{{ contact.email }}</td>
 							{% if contact.isRead %}
-								<td class="text-success">
-									<strong>
-										Lu
-									</strong>
-								</td>
-							{% else %}
 								<td class="text-danger">
 									<strong>
 										Non lu
+									</strong>
+								</td>
+								{% else %}
+								<td class="text-success">
+									<strong>
+										Lu
 									</strong>
 								</td>
 							{% endif %}
