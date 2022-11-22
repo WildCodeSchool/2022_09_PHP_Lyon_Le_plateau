@@ -20,9 +20,7 @@
 	</div>
 	<div class="pages text-center mb-3 mt-2">
 		<ul class="nav justify-content-center">
-			{% set count = (games|length) %}
-			{% set page = (count/12)|round(0, 'ceil')-1 %}
-			{% for i in range (0, page) %}
+			{% for i in range (0, nbpage-1) %}
 				<li class="nav-item">
 					<a class="nav-link tomatoButton rounded m-2" aria-current="page" href="/../../games?page={{i+1}}">{{i+1}}</a>
 				</li>

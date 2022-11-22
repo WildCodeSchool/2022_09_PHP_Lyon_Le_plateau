@@ -34,11 +34,11 @@
 			{% if game.availability == false and game.request_info.id_status == 2 %}
 				<a href="/myaccount/returngame?id={{game.request_info.borrow_id}}" class="btn tomatoButton action-btn px-1">Rendu !</a>
 			{% elseif game.availability == false %}
-				<a href="/myaccount/gameavailability?id={{game.game_id}}&availability=1" class="btn tomatoButton action-btn px-1">Dispo !</a>
+				<a href="/myaccount/gameavailability?id={{game.game_id}}&availability=1" class="btn text-white bg-success action-btn px-1">Dispo !</a>
 			{% elseif game.availability and game.id_status == 1 %}
 				<a class="btn btn-secondary noHover">Pas dispo !</a>
 			{% elseif game.availability %}
-				<a href="/myaccount/gameavailability?id={{game.game_id}}&availability=0" class="btn tomatoButton action-btn px-1">Pas dispo !</a>
+				<a href="/myaccount/gameavailability?id={{game.game_id}}&availability=0" class="btn text-white bg-danger action-btn px-1">Pas dispo !</a>
 			{% endif %}
 		</div>
 	</div>
