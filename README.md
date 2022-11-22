@@ -25,7 +25,7 @@ define('APP_DB_PASSWORD', 'your_db_password');  (do not worry, db.config is part
 define('APP_DB_HOST', 'your_db_host');          (most part of the time "localhost")
 define('APP_DB_NAME', 'your_db_name');          (may I suggest you to use "le_plateau" ? You would avoid many difficulites)
 ```
-4. Still in config/db.php, add the following line to ensure the the proper functioning of the Capcha in "A propos" page:
+4. Still in config/db.php, add the following line to ensure the proper functioning of the Capcha in "A propos" page:
 
 ```php
 
