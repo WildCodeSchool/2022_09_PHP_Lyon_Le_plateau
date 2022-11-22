@@ -52,7 +52,7 @@
 						</div>
 
 						<div class="mb-3">
-							<label for="gameAvailability" class="form-label d-flex justify-content-center">Disponibilité *</label>
+							<label for="gameAvailability" class="form-label d-flex justify-content-center">Disponible *</label>
 							<select name="gameAvailability" id="gameAvailability" value="{{ game.availability }}" class="form-control" required>
 								<option selected value="1">Oui</option>
 								<option value="0" {% if game.availability == '0' %} selected {% endif %}>Non</option>

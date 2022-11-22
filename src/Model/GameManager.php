@@ -14,8 +14,9 @@ class GameManager extends AbstractManager
     public function insert(array $game): int
     {
         $query = "INSERT INTO " . self::TABLE .
-            " (id_owner, name, type, minimum_players_age, min_number_players, max_number_players, image) 
-        VALUES (:id_owner, :name, :type, :minimum_players_age, :min_number_players, :max_number_players, :image)";
+            " (id_owner, name, type, minimum_players_age, min_number_players, max_number_players, image, availability) 
+        VALUES (:id_owner, :name, :type, :minimum_players_age, :min_number_players, :max_number_players, :image,
+         :availability)";
         $statement = $this->pdo->prepare($query);
         $statement->bindValue(':id_owner', $game['idGameOwner'], PDO::PARAM_INT);
         $statement->bindValue(':name', $game['gameName'], PDO::PARAM_STR);
@@ -25,6 +26,7 @@ class GameManager extends AbstractManager
         $statement->bindValue(':max_number_players', $game['gameMaximumNumberPlayers'], PDO::PARAM_INT);
         $statement->bindValue(':max_number_players', $game['gameMaximumNumberPlayers'], PDO::PARAM_INT);
         $statement->bindValue(':image', $game['gameImage'], PDO::PARAM_STR);
+        $statement->bindValue(':availability', $game['gameAvailability'], PDO::PARAM_INT);
 
         $statement->execute();
         return (int)$this->pdo->lastInsertId();
