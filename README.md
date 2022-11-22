@@ -25,9 +25,17 @@ define('APP_DB_PASSWORD', 'your_db_password');  (do not worry, db.config is part
 define('APP_DB_HOST', 'your_db_host');          (most part of the time "localhost")
 define('APP_DB_NAME', 'your_db_name');          (may I suggest you to use "le_plateau" ? You would avoid many difficulites)
 ```
-4. Import *le_plateau.sql* in your SQL server, you can do it manually or use the *migration.php* script which will import a *database.sql* file.
-5. Run the internal PHP webserver with `php -S localhost:8000 -t public/`. The option `-t` with `public` as parameter means your localhost will target the `/public` folder.
-6. Go to `localhost:8000` with your favorite browser.
+4. Still in config/db.php, add the following line to ensure the the proper functioning of the Capcha in "A propos" page:
+
+```php
+
+define('SECRETCAPTCHA', '6LfaewIjAAAAAGE2jVosKMD84I94tiN060GEBmhP');
+```
+
+5. Import *le_plateau.sql* in your SQL server, you can do it manually or use the *migration.php* script which will import a *database.sql* file.
+6. Run the internal PHP webserver with `php -S localhost:8000 -t public/`. The option `-t` with `public` as parameter means your localhost will target the `/public` folder.
+
+7. Go to `localhost:8000` with your favorite browser.
 
 
 ## Example 
