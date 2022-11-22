@@ -22,6 +22,7 @@ return [
     'contact/isread' => ['ContactController', 'changeReadStatus', ['id']],
     'users/login' => ['UserController', 'login'],
     'users/logout' => ['UserController', 'logout'],
+    'users/register' => ['UserController', 'publicRegister'],
     'myaccount' => ['BorrowController', 'myAccount'],
     'myaccount/myborrow' => ['BorrowController', 'addBorrow', ['id']],
     'myaccount/myborrow/cancel' => ['BorrowController', 'cancelBorrow', ['id']],
