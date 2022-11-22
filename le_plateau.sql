@@ -78,28 +78,28 @@ matmat+1234
 */
 INSERT INTO game (name, type, min_number_players, max_number_players, minimum_players_age, image, id_owner, availability)
 VALUES
-('Trivial pursuit', 'Culture Générale', 2, 6, 16, 'trivialpursuit.jpg', 5, 0),
+('Unlock Secret Adventures', 'Escape Game', 1, 6, 10, 'unlockSecretAdventures.jpg', 5, 0),
 ('7 wonders', 'Stratégie', 3, 7, 10, '7wonders.jpg', 1, 1),
 ('Uno', 'Ambiance', 2, 10, 7, 'uno.png', 3, 1),
 ('Dice forge', 'Stratégie', 2, 4, 10, 'diceforge.jpg', 4, 1),
 ('Trivial pursuit', 'Culture Générale', 2, 6, 16, 'trivialpursuit.jpg', 2, 0),
 ('La bonne paye', 'Ambiance', 2, 6, 8, 'LBP.jpg', 5, 1),
 ('Codenames', 'Réflexion', 2, 8, 12, 'codenames.jpg', 2, 1),
-('Codenames', 'Réflexion', 2, 8, 12, 'codenames.jpg', 1, 0),
-('7 wonders', 'Stratégie', 3, 7, 10, '7wonders.jpg', 2, 1),
+('Cranium', 'Ambiance', 4, 10, 16, 'cranium.jpg', 3, 0),
+('Dice forge', 'Stratégie', 2, 4, 10, 'diceforge.jpg', 2, 1),
 ('La bonne paye', 'Ambiance', 2, 6, 8, 'LBP.jpg', 3, 1),
-('Trivial pursuit', 'Culture Générale', 2, 6, 16, 'trivialpursuit.jpg', 4, 0),
-('Cluedo', 'Réflexion', 3, 5, 9, 'cluedo.jpg', 5, 1),
+('Dixit', 'Autre', 3, 6, 8, 'dixit.jpg', 4, 0),
+('Jungle speed', 'Ambiance', 2, 10, 7, 'junglespeed.jpg', 5, 1),
 ('Monopoly', 'Ambiance', 2, 6, 8, 'monopoly.jpg', 4, 1),
 ('Codenames', 'Réflexion', 2, 8, 12, 'codenames.jpg', 6, 1),
 ('Cluedo', 'Réflexion', 3, 5, 9, 'cluedo.jpg', 2, 1),
-('Cluedo', 'Réflexion', 3, 5, 9, 'cluedo.jpg', 3, 1),
+('King Domino', 'Stratégie', 2, 4, 8, 'kingdomino.jpg', 3, 1),
 ('Trivial pursuit', 'Culture Générale', 2, 6, 16, 'trivialpursuit.jpg', 5, 1),
-('7 wonders', 'Stratégie', 3, 7, 10, '7wonders.jpg', 1, 1),
-('Trivial pursuit', 'Culture Générale', 2, 6, 16, 'trivialpursuit.jpg', 6, 1),
+('Cranium', 'Ambiance', 4, 10, 16, 'cranium.jpg', 1, 1),
+('Munchkin', 'Stratégie', 3, 6, 10, 'munchkin.jpg', 6, 1),
 ('Les Loups-Garous de Thiercelieux', 'Ambiance', 8, 18, 10, 'loupgarou.jpg', 5, 1),
 ('Scrabble', 'Réfléxion', 2, 4, 7, 'scrabble.jpg', 4, 0),
-('Trivial pursuit', 'Culture Générale', 2, 6, 16, 'trivialpursuit.jpg', 1, 1);
+('Perudo', 'Ambiance', 2, 6, 8, 'perudo.jpg', 1, 1);
 
 INSERT INTO contact (firstname, lastname, email, message)
 VALUES
