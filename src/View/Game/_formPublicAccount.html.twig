@@ -44,6 +44,10 @@
 						</div>
 
 						<div class="mb-3">
+							<input type="hidden" type="number" value="{{ game.availability }}" name="gameAvailability" id="gameAvailability" class="form-control" required>
+						</div>
+
+						<div class="mb-3">
 							<label for="gameImage" class="form-label d-flex justify-content-center">Image du jeu</label>
 							<input type="hidden" name="MAX_FILE_SIZE" value="2097152" class="form-control">
 							<input type="file" value="{{ game.image }}" accept="image/*" name="gameImage" id="image" class="form-control" maxlength="255">
