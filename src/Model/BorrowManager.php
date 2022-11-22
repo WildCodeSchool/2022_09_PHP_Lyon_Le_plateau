@@ -13,7 +13,7 @@ class BorrowManager extends GameManager
         $query = "SELECT b.id AS borrow_id, b.id_game, g.name as game_name, g.type, g.min_number_players,
         g.max_number_players, g.minimum_players_age, g.image, g.availability, owner.firstname as owner_firstname, 
         owner.lastname as owner_lastname, g.id_owner as owner_id, u.firstname as borrower_firstname,
-        u.lastname as borrower_lastname, u.id as borrower_id, b. request_date, b.acceptance_date, 
+        u.lastname as borrower_lastname, u.id as borrower_id, b.request_date, b.acceptance_date, 
         s.borrow_status  FROM " . static::TABLE . " as b inner join user as u on u.id = b.id_user
         INNER JOIN game AS g ON g.id = b.id_game inner join user as owner on owner.id = g.id_owner 
         INNER JOIN status AS s ON s.id = b.id_status WHERE b.id_user=" . $id;
@@ -26,7 +26,7 @@ class BorrowManager extends GameManager
         $query = "SELECT b.id AS borrow_id, b.id_game, g.name as game_name, g.type, g.min_number_players, 
         g.max_number_players, g.minimum_players_age, g.image, g.availability, owner.firstname as owner_firstname, 
         owner.lastname as owner_lastname, g.id_owner as owner_id, u.firstname as borrower_firstname,
-        u.lastname as borrower_lastname, u.id as borrower_id, b. request_date, b.acceptance_date, 
+        u.lastname as borrower_lastname, u.id as borrower_id, b.request_date, b.acceptance_date, 
         s.borrow_status  FROM " . static::TABLE . " as b inner join user as u on u.id = b.id_user
         INNER JOIN game AS g ON g.id = b.id_game inner join user as owner on owner.id = g.id_owner 
         INNER JOIN status AS s ON s.id = b.id_status WHERE b.id_user=" . $id . " and s.borrow_status = 'En attente'";
@@ -52,7 +52,7 @@ class BorrowManager extends GameManager
         $query = "SELECT b.id AS borrow_id, b.id_game, g.name as game_name, g.type, g.min_number_players, 
         g.max_number_players, g.minimum_players_age, g.image, g.availability, owner.firstname as owner_firstname, 
         owner.lastname as owner_lastname, g.id_owner as owner_id, u.firstname as borrower_firstname,
-        u.lastname as borrower_lastname, u.id as borrower_id, b. request_date, b.acceptance_date, 
+        u.lastname as borrower_lastname, u.id as borrower_id, b.request_date, b.acceptance_date, 
         s.borrow_status  FROM " . static::TABLE . " as b inner join user as u on u.id = b.id_user
         INNER JOIN game AS g ON g.id = b.id_game inner join user as owner on owner.id = g.id_owner 
         INNER JOIN status AS s ON s.id = b.id_status WHERE b.id_user=" . $id . " and s.borrow_status = 'Refusé'";
