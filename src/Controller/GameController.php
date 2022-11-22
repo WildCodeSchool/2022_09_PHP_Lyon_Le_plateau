@@ -224,6 +224,13 @@ class GameController extends AbstractController
     {
         $gameManager = new GameManager();
         $games = $gameManager->selectAll('name');
+
+        $count = count($games);
+        $nbpage = ceil($count / 12);
+
+        if ($_GET['page'] < 1 || $_GET['page'] > $nbpage) {
+            return $this->twig->render('errors/error.html.twig');
+        }
         $page = ($_GET['page'] - 1) * 12;
         $user = null;
         $requestedGames = [];
@@ -241,7 +248,8 @@ class GameController extends AbstractController
         return $this->twig->render('Game/games.html.twig', [
             'games' => $games,
             'selectedGames' => $selectedGames,
-            'requestedGames' => $requestedGames
+            'requestedGames' => $requestedGames,
+            'nbpage' => $nbpage
         ]);
     }
 
