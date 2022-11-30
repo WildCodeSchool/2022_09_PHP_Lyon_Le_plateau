@@ -1,0 +1,30 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+	Les jeux
+{% endblock %}
+
+{% block pageTitle %}
+	<h2 class="text-center my-4">
+		Les jeux
+	</h2>
+{% endblock %}
+
+{% block content %}
+	<div class="container d-flex w-100  justify-content-center">
+		<div class="row justify-content-start w-100">
+			{% for game in selectedGames %}
+				{% include 'Game/_gamecard.html.twig' %}
+			{% endfor %}
+		</div>
+	</div>
+	<div class="pages text-center mb-3 mt-2">
+		<ul class="nav justify-content-center">
+			{% for i in range (0, nbpage-1) %}
+				<li class="nav-item">
+					<a class="nav-link tomatoButton rounded m-2" aria-current="page" href="/../../games?page={{i+1}}">{{i+1}}</a>
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
+{% endblock %}

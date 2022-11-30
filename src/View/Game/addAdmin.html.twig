@@ -1,0 +1,10 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+	<h2 class="text-center mt-4">Ajouter un jeu</h2>
+	<p class="text-center">Renseigner les informations du jeu</p>
+	{% include 'Game/_formAdmin.html.twig' %}
+	<div>
+		<a class="btn btn-outline-primary ms-3 mb-1" href="/users/show">Retour</a>
+	</div>
+{% endblock %}

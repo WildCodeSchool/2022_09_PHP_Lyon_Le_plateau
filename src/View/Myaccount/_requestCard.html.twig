@@ -1,0 +1,18 @@
+<div class="mb-2 p-3 col-lg-4 col-xs-12 d-flex justify-content-center">
+	<div class="card border-0 shadow align-items-center">
+		<div class="card-header text-center fw-bold w-100">
+			{{ requestReceived.firstname }}
+			{{ requestReceived.lastname}}
+			<br>
+			veut emprunter votre jeu :
+		</div>
+		<div class="card-image-top mt-2" style="background-image: url('{{'/uploads/' ~ requestReceived.image}}')"></div>
+		<div class="card-body w-100 text-center d-flex flex-column align-items-center pt-1">
+			<p class="card-title pt-2 ">{{ requestReceived.name }}</p>
+		</div>
+		<div class="card-footer text-center w-100 d-flex justify-content-around">
+			<a href="/myaccount/manageRequests?id={{requestReceived.borrow_id}}&status=2" class="btn btn-success">Accepter</a>
+			<a href="/myaccount/manageRequests?id={{requestReceived.borrow_id}}&status=3" class="btn btn-danger">Refuser</a>
+		</div>
+	</div>
+</div>

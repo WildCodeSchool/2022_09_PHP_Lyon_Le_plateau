@@ -1,0 +1,38 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+	Mon compte
+{% endblock %}
+
+{% block pageTitle %}
+	<h2 class="text-center my-4">
+		Bienvenue
+		{{user_session.firstname}}
+		{{user_session.lastname}}
+		!
+	</h2>
+{% endblock %}
+
+{% block content %}
+
+	<div class='mt-2'>
+		{% include 'Myaccount/_requestsReceived.html.twig' %}
+	</div>
+	<div class="d-flex flex-row section m-auto justify-content-between">
+		<div class=" border border-dark formAdd me-4 d-none d-md-block" id='myGames'>
+			<h4 class="text-center p-2">Ajouter un jeu</h2>
+			{% include 'Game/_formPublicAccount.html.twig' %}
+		</div>
+		{% include 'Myaccount/_mygames.html.twig' %}
+	</div>
+
+	<a href="/myaccount/addgame">
+		<button class="btn addButton m-auto my-4 fixed-bottom d-block d-md-none">Ajouter un jeu</button>
+	</a>
+
+	<div>
+		{% include 'Myaccount/_borrow.html.twig' %}
+	</div>
+
+
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+	Administration - Les jeux
+{% endblock %}
+
+{% block content %}
+	<div class="container-fluid d-md-flex p-0">
+		{% include 'components/_navAdmin.html.twig' %}
+
+		<section class="m-auto">
+			<h2 class="text-center mt-4 mb-2">Les jeux</h2>
+			<a class="btn btn-outline-primary" href="/games/add">Ajouter</a>
+
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Nom</th>
+						<th>Type</th>
+						<th class="text-center">Age mini</th>
+						<th class="text-center">Nbre joueurs min</th>
+						<th class="text-center">Nbre joueurs max</th>
+						<th>Prénom</th>
+						<th>Nom</th>
+						<th class="text-center">Disponibilité</th>
+						<th class="text-center">Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for game in games %}
+						<tr>
+							<td>{{ game.game_id }}</td>
+							<td>{{ game.name }}</td>
+							<td>{{ game.type }}</td>
+							<td class="text-center">{{ game.minimum_players_age}}</td>
+							<td class="text-center">{{ game.min_number_players }}</td>
+							<td class="text-center">{{ game.max_number_players }}</td>
+							<td class="text-center">{{ game.firstname }}</td>
+							<td class="text-center">{{ game.lastname }}</td>
+							<td class="text-center">
+								{% if game.availability == true %}
+									Oui
+								{% else %}
+									Non
+								{% endif %}
+							</td>
+							<td>
+								<a class="btn btn-outline-primary" href="/games/edit?id={{ game.game_id }}">Modifier</a>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</section>
+	</div>
+{% endblock %}

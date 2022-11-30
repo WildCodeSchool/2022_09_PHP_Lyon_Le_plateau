@@ -1,0 +1,88 @@
+{% block content %}
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-10 col-md-8 col-lg-6 mb-5 mx-auto d-table">
+				<div class="d-table-cell align-middle">
+					<form class="form m-3 bg-lightgrey p-3 shadow" method="post" enctype="multipart/form-data" {% if errors is not null %} action="#anchor" {% endif %}>
+
+						<input type="hidden" value="{{ game.id }}" name="id">
+						<div class="mb-3">
+							<label for="idGameOwner" class="form-label d-flex justify-content-center">Propriétaire du jeu *</label>
+							<select name="idGameOwner" id="idGameOwner" class="form-control" required>
+								<option disabled selected value="">--Choisis le propriétaire du jeu--</option>
+								{% for user in users %}
+									<option value="{{user.id}}" {% if game.firstname == user.firstname and game.lastname == user.lastname %} selected {% endif %}>{{ user.firstname }}
+										{{ user.lastname }}</option>
+								{% endfor %}
+							</select>
+						</div>
+
+						<div class="mb-3">
+							<label for="gameName" class="form-label d-flex justify-content-center">Nom du jeu *</label>
+							<input type="text" value="{{ game.name }}" name="gameName" id="gameName" maxlength="100" class="form-control" required>
+						</div>
+
+						<div class="mb-3">
+							<label for="gameGenre" class="form-label d-flex justify-content-center">Genre *</label>
+							<select name="gameGenre" id="gameGenre" value="{{ game.type }}" class="form-control" required>
+								<option disabled selected value="">--Choisis un genre--</option>
+								<option value="Stratégie" {% if game.type == 'Stratégie' %} selected {% endif %}>Stratégie</option>
+								<option value="Ambiance" {% if game.type == 'Ambiance' %} selected {% endif %}>Ambiance</option>
+								<option value="Coopératif" {% if game.type == 'Coopératif' %} selected {% endif %}>Coopératif</option>
+								<option value="Réflexion" {% if game.type == 'Réflexion' %} selected {% endif %}>Réflexion</option>
+								<option value="Culture Générale" {% if game.type == 'Culture Générale' %} selected {% endif %}>Culture Générale</option>
+								<option value="Escape Game" {% if game.type == 'Escape Game' %} selected {% endif %}>Escape Game</option>
+								<option value="Autre" {% if game.type == 'Autre' %} selected {% endif %}>Autre</option>
+							</select>
+						</div>
+
+						<div class="mb-3">
+							<label for="gameMinimumNumberPlayers" class="form-label d-flex justify-content-center">Nombre de joueurs minimum *</label>
+							<input type="number" value="{{ game.min_number_players }}" name="gameMinimumNumberPlayers" id="gameMinimumNumberPlayers" min="1" max="99" class="form-control" required>
+						</div>
+
+						<div class="mb-3">
+							<label for="gameMaximumNumberPlayers" class="form-label d-flex justify-content-center">Nombre de joueurs maximum *</label>
+							<input type="number" value="{{ game.max_number_players }}" name="gameMaximumNumberPlayers" id="gameMaximumNumberPlayers" min="1" max="99" class="form-control" required>
+						</div>
+
+						<div class="mb-3">
+							<label for="gameAgeMinimumPlayers" class="form-label d-flex justify-content-center">Age minimum *</label>
+							<input type="number" value="{{ game.minimum_players_age }}" name="gameAgeMinimumPlayers" id="gameAgeMinimumPlayers" min="1" max="99" class="form-control" required>
+						</div>
+
+						<div class="mb-3">
+							<label for="gameAvailability" class="form-label d-flex justify-content-center">Disponible *</label>
+							<select name="gameAvailability" id="gameAvailability" value="{{ game.availability }}" class="form-control" required>
+								<option selected value="1">Oui</option>
+								<option value="0" {% if game.availability == '0' %} selected {% endif %}>Non</option>
+							</select>
+						</div>
+
+						<div class="mb-3">
+							<label for="gameImage" class="form-label d-flex justify-content-center">Image du jeu</label>
+							<input type="hidden" name="MAX_FILE_SIZE" value="2097152" class="form-control">
+							<input type="file" value="{{ game.image }}" accept="image/*" name="gameImage" id="image" class="form-control" maxlength="255">
+						</div>
+						{% if errors is defined %}
+							<div class="text-danger">
+								<ul>
+									{% for error in errors %}
+										<li>{{error}}</li>
+									{% endfor %}
+								</ul>
+							</div>
+						{% endif %}
+
+						<div class="mb-3 d-flex justify-content-center" id='anchor'>
+							<button class="btn tomatoButton">Envoyer</button>
+						</div>
+						<p class="form-text text-start">* Champs obligatoires</p>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+{% endblock %}

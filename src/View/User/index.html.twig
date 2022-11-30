@@ -1,0 +1,43 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+	Administration - Les utilisateurs
+{% endblock %}
+
+{% block content %}
+	<div class="container-fluid d-md-flex p-0">
+		{% include 'components/_navAdmin.html.twig' %}
+
+		<section class="m-auto">
+			<h2 class="text-center mt-4 mb-2">Les utilisateurs</h2>
+			<a class="btn btn-outline-primary" href="/users/add">Ajouter</a>
+
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Prénom</th>
+						<th>Nom</th>
+						<th>Email</th>
+						<th class="text-center">Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for user in users %}
+						<tr>
+
+							<td>{{ user.id}}</td>
+							<td>{{ user.firstname }}</td>
+							<td>{{ user.lastname}}</td>
+							<td>{{ user.email}}</td>
+							<td>
+								<a class="btn btn-outline-primary" href="/users/edit?id={{ user.id }}">Modifier</a>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</section>
+
+	</div>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+	<h2 class="text-center mt-4">Modifier un jeu</h2>
+	<h3 class="text-center">{{ game.name }}</h3>
+	{% include 'Game/_formPublic.html.twig' %}
+	<div>
+		<a class="btn tomatoButton ms-3 mb-1" href="/users/show">Retour</a>
+	</div>
+{% endblock %}

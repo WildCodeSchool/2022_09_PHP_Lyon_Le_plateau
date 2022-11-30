@@ -1,0 +1,11 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+	<h2 class="text-center mt-4">Modifier un utilisateur</h2>
+	<h3 class="text-center">{{ user.firstname }}
+		{{ user.lastname }}</h3>
+	{% include 'User/_formEditUser.html.twig' %}
+	<div>
+		<a class="btn tomato-btn ms-3 mb-1" href="/users/show">Retour</a>
+	</div>
+{% endblock %}

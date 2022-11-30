@@ -1,3 +1,230 @@
+:root {
+    --background-color: #FBFBFB;
+    --primary-color: #8CBDB9;
+    --secondary-color: #F87666;
+    --third-color: #2C363F;
+    --font-family: 'Roboto', sans-serif;
+}
+
 body {
-    color: #f76c6c;
+    background-color: var(--background-color);
+    font-family: var(--font-family);
+    margin: 0;
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    font-family: var(--font-family);
+}
+
+.backgroundtop {
+    background-image: url('../images/bg-game2.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-shadow: 1px 1px 1px black;
+    height: 30vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icons {
+    flex-grow: 2;
+    display: inline-flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.navbar-expand-lg .navbar-collapse {
+    flex-grow: 0;
+}
+
+.navbar {
+    background-color: var(--primary-color);
+    font-size: 20px;
+}
+
+.footer {
+    background-color: var(--primary-color);
+    font-size: 16px;
+}
+
+#icons-nav {
+    margin-right: 10px;
+    width: 25px;
+    height: 25px;
+}
+
+.images {
+    width: 100px;
+    height: 100px;
+}
+
+.logo {
+    width: 200px;
+}
+
+#nav-admin {
+    min-width: 230px;
+}
+
+/* PAGE LES JEUX */
+.card {
+    width: 85%;
+    max-width: 20rem;
+}
+
+.card-subtitle {
+    font-size: 10px;
+    width: 85%;
+}
+
+.card-title {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.card-text {
+    font-size: 14px;
+}
+
+.card-image-top {
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 12rem;
+    width: 85%
+}
+
+.tomatoButton {
+    background-color: var(--secondary-color);
+    color: var(--background-color);
+}
+
+.tomatoButton:hover {
+    background-color: var(--secondary-color);
+    color: black;
+}
+
+.tomatoButton:active {
+    background-color: var(--secondary-color);
+    color: black;
+}
+
+#userMessage {
+    resize: none;
+}
+
+.teamPicture {
+    width: 140px;
+}
+
+h2 {
+    font-size: 38px;
+}
+
+h3 {
+    font-size: 26px;
+}
+
+.noHover {
+    pointer-events: none;
+}
+
+.pending {
+    background-color: var(--third-color);
+    color: var(--background-color);
+}
+
+/* PAGE MON COMPTE */
+h4 {
+    background-color: var(--third-color);
+    color: white;
+    font-size: 18px;
+}
+
+.section {
+    width: 90%;
+
+}
+
+.mygames {
+    width: 95%;
+}
+
+.formAdd {
+    width: 50%;
+    height: auto;
+}
+
+.addButton {
+    width: 65%;
+    background-color: var(--third-color);
+    color: var(--background-color);
+    opacity: 90%;
+    font-size: 26px;
+}
+
+.action-btn {
+    width: 45%;
+    max-width: 115px;
+}
+
+.addButton:hover {
+    background-color: var(--third-color);
+    opacity: 100%;
+    color: var(--background-color);
+}
+
+/* PAGE ADMIN */
+#admin-nav-link {
+    color: #c92f1b;
+}
+
+
+/* PAGE CONTACT */
+.linkedin:hover {
+    opacity: 0.7;
+}
+
+.logoGitHub {
+    width: 100px;
+}
+
+.imagedenied {
+    width: 500px;
+}
+
+/* BOUTON RETOUR TOP PAGE */
+#cBack {
+    display: inline-block;
+    position: fixed;
+    bottom: 150px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: url(../images/up-arrow.png), var(--third-color);
+    background-position: center;
+    background-size: 80%;
+    border-radius: 100%;
+    padding: 5px;
+    transition: all ease-in 0.5s;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+#cBack.cInvisible {
+    bottom: -5vh;
+    opacity: 0;
+    transition: all ease-in 0.5s;
+}
+
+#cBack.cVisible {
+    bottom: 150px;
+    right: 15px;
+    opacity: 1;
+}
+
+.availability,
+.owner {
+    font-size: 13px;
 }

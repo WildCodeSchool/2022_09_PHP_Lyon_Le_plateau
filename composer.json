@@ -10,7 +10,8 @@
     "minimum-stability": "stable",
     "require": {
         "twig/twig": "^3.1",
-        "ext-pdo": "*"
+        "ext-pdo": "*",
+        "google/recaptcha": "^1.2"
     },
     "require-dev": {
         "filp/whoops": "^2.14",

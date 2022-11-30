@@ -1,0 +1,17 @@
+<div class="section border border-dark w-100">
+	<h4 class="text-center p-2 ">
+		Mes jeux
+	</h4>
+
+	<div class="container d-flex w-100 justify-content-center">
+		<div class="row justify-content-start w-100 mb-2">
+			{% if myGames is empty %}
+				<span class="text-center">Aucun jeu dans votre ludothèque.</span>
+			{% endif %}
+			{% for myGame in myGames %}
+				{% set game = myGame %}
+				{% include "Myaccount/_mygamecard.html.twig" %}
+			{% endfor %}
+		</div>
+	</div>
+</div>
